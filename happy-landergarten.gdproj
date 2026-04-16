@@ -1,0 +1,19 @@
+{
+  "firstScene": "playground",
+  "windowWidth": 1280,
+  "windowHeight": 720,
+  "name": "快乐乐园",
+  "author": "Happy Landergarten Team",
+  "version": "1.0.0",
+  "properties": {
+    "adaptToScreenSize": true,
+    "antialiasing": true,
+    "hd": true,
+    "immersive": false,
+    "minWidth": 800,
+    "minHeight": 600,
+    "orientation": "landscape",
+    "preserveOrientation": false,
+    "title": "快乐乐园 - 儿童综合游戏"
+  }
+}
