@@ -1,0 +1,214 @@
+{
+  "events": [
+    {
+      "type": "OnSceneLoaded",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "ModifyText",
+          "object": "difficultyText",
+          "modification": "setString",
+          "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+        },
+        {
+          "type": "ModifyText",
+          "object": "starsText",
+          "modification": "setString",
+          "value": "x " + ToString(GlobalVariable(totalStars))
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 颜色游戏",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "colorHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "colorGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 形状游戏",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "shapeHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "shapeGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 数字游戏",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "numberTower",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "numberGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 拼图游戏",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "puzzleHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "puzzleGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 音乐游戏",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "musicHall",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "musicGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 涂鸦游戏",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "artStudio",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "drawGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 动物游戏",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "animalZoo",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "animalGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 返回主菜单",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "backButton",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "mainMenu"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
