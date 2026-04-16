@@ -209,6 +209,30 @@
           ]
         }
       ]
+    },
+    {
+      "type": "Group",
+      "name": "导航 - 城堡",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "castle",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click.ogg",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "mainMenu"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
