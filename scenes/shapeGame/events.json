@@ -1,0 +1,1060 @@
+{
+  "events": [
+    {
+      "type": "OnSceneLoaded",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "ModifyText",
+          "object": "difficultyText",
+          "modification": "setString",
+          "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+        },
+        {
+          "type": "ModifyText",
+          "object": "starsText",
+          "modification": "setString",
+          "value": "x " + ToString(GlobalVariable(totalStars))
+        },
+        {
+          "type": "Function",
+          "name": "SetupGame"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "初始化游戏",
+      "events": [
+        {
+          "type": "Function",
+          "name": "SetupGame",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "rotationHint",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "rotationLabel",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "旋转指示器",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "shapeOutline",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "targetShape",
+              "visibility": false
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "3",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "shapesPool",
+                  "source": "\"圆形;方形;三角形\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"match\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "showOutline",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "这是什么形状？"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 2",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "4",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "shapesPool",
+                  "source": "\"圆形;方形;三角形;菱形\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"outline\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "showOutline",
+                  "source": "1",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "把形状放入虚线框"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) >= 3",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "5",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "shapesPool",
+                  "source": "\"圆形;方形;三角形;菱形;椭圆形\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"rotate\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "showOutline",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "旋转到正确方向！"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Function",
+              "name": "GenerateQuestion"
+            },
+            {
+              "type": "Function",
+              "name": "PositionShapeButtons"
+            },
+            {
+              "type": "Function",
+              "name": "HideUnusedButtons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "生成题目",
+      "events": [
+        {
+          "type": "Function",
+          "name": "GenerateQuestion",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "currentCorrectShape",
+              "source": "PickRandom(Variable(Scene.shapesPool))",
+              "operation": "set"
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "questionSprite",
+              "visibility": true
+            },
+            {
+              "type": "ChangeSprite",
+              "object": "questionSprite",
+              "animation": "=Variable(Scene.currentCorrectShape)"
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "targetShape",
+              "visibility": false
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.showOutline) == 1",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "shapeOutline",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeSprite",
+                  "object": "shapeOutline",
+                  "animation": "=Variable(Scene.currentCorrectShape)轮廓"
+                },
+                {
+                  "type": "ChangeXPosition",
+                  "object": "shapeOutline",
+                  "modification": "set",
+                  "value": 570
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "shapeOutline",
+                  "modification": "set",
+                  "value": 140
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "questionSprite",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "targetShape",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeSprite",
+                  "object": "targetShape",
+                  "animation": "=Variable(Scene.currentCorrectShape)"
+                },
+                {
+                  "type": "ChangeXPosition",
+                  "object": "targetShape",
+                  "modification": "set",
+                  "value": 640
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "targetShape",
+                  "modification": "set",
+                  "value": 150
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.gameMode) == \"rotate\"",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "questionSprite",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "targetShape",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeSprite",
+                  "object": "targetShape",
+                  "animation": "=Variable(Scene.currentCorrectShape)"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "targetRotation",
+                  "source": "Random(1, 3)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "currentRotation",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ChangeRotation",
+                  "object": "targetShape",
+                  "modification": "set",
+                  "value": "Variable(Scene.targetRotation) * 90"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "rotationHint",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "rotationLabel",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "旋转指示器",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeXPosition",
+                  "object": "rotationHint",
+                  "modification": "set",
+                  "value": 1100
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "rotationHint",
+                  "modification": "set",
+                  "value": 100
+                },
+                {
+                  "type": "ChangeXPosition",
+                  "object": "rotationLabel",
+                  "modification": "set",
+                  "value": 1070
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "rotationLabel",
+                  "modification": "set",
+                  "value": 160
+                },
+                {
+                  "type": "ChangeXPosition",
+                  "object": "旋转指示器",
+                  "modification": "set",
+                  "value": 850
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "旋转指示器",
+                  "modification": "set",
+                  "value": 140
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "rotationLabel",
+                  "modification": "setString",
+                  "value": "点击旋转"
+                },
+                {
+                  "type": "ChangeRotation",
+                  "object": "targetShape",
+                  "modification": "set",
+                  "value": "Variable(Scene.currentRotation)"
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "定位形状按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "PositionShapeButtons",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeXPosition",
+              "object": "圆形按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "方形按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 120"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "三角形按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 240"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "菱形按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 360"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "椭圆形按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 480"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "圆形按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "方形按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "三角形按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "菱形按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "椭圆形按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "圆形标签",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 20"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "方形标签",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 140"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "三角形标签",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 260"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "菱形标签",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 380"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "椭圆形标签",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 120)) / 2 + 500"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "圆形标签",
+              "modification": "set",
+              "value": 540
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "方形标签",
+              "modification": "set",
+              "value": 540
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "三角形标签",
+              "modification": "set",
+              "value": 540
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "菱形标签",
+              "modification": "set",
+              "value": 540
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "椭圆形标签",
+              "modification": "set",
+              "value": 540
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "圆形按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "圆形标签",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "方形按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "方形标签",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "三角形按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "三角形标签",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "菱形按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "菱形标签",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "椭圆形按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "椭圆形标签",
+              "visibility": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "隐藏未使用的按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HideUnusedButtons",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 5",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "椭圆形按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "椭圆形标签",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 4",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "菱形按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "菱形标签",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 3",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "三角形按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "三角形标签",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "旋转目标形状",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "旋转指示器",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "rotate"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "currentRotation",
+              "modification": "+",
+              "value": 90
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentRotation) >= 360",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "currentRotation",
+                  "source": "0",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeRotation",
+              "object": "targetShape",
+              "modification": "set",
+              "value": "Variable(Scene.currentRotation)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "形状按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "圆形按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedShape",
+              "source": "\"圆形\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleShapeButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "方形按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedShape",
+              "source": "\"方形\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleShapeButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "三角形按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedShape",
+              "source": "\"三角形\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleShapeButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "菱形按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedShape",
+              "source": "\"菱形\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleShapeButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "椭圆形按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedShape",
+              "source": "\"椭圆形\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleShapeButtonClick"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理形状按钮点击",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleShapeButtonClick",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.gameMode) == \"rotate\"",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.clickedShape) == Variable(Scene.currentCorrectShape)",
+                  "trueActions": [
+                    {
+                      "type": "Conditional",
+                      "condition": "Variable(Scene.currentRotation) == Variable(Scene.targetRotation) * 90",
+                      "trueActions": [
+                        {
+                          "type": "Function",
+                          "name": "HandleCorrectAnswer"
+                        }
+                      ],
+                      "falseActions": [
+                        {
+                          "type": "Function",
+                          "name": "HandleWrongRotation"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Function",
+                      "name": "HandleWrongRotation"
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "Function",
+                      "name": "HandleWrongAnswer"
+                    }
+                  ]
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.clickedShape) == Variable(Scene.currentCorrectShape)",
+                  "trueActions": [
+                    {
+                      "type": "Function",
+                      "name": "HandleCorrectAnswer"
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "Function",
+                      "name": "HandleWrongAnswer"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理正确答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleCorrectAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "correct",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "太棒了！"
+            },
+            {
+              "type": "ChangeGlobalVariable",
+              "variable": "totalStars",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "starsText",
+              "modification": "setString",
+              "value": "x " + ToString(GlobalVariable(totalStars))
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "streakCount",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.streakCount) >= 2",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentDifficulty) < 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeNumberVariable",
+                      "variable": "currentDifficulty",
+                      "modification": "+",
+                      "value": 1
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "streakCount",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "SetupGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理错误答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleWrongAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "wrong",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "没关系，再试一次！"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "streakCount",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) > 1",
+              "trueActions": [
+                {
+                  "type": "ChangeNumberVariable",
+                  "variable": "currentDifficulty",
+                  "modification": "-",
+                  "value": 1
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "SetupGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理错误旋转",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleWrongRotation",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "wrong",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "角度不对，继续旋转！"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "streakCount",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.5
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "返回按钮",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "backButton",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "playground"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
