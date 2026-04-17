@@ -17,8 +17,12 @@ function SaveProgress() {
     animalGame_difficulty: global.animalGame_difficulty || 1,
     lastPlayed: new Date().toISOString()
   };
-  localStorage.setItem('happyLandergarten_save', JSON.stringify(data));
-  console.log('Progress saved:', data);
+  try {
+    localStorage.setItem('happyLandergarten_save', JSON.stringify(data));
+    console.log('Progress saved:', data);
+  } catch (e) {
+    console.error('Failed to save progress:', e);
+  }
 }
 
 /**

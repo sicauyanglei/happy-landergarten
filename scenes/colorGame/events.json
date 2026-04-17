@@ -75,6 +75,12 @@
           "name": "LoadProgress"
         },
         {
+          "type": "SetNumberVariable",
+          "variable": "currentDifficulty",
+          "source": "GlobalVariable(colorGame_difficulty)",
+          "operation": "set"
+        },
+        {
           "type": "Function",
           "name": "GenerateQuestion"
         }

@@ -146,6 +146,12 @@
           "name": "LoadProgress"
         },
         {
+          "type": "SetNumberVariable",
+          "variable": "currentDifficulty",
+          "source": "GlobalVariable(drawGame_difficulty)",
+          "operation": "set"
+        },
+        {
           "type": "Function",
           "name": "InitializeGame"
         }

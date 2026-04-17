@@ -21,6 +21,12 @@
           "name": "LoadProgress"
         },
         {
+          "type": "SetNumberVariable",
+          "variable": "currentDifficulty",
+          "source": "GlobalVariable(puzzleGame_difficulty)",
+          "operation": "set"
+        },
+        {
           "type": "Function",
           "name": "SetupPuzzle"
         }

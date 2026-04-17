@@ -21,6 +21,12 @@
           "name": "LoadProgress"
         },
         {
+          "type": "SetNumberVariable",
+          "variable": "currentDifficulty",
+          "source": "GlobalVariable(musicGame_difficulty)",
+          "operation": "set"
+        },
+        {
           "type": "Function",
           "name": "SetupMusicGame"
         }
