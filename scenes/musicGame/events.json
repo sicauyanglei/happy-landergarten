@@ -1,0 +1,2067 @@
+{
+  "events": [
+    {
+      "type": "OnSceneLoaded",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "ModifyText",
+          "object": "difficultyText",
+          "modification": "setString",
+          "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+        },
+        {
+          "type": "ModifyText",
+          "object": "starsText",
+          "modification": "setString",
+          "value": "x " + ToString(GlobalVariable(totalStars))
+        },
+        {
+          "type": "Function",
+          "name": "SetupMusicGame"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "初始化音乐游戏",
+      "events": [
+        {
+          "type": "Function",
+          "name": "SetupMusicGame",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "gameMode",
+              "source": "\"freeplay\"",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "selectedInstrument",
+              "source": "\"钢琴\"",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "currentDifficulty",
+              "source": "1",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 1",
+              "trueActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "自由弹奏模式 - 点击琴键演奏"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"freeplay\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴键盘",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "do按键",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "re按键",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "mi按键",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fa按键",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "so按键",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "la按键",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "xi按键",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "do标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "re标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "mi标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fa标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "so标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "la标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "xi标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小鼓按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小鼓标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "木鱼按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "木鱼标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "吉他按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "吉他标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小提琴按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小提琴标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "noteArea",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "hitZone",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符1",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符2",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符3",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符4",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符5",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 2",
+              "trueActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "节奏模式 - 跟随节拍点击！"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"rhythm\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴键盘",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "do按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "re按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "mi按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fa按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "so按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "la按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "xi按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "do标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "re标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "mi标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fa标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "so标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "la标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "xi标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小鼓按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小鼓标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "木鱼按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "木鱼标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "吉他按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "吉他标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小提琴按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小提琴标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "noteArea",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "hitZone",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符1",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符2",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符3",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符4",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符5",
+                  "visibility": false
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "noteSpeed",
+                  "source": "2",
+                  "operation": "set"
+                },
+                {
+                  "type": "Function",
+                  "name": "StartRhythmMode"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) >= 3",
+              "trueActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "乐队模式 - 全员合奏！"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"rhythm\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴键盘",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "do按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "re按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "mi按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fa按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "so按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "la按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "xi按键",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "do标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "re标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "mi标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fa标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "so标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "la标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "xi标签",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "钢琴标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小鼓按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小鼓标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "木鱼按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "木鱼标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "吉他按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "吉他标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小提琴按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "小提琴标签",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "noteArea",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "hitZone",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符1",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符2",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符3",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符4",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符5",
+                  "visibility": true
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "noteSpeed",
+                  "source": "3",
+                  "operation": "set"
+                },
+                {
+                  "type": "Function",
+                  "name": "StartRhythmMode"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "开始节奏模式",
+      "events": [
+        {
+          "type": "Function",
+          "name": "StartRhythmMode",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "perfectHits",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "currentNoteIndex",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note1Y",
+              "source": "-50",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note2Y",
+              "source": "-50",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note3Y",
+              "source": "-50",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note4Y",
+              "source": "-50",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note5Y",
+              "source": "-50",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note1Lane",
+              "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "SpawnNextNote"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "生成下一个音符",
+      "events": [
+        {
+          "type": "Function",
+          "name": "SpawnNextNote",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeVisible",
+              "object": "音符1",
+              "visibility": false
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "音符1",
+              "modification": "set",
+              "value": "-50"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note1Lane",
+              "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Lane) == 1",
+              "trueActions": [
+                {
+                  "type": "ChangeXPosition",
+                  "object": "音符1",
+                  "modification": "set",
+                  "value": "440"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Lane) == 2",
+              "trueActions": [
+                {
+                  "type": "ChangeXPosition",
+                  "object": "音符1",
+                  "modification": "set",
+                  "value": "520"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Lane) == 3",
+              "trueActions": [
+                {
+                  "type": "ChangeXPosition",
+                  "object": "音符1",
+                  "modification": "set",
+                  "value": "600"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Lane) == 4",
+              "trueActions": [
+                {
+                  "type": "ChangeXPosition",
+                  "object": "音符1",
+                  "modification": "set",
+                  "value": "680"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Lane) == 5",
+              "trueActions": [
+                {
+                  "type": "ChangeXPosition",
+                  "object": "音符1",
+                  "modification": "set",
+                  "value": "760"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "音符1",
+              "visibility": true
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "note1Active",
+              "source": "true",
+              "operation": "set"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "音符下落",
+      "events": [
+        {
+          "type": "Function",
+          "name": "UpdateNotePositions",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Active) == true",
+              "trueActions": [
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符1",
+                  "modification": "+",
+                  "value": "Variable(Scene.noteSpeed)"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note1Y",
+                  "source": "Variable(Scene.note1Y) + Variable(Scene.noteSpeed)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Y) > 550",
+                  "trueActions": [
+                    {
+                      "type": "ChangeVisible",
+                      "object": "音符1",
+                      "visibility": false
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "note1Active",
+                      "source": "false",
+                      "operation": "set"
+                    },
+                    {
+                      "type": "ModifyText",
+                      "object": "feedbackText",
+                      "modification": "setString",
+                      "value": "Miss! 再试一次"
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "streakCount",
+                      "source": "0",
+                      "operation": "set"
+                    }
+                  ],
+                  "falseActions": []
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "钢琴按键点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "do按键",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "do",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "Do!"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.3
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "re按键",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "re",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "Re!"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.3
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "mi按键",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "mi",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "Mi!"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.3
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "fa按键",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "fa",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "Fa!"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.3
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "so按键",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "sol",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "Sol!"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.3
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "la按键",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "la",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "La!"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.3
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "xi按键",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "si",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "Si!"
+            },
+            {
+              "type": "Wait",
+              "seconds": 0.3
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "乐器按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "钢琴按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "selectedInstrument",
+              "source": "\"钢琴\"",
+              "operation": "set"
+            },
+            {
+              "type": "PlaySound",
+              "sound": "piano",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "选择了钢琴！"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "小鼓按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "selectedInstrument",
+              "source": "\"小鼓\"",
+              "operation": "set"
+            },
+            {
+              "type": "PlaySound",
+              "sound": "drum",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "选择了小鼓！"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "木鱼按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "selectedInstrument",
+              "source": "\"木鱼\"",
+              "operation": "set"
+            },
+            {
+              "type": "PlaySound",
+              "sound": "woodblock",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "选择了木鱼！"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "吉他按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "selectedInstrument",
+              "source": "\"吉他\"",
+              "operation": "set"
+            },
+            {
+              "type": "PlaySound",
+              "sound": "guitar",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "选择了吉他！"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "小提琴按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "selectedInstrument",
+              "source": "\"小提琴\"",
+              "operation": "set"
+            },
+            {
+              "type": "PlaySound",
+              "sound": "violin",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "选择了小提琴！"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "节奏模式点击检测",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "钢琴按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "rhythm"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "CheckPianoHit"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "小鼓按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "rhythm"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "CheckDrumHit"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "木鱼按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "rhythm"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "CheckWoodblockHit"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "吉他按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "rhythm"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "CheckGuitarHit"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "小提琴按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "rhythm"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "CheckViolinHit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "检测钢琴命中",
+      "events": [
+        {
+          "type": "Function",
+          "name": "CheckPianoHit",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Active) == true",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 1",
+                  "trueActions": [
+                    {
+                      "type": "Conditional",
+                      "condition": "Variable(Scene.note1Y) >= 480 && Variable(Scene.note1Y) <= 540",
+                      "trueActions": [
+                        {
+                          "type": "PlaySound",
+                          "sound": "correct",
+                          "loop": false,
+                          "volume": 100,
+                          "pitch": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "太棒了！Perfect!"
+                        },
+                        {
+                          "type": "ChangeVisible",
+                          "object": "音符1",
+                          "visibility": false
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "note1Active",
+                          "source": "false",
+                          "operation": "set"
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "perfectHits",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "streakCount",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeGlobalVariable",
+                          "variable": "totalStars",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "starsText",
+                          "modification": "setString",
+                          "value": "x " + ToString(GlobalVariable(totalStars))
+                        },
+                        {
+                          "type": "Conditional",
+                          "condition": "Variable(Scene.streakCount) >= 3",
+                          "trueActions": [
+                            {
+                              "type": "Conditional",
+                              "condition": "Variable(Scene.currentDifficulty) < 3",
+                              "trueActions": [
+                                {
+                                  "type": "ChangeNumberVariable",
+                                  "variable": "currentDifficulty",
+                                  "modification": "+",
+                                  "value": 1
+                                },
+                                {
+                                  "type": "ModifyText",
+                                  "object": "difficultyText",
+                                  "modification": "setString",
+                                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                                },
+                                {
+                                  "type": "ModifyText",
+                                  "object": "feedbackText",
+                                  "modification": "setString",
+                                  "value": "升级了！难度 L" + ToString(Variable(Scene.currentDifficulty))
+                                }
+                              ],
+                              "falseActions": []
+                            }
+                          ],
+                          "falseActions": []
+                        },
+                        {
+                          "type": "Wait",
+                          "seconds": 0.5
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": ""
+                        },
+                        {
+                          "type": "Function",
+                          "name": "SpawnNextNote"
+                        }
+                      ],
+                      "falseActions": [
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "时机不对，再试试！"
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "streakCount",
+                          "source": "0",
+                          "operation": "set"
+                        }
+                      ]
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "ModifyText",
+                      "object": "feedbackText",
+                      "modification": "setString",
+                      "value": "这不是钢琴的音符！"
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "streakCount",
+                      "source": "0",
+                      "operation": "set"
+                    }
+                  ]
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "feedbackText",
+                  "modification": "setString",
+                  "value": "等待节拍..."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "检测小鼓命中",
+      "events": [
+        {
+          "type": "Function",
+          "name": "CheckDrumHit",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Active) == true",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 2",
+                  "trueActions": [
+                    {
+                      "type": "Conditional",
+                      "condition": "Variable(Scene.note1Y) >= 480 && Variable(Scene.note1Y) <= 540",
+                      "trueActions": [
+                        {
+                          "type": "PlaySound",
+                          "sound": "correct",
+                          "loop": false,
+                          "volume": 100,
+                          "pitch": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "太棒了！Perfect!"
+                        },
+                        {
+                          "type": "ChangeVisible",
+                          "object": "音符1",
+                          "visibility": false
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "note1Active",
+                          "source": "false",
+                          "operation": "set"
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "perfectHits",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "streakCount",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeGlobalVariable",
+                          "variable": "totalStars",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "starsText",
+                          "modification": "setString",
+                          "value": "x " + ToString(GlobalVariable(totalStars))
+                        },
+                        {
+                          "type": "Wait",
+                          "seconds": 0.5
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": ""
+                        },
+                        {
+                          "type": "Function",
+                          "name": "SpawnNextNote"
+                        }
+                      ],
+                      "falseActions": [
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "时机不对，再试试！"
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "streakCount",
+                          "source": "0",
+                          "operation": "set"
+                        }
+                      ]
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "ModifyText",
+                      "object": "feedbackText",
+                      "modification": "setString",
+                      "value": "这不是小鼓的音符！"
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "streakCount",
+                      "source": "0",
+                      "operation": "set"
+                    }
+                  ]
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "feedbackText",
+                  "modification": "setString",
+                  "value": "等待节拍..."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "检测木鱼命中",
+      "events": [
+        {
+          "type": "Function",
+          "name": "CheckWoodblockHit",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Active) == true",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 3",
+                  "trueActions": [
+                    {
+                      "type": "Conditional",
+                      "condition": "Variable(Scene.note1Y) >= 480 && Variable(Scene.note1Y) <= 540",
+                      "trueActions": [
+                        {
+                          "type": "PlaySound",
+                          "sound": "correct",
+                          "loop": false,
+                          "volume": 100,
+                          "pitch": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "太棒了！Perfect!"
+                        },
+                        {
+                          "type": "ChangeVisible",
+                          "object": "音符1",
+                          "visibility": false
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "note1Active",
+                          "source": "false",
+                          "operation": "set"
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "perfectHits",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "streakCount",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeGlobalVariable",
+                          "variable": "totalStars",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "starsText",
+                          "modification": "setString",
+                          "value": "x " + ToString(GlobalVariable(totalStars))
+                        },
+                        {
+                          "type": "Wait",
+                          "seconds": 0.5
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": ""
+                        },
+                        {
+                          "type": "Function",
+                          "name": "SpawnNextNote"
+                        }
+                      ],
+                      "falseActions": [
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "时机不对，再试试！"
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "streakCount",
+                          "source": "0",
+                          "operation": "set"
+                        }
+                      ]
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "ModifyText",
+                      "object": "feedbackText",
+                      "modification": "setString",
+                      "value": "这不是木鱼的音符！"
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "streakCount",
+                      "source": "0",
+                      "operation": "set"
+                    }
+                  ]
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "feedbackText",
+                  "modification": "setString",
+                  "value": "等待节拍..."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "检测吉他命中",
+      "events": [
+        {
+          "type": "Function",
+          "name": "CheckGuitarHit",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Active) == true",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 4",
+                  "trueActions": [
+                    {
+                      "type": "Conditional",
+                      "condition": "Variable(Scene.note1Y) >= 480 && Variable(Scene.note1Y) <= 540",
+                      "trueActions": [
+                        {
+                          "type": "PlaySound",
+                          "sound": "correct",
+                          "loop": false,
+                          "volume": 100,
+                          "pitch": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "太棒了！Perfect!"
+                        },
+                        {
+                          "type": "ChangeVisible",
+                          "object": "音符1",
+                          "visibility": false
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "note1Active",
+                          "source": "false",
+                          "operation": "set"
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "perfectHits",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "streakCount",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeGlobalVariable",
+                          "variable": "totalStars",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "starsText",
+                          "modification": "setString",
+                          "value": "x " + ToString(GlobalVariable(totalStars))
+                        },
+                        {
+                          "type": "Wait",
+                          "seconds": 0.5
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": ""
+                        },
+                        {
+                          "type": "Function",
+                          "name": "SpawnNextNote"
+                        }
+                      ],
+                      "falseActions": [
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "时机不对，再试试！"
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "streakCount",
+                          "source": "0",
+                          "operation": "set"
+                        }
+                      ]
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "ModifyText",
+                      "object": "feedbackText",
+                      "modification": "setString",
+                      "value": "这不是吉他的音符！"
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "streakCount",
+                      "source": "0",
+                      "operation": "set"
+                    }
+                  ]
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "feedbackText",
+                  "modification": "setString",
+                  "value": "等待节拍..."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "检测小提琴命中",
+      "events": [
+        {
+          "type": "Function",
+          "name": "CheckViolinHit",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note1Active) == true",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 5",
+                  "trueActions": [
+                    {
+                      "type": "Conditional",
+                      "condition": "Variable(Scene.note1Y) >= 480 && Variable(Scene.note1Y) <= 540",
+                      "trueActions": [
+                        {
+                          "type": "PlaySound",
+                          "sound": "correct",
+                          "loop": false,
+                          "volume": 100,
+                          "pitch": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "太棒了！Perfect!"
+                        },
+                        {
+                          "type": "ChangeVisible",
+                          "object": "音符1",
+                          "visibility": false
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "note1Active",
+                          "source": "false",
+                          "operation": "set"
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "perfectHits",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeNumberVariable",
+                          "variable": "streakCount",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ChangeGlobalVariable",
+                          "variable": "totalStars",
+                          "modification": "+",
+                          "value": 1
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "starsText",
+                          "modification": "setString",
+                          "value": "x " + ToString(GlobalVariable(totalStars))
+                        },
+                        {
+                          "type": "Wait",
+                          "seconds": 0.5
+                        },
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": ""
+                        },
+                        {
+                          "type": "Function",
+                          "name": "SpawnNextNote"
+                        }
+                      ],
+                      "falseActions": [
+                        {
+                          "type": "ModifyText",
+                          "object": "feedbackText",
+                          "modification": "setString",
+                          "value": "时机不对，再试试！"
+                        },
+                        {
+                          "type": "SetNumberVariable",
+                          "variable": "streakCount",
+                          "source": "0",
+                          "operation": "set"
+                        }
+                      ]
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "ModifyText",
+                      "object": "feedbackText",
+                      "modification": "setString",
+                      "value": "这不是小提琴的音符！"
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "streakCount",
+                      "source": "0",
+                      "operation": "set"
+                    }
+                  ]
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "feedbackText",
+                  "modification": "setString",
+                  "value": "等待节拍..."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "返回按钮",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "backButton",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "playground"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
