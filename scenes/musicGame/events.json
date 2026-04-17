@@ -691,97 +691,504 @@
           "conditions": [],
           "actions": [
             {
-              "type": "ChangeVisible",
-              "object": "音符1",
-              "visibility": false
-            },
-            {
-              "type": "ChangeYPosition",
-              "object": "音符1",
-              "modification": "set",
-              "value": "-50"
-            },
-            {
-              "type": "SetNumberVariable",
-              "variable": "note1Lane",
-              "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
-              "operation": "set"
-            },
-            {
               "type": "Conditional",
-              "condition": "Variable(Scene.note1Lane) == 1",
+              "condition": "Variable(Scene.note1Active) == false",
               "trueActions": [
                 {
-                  "type": "ChangeXPosition",
+                  "type": "ChangeVisible",
+                  "object": "音符1",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeYPosition",
                   "object": "音符1",
                   "modification": "set",
-                  "value": "440"
+                  "value": "-50"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note1Lane",
+                  "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 1",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符1",
+                      "modification": "set",
+                      "value": "440"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 2",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符1",
+                      "modification": "set",
+                      "value": "520"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符1",
+                      "modification": "set",
+                      "value": "600"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 4",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符1",
+                      "modification": "set",
+                      "value": "680"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note1Lane) == 5",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符1",
+                      "modification": "set",
+                      "value": "760"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符1",
+                  "visibility": true
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note1Active",
+                  "source": "true",
+                  "operation": "set"
                 }
               ],
               "falseActions": []
             },
             {
               "type": "Conditional",
-              "condition": "Variable(Scene.note1Lane) == 2",
+              "condition": "Variable(Scene.note2Active) == false",
               "trueActions": [
                 {
-                  "type": "ChangeXPosition",
-                  "object": "音符1",
+                  "type": "ChangeVisible",
+                  "object": "音符2",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符2",
                   "modification": "set",
-                  "value": "520"
+                  "value": "-50"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note2Lane",
+                  "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note2Lane) == 1",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符2",
+                      "modification": "set",
+                      "value": "440"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note2Lane) == 2",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符2",
+                      "modification": "set",
+                      "value": "520"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note2Lane) == 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符2",
+                      "modification": "set",
+                      "value": "600"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note2Lane) == 4",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符2",
+                      "modification": "set",
+                      "value": "680"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note2Lane) == 5",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符2",
+                      "modification": "set",
+                      "value": "760"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符2",
+                  "visibility": true
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note2Active",
+                  "source": "true",
+                  "operation": "set"
                 }
               ],
               "falseActions": []
             },
             {
               "type": "Conditional",
-              "condition": "Variable(Scene.note1Lane) == 3",
+              "condition": "Variable(Scene.note3Active) == false",
               "trueActions": [
                 {
-                  "type": "ChangeXPosition",
-                  "object": "音符1",
+                  "type": "ChangeVisible",
+                  "object": "音符3",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符3",
                   "modification": "set",
-                  "value": "600"
+                  "value": "-50"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note3Lane",
+                  "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note3Lane) == 1",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符3",
+                      "modification": "set",
+                      "value": "440"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note3Lane) == 2",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符3",
+                      "modification": "set",
+                      "value": "520"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note3Lane) == 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符3",
+                      "modification": "set",
+                      "value": "600"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note3Lane) == 4",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符3",
+                      "modification": "set",
+                      "value": "680"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note3Lane) == 5",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符3",
+                      "modification": "set",
+                      "value": "760"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符3",
+                  "visibility": true
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note3Active",
+                  "source": "true",
+                  "operation": "set"
                 }
               ],
               "falseActions": []
             },
             {
               "type": "Conditional",
-              "condition": "Variable(Scene.note1Lane) == 4",
+              "condition": "Variable(Scene.note4Active) == false",
               "trueActions": [
                 {
-                  "type": "ChangeXPosition",
-                  "object": "音符1",
+                  "type": "ChangeVisible",
+                  "object": "音符4",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符4",
                   "modification": "set",
-                  "value": "680"
+                  "value": "-50"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note4Lane",
+                  "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note4Lane) == 1",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符4",
+                      "modification": "set",
+                      "value": "440"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note4Lane) == 2",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符4",
+                      "modification": "set",
+                      "value": "520"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note4Lane) == 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符4",
+                      "modification": "set",
+                      "value": "600"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note4Lane) == 4",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符4",
+                      "modification": "set",
+                      "value": "680"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note4Lane) == 5",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符4",
+                      "modification": "set",
+                      "value": "760"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符4",
+                  "visibility": true
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note4Active",
+                  "source": "true",
+                  "operation": "set"
                 }
               ],
               "falseActions": []
             },
             {
               "type": "Conditional",
-              "condition": "Variable(Scene.note1Lane) == 5",
+              "condition": "Variable(Scene.note5Active) == false",
               "trueActions": [
                 {
-                  "type": "ChangeXPosition",
-                  "object": "音符1",
+                  "type": "ChangeVisible",
+                  "object": "音符5",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符5",
                   "modification": "set",
-                  "value": "760"
+                  "value": "-50"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note5Lane",
+                  "source": "Random(1, Variable(Scene.currentDifficulty) + 2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note5Lane) == 1",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符5",
+                      "modification": "set",
+                      "value": "440"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note5Lane) == 2",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符5",
+                      "modification": "set",
+                      "value": "520"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note5Lane) == 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符5",
+                      "modification": "set",
+                      "value": "600"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note5Lane) == 4",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符5",
+                      "modification": "set",
+                      "value": "680"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note5Lane) == 5",
+                  "trueActions": [
+                    {
+                      "type": "ChangeXPosition",
+                      "object": "音符5",
+                      "modification": "set",
+                      "value": "760"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "音符5",
+                  "visibility": true
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note5Active",
+                  "source": "true",
+                  "operation": "set"
                 }
               ],
               "falseActions": []
-            },
-            {
-              "type": "ChangeVisible",
-              "object": "音符1",
-              "visibility": true
-            },
-            {
-              "type": "SetNumberVariable",
-              "variable": "note1Active",
-              "source": "true",
-              "operation": "set"
             }
           ]
         }
@@ -844,8 +1251,166 @@
                 }
               ],
               "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note2Active) == true",
+              "trueActions": [
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符2",
+                  "modification": "+",
+                  "value": "Variable(Scene.noteSpeed)"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note2Y",
+                  "source": "Variable(Scene.note2Y) + Variable(Scene.noteSpeed)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note2Y) > 550",
+                  "trueActions": [
+                    {
+                      "type": "ChangeVisible",
+                      "object": "音符2",
+                      "visibility": false
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "note2Active",
+                      "source": "false",
+                      "operation": "set"
+                    }
+                  ],
+                  "falseActions": []
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note3Active) == true",
+              "trueActions": [
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符3",
+                  "modification": "+",
+                  "value": "Variable(Scene.noteSpeed)"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note3Y",
+                  "source": "Variable(Scene.note3Y) + Variable(Scene.noteSpeed)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note3Y) > 550",
+                  "trueActions": [
+                    {
+                      "type": "ChangeVisible",
+                      "object": "音符3",
+                      "visibility": false
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "note3Active",
+                      "source": "false",
+                      "operation": "set"
+                    }
+                  ],
+                  "falseActions": []
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note4Active) == true",
+              "trueActions": [
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符4",
+                  "modification": "+",
+                  "value": "Variable(Scene.noteSpeed)"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note4Y",
+                  "source": "Variable(Scene.note4Y) + Variable(Scene.noteSpeed)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note4Y) > 550",
+                  "trueActions": [
+                    {
+                      "type": "ChangeVisible",
+                      "object": "音符4",
+                      "visibility": false
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "note4Active",
+                      "source": "false",
+                      "operation": "set"
+                    }
+                  ],
+                  "falseActions": []
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.note5Active) == true",
+              "trueActions": [
+                {
+                  "type": "ChangeYPosition",
+                  "object": "音符5",
+                  "modification": "+",
+                  "value": "Variable(Scene.noteSpeed)"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "note5Y",
+                  "source": "Variable(Scene.note5Y) + Variable(Scene.noteSpeed)",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.note5Y) > 550",
+                  "trueActions": [
+                    {
+                      "type": "ChangeVisible",
+                      "object": "音符5",
+                      "visibility": false
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "note5Active",
+                      "source": "false",
+                      "operation": "set"
+                    }
+                  ],
+                  "falseActions": []
+                }
+              ],
+              "falseActions": []
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "Always",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "Function",
+          "name": "UpdateNotePositions"
         }
       ]
     },
