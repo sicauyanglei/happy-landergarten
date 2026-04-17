@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="快乐乐园 - 儿童综合游戏，包含颜色、数字、形状、音乐、动物、拼图、画画等多种趣味游戏">
+    <meta name="keywords" content="儿童游戏, 教育游戏, 幼儿园, 学前教育, 快乐乐园">
+    <meta name="author" content="Happy Landergarten Team">
+    <meta name="theme-color" content="#87CEEB">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <title>快乐乐园 - 儿童综合游戏</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #game-canvas {
+            background-color: #000;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        #loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-title {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #error-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa07a 100%);
+            z-index: 1001;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #error-screen.visible {
+            display: flex;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            max-width: 80%;
+        }
+
+        .retry-button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            color: #ff6b6b;
+            background: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .retry-button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .loading-title {
+                font-size: 2rem;
+            }
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Prevent pull-to-refresh on mobile */
+        body {
+            overscroll-behavior: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+
+        <div id="loading-screen">
+            <h1 class="loading-title">快乐乐园</h1>
+            <div class="loading-spinner"></div>
+            <p class="loading-text">游戏加载中...</p>
+        </div>
+
+        <div id="error-screen">
+            <h2 class="error-title">游戏加载失败</h2>
+            <p class="error-message" id="error-message">请检查网络连接后重试</p>
+            <button class="retry-button" onclick="location.reload()">重新加载</button>
+        </div>
+    </div>
+
+    <script>
+        // Game configuration
+        const GAME_CONFIG = {
+            width: 1280,
+            height: 720,
+            minWidth: 800,
+            minHeight: 600,
+            firstScene: 'playground',
+            loadingScreenDuration: 500
+        };
+
+        // Responsive canvas sizing
+        function resizeCanvas() {
+            const container = document.getElementById('game-container');
+            const canvas = document.getElementById('game-canvas');
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+
+            const gameAspect = GAME_CONFIG.width / GAME_CONFIG.height;
+            const containerAspect = containerWidth / containerHeight;
+
+            let canvasWidth, canvasHeight;
+
+            if (containerAspect > gameAspect) {
+                canvasHeight = Math.min(containerHeight, GAME_CONFIG.height);
+                canvasWidth = canvasHeight * gameAspect;
+            } else {
+                canvasWidth = Math.min(containerWidth, GAME_CONFIG.width);
+                canvasHeight = canvasWidth / gameAspect;
+            }
+
+            canvas.style.width = canvasWidth + 'px';
+            canvas.style.height = canvasHeight + 'px';
+            canvas.width = GAME_CONFIG.width;
+            canvas.height = GAME_CONFIG.height;
+        }
+
+        // Initialize game
+        async function initGame() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const errorScreen = document.getElementById('error-screen');
+            const errorMessage = document.getElementById('error-message');
+
+            try {
+                // Resize canvas to fit container
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                // Simulate game initialization
+                await new Promise(resolve => setTimeout(resolve, GAME_CONFIG.loadingScreenDuration));
+
+                // Hide loading screen
+                loadingScreen.classList.add('hidden');
+
+                // Start game loop here
+                // This is where the game engine would be initialized
+                console.log('Game initialized successfully');
+                console.log('First scene:', GAME_CONFIG.firstScene);
+
+            } catch (error) {
+                console.error('Game initialization failed:', error);
+                loadingScreen.classList.add('hidden');
+                errorScreen.classList.add('visible');
+                errorMessage.textContent = error.message || '请检查网络连接后重试';
+            }
+        }
+
+        // Handle visibility change (pause when tab is hidden)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                console.log('Game paused');
+            } else {
+                console.log('Game resumed');
+            }
+        });
+
+        // Prevent context menu on long press (mobile)
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initGame);
+        } else {
+            initGame();
+        }
+    </script>
+</body>
+</html>

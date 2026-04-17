@@ -15,5 +15,40 @@
     "orientation": "landscape",
     "preserveOrientation": false,
     "title": "快乐乐园 - 儿童综合游戏"
+  },
+  "release": {
+    "enabled": true,
+    "compressAssets": true,
+    "optimizeSprites": true,
+    "minifyJson": true,
+    "exportPath": "build/html5",
+    "html5Options": {
+      "automaticallySave": false,
+      "borderless": false,
+      "displayMode": "adaptive",
+      "expandCanvas": true,
+      "fileSystem": "readOnly",
+      "fitsContainer": true,
+      "focusCanvasOnStart": true,
+      "forceFit": true,
+      "gameOverSourceScene": "playground",
+      "icon": "assets/icon.png",
+      "maxSize": 2097152,
+      "preserveDrawingBuffer": false,
+      "showStopButton": false,
+      "standalone": false,
+      "stats": false,
+      "useGDEmbed": false
+    },
+    "bundles": {
+      "core": "release/core.bundle.js",
+      "scenes": "release/scenes.bundle.js"
+    },
+    "compression": {
+      "type": "gzip",
+      "level": 6,
+      "excludeExtensions": [".ogg", ".mp3", ".wav"],
+      "includeExtensions": [".json", ".js", ".html", ".css"]
+    }
   }
 }
