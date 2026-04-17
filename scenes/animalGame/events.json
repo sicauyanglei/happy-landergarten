@@ -1,0 +1,818 @@
+{
+  "events": [
+    {
+      "type": "OnSceneLoaded",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "ModifyText",
+          "object": "difficultyText",
+          "modification": "setString",
+          "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+        },
+        {
+          "type": "ModifyText",
+          "object": "starsText",
+          "modification": "setString",
+          "value": "x " + ToString(GlobalVariable(totalStars))
+        },
+        {
+          "type": "Function",
+          "name": "GenerateQuestion"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "生成题目",
+      "events": [
+        {
+          "type": "Function",
+          "name": "GenerateQuestion",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "gameMode",
+              "source": "sound",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "optionCount",
+              "source": "Scene.currentDifficulty",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Scene.currentDifficulty == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "4",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "sound",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "听声音，选动物"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "speakerIcon",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "questionSprite",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Scene.currentDifficulty == 2",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "5",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "shadow",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "找影子，连动物"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "speakerIcon",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "questionSprite",
+                  "visibility": true
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Scene.currentDifficulty >= 3",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "6",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "mixed",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "看特征，识动物"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "speakerIcon",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "questionSprite",
+                  "visibility": true
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentItemName",
+              "source": "PickRandom(\"狗;猫;牛;鸡\")",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) >= 5",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentItemName",
+                  "source": "PickRandom(\"狗;猫;牛;鸡;鸭\")",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) >= 6",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentItemName",
+                  "source": "PickRandom(\"狗;猫;牛;鸡;鸭;猪\")",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentCorrectAnimal",
+              "source": "Variable(Scene.currentItemName)",
+              "operation": "set"
+            },
+            {
+              "type": "ChangeSprite",
+              "object": "questionSprite",
+              "animation": "=Variable(Scene.currentItemName)\"影子\""
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            },
+            {
+              "type": "Function",
+              "name": "PositionAnimalButtons"
+            },
+            {
+              "type": "Function",
+              "name": "HideUnusedButtons"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.gameMode) == \"sound\"",
+              "trueActions": [
+                {
+                  "type": "PlaySound",
+                  "sound": "=Variable(Scene.currentItemName)\"叫声\"",
+                  "loop": false,
+                  "volume": 100,
+                  "pitch": 1
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "定位动物按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "PositionAnimalButtons",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeXPosition",
+              "object": "狗按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "猫按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 100"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "牛按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 200"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "鸡按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 300"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "鸭按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 400"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "猪按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 500"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "马按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 600"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "羊按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 700"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "狗按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "猫按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "牛按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "鸡按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "鸭按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "猪按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "马按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "羊按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "狗按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "猫按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "牛按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "鸡按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "鸭按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "猪按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "马按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "羊按钮",
+              "visibility": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "隐藏未使用的按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HideUnusedButtons",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 8",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "羊按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 7",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "马按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 6",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "猪按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 5",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "鸭按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 4",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "鸡按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 3",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "牛按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 2",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "猫按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "动物按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "狗按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"狗\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "猫按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"猫\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "牛按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"牛\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "鸡按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"鸡\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "鸭按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"鸭\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "猪按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"猪\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "马按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"马\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "羊按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedAnimal",
+              "source": "\"羊\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleAnimalButtonClick"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理动物按钮点击",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleAnimalButtonClick",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.clickedAnimal) == Variable(Scene.currentCorrectAnimal)",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理正确答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleCorrectAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "correct",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "太棒了！"
+            },
+            {
+              "type": "ChangeGlobalVariable",
+              "variable": "totalStars",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "starsText",
+              "modification": "setString",
+              "value": "x " + ToString(GlobalVariable(totalStars))
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "streakCount",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.streakCount) >= 2",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentDifficulty) < 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeNumberVariable",
+                      "variable": "currentDifficulty",
+                      "modification": "+",
+                      "value": 1
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "streakCount",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "GenerateQuestion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理错误答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleWrongAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "wrong",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "没关系，再试一次！"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "streakCount",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) > 1",
+              "trueActions": [
+                {
+                  "type": "ChangeNumberVariable",
+                  "variable": "currentDifficulty",
+                  "modification": "-",
+                  "value": 1
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "GenerateQuestion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "返回按钮",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "backButton",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "playground"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
