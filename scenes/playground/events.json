@@ -221,7 +221,7 @@
           "actions": [
             {
               "type": "PlaySound",
-              "sound": "click.ogg",
+              "sound": "click",
               "loop": false,
               "volume": 100,
               "pitch": 1
