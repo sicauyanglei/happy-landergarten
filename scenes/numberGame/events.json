@@ -1,0 +1,1655 @@
+{
+  "events": [
+    {
+      "type": "OnSceneLoaded",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "ModifyText",
+          "object": "difficultyText",
+          "modification": "setString",
+          "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+        },
+        {
+          "type": "ModifyText",
+          "object": "starsText",
+          "modification": "setString",
+          "value": "x " + ToString(GlobalVariable(totalStars))
+        },
+        {
+          "type": "Function",
+          "name": "SetupGame"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "初始化游戏",
+      "events": [
+        {
+          "type": "Function",
+          "name": "SetupGame",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "targetCount",
+                  "source": "Random(1, 3)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "3",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"count\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "数一数有多少个苹果？"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 2",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "targetCount",
+                  "source": "Random(1, 5)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "5",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "\"sequence\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "questionLabel",
+                  "modification": "setString",
+                  "value": "按顺序点击数字：1, 2, 3..."
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) >= 3",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "targetCount",
+                  "source": "Random(1, 10)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "4",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "gameMode",
+                  "source": "PickRandom(\"count\";\"sequence\")",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.gameMode) == \"count\"",
+                  "trueActions": [
+                    {
+                      "type": "ModifyText",
+                      "object": "questionLabel",
+                      "modification": "setString",
+                      "value": "数一数有多少个苹果？"
+                    }
+                  ],
+                  "falseActions": [
+                    {
+                      "type": "ModifyText",
+                      "object": "questionLabel",
+                      "modification": "setString",
+                      "value": "按顺序点击数字：1, 2, 3..."
+                    }
+                  ]
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "itemType",
+              "source": "PickRandom(\"苹果\";\"星星\";\"糖果\")",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "ShowItems"
+            },
+            {
+              "type": "Function",
+              "name": "SetupOptions"
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "显示物品",
+      "events": [
+        {
+          "type": "Function",
+          "name": "ShowItems",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeVisible",
+              "object": "苹果1",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果2",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果3",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果4",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果5",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果6",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果7",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果8",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果9",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "苹果10",
+              "visibility": false
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 1",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 1
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 2",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 2
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 3",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 3
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 4",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 4
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 5",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 5
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 6",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 6
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 7",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 7
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 8",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 8
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 9",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 9
+                  }
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 10",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "PositionAndShowItem",
+                  "parameters": {
+                    "itemNumber": 10
+                  }
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "定位并显示单个物品",
+      "events": [
+        {
+          "type": "Function",
+          "name": "PositionAndShowItem",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeVisible",
+              "object": "苹果" + ToString(Variable(Scene.itemNumber)),
+              "visibility": true
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "苹果" + ToString(Variable(Scene.itemNumber)),
+              "modification": "set",
+              "value": "340 + ((Variable(Scene.itemNumber) - 1) % 5) * 70 + 35"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "苹果" + ToString(Variable(Scene.itemNumber)),
+              "modification": "set",
+              "value": "160 + floor((Variable(Scene.itemNumber) - 1) / 5) * 80"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "设置选项按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "SetupOptions",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.gameMode) == \"count\"",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项1按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项2按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项3按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮1",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮2",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮3",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮4",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮5",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项1文字",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项2文字",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项3文字",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序1文字",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序2文字",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序3文字",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序4文字",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序5文字",
+                  "visibility": false
+                },
+                {
+                  "type": "Function",
+                  "name": "PositionCountOptions"
+                },
+                {
+                  "type": "Function",
+                  "name": "GenerateCountOptions"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项1按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项2按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项3按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮1",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮2",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮3",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮4",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮5",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项1文字",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项2文字",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "选项3文字",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序1文字",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序2文字",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序3文字",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序4文字",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序5文字",
+                  "visibility": true
+                },
+                {
+                  "type": "Function",
+                  "name": "SetupSequenceMode"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "定位数数选项按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "PositionCountOptions",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeXPosition",
+              "object": "选项1按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "选项2按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 100"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "选项3按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 200"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "选项1按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "选项2按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "选项3按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "选项1文字",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 20"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "选项2文字",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 120"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "选项3文字",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 220"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "生成数数选项",
+      "events": [
+        {
+          "type": "Function",
+          "name": "GenerateCountOptions",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "option1Value",
+              "source": "Variable(Scene.targetCount)",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "option2Value",
+              "source": "Variable(Scene.targetCount)",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "option3Value",
+              "source": "Variable(Scene.targetCount)",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) <= 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "option2Value",
+                  "source": "2",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "option3Value",
+                  "source": "3",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) == 2",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "option2Value",
+                  "source": "1",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "option3Value",
+                  "source": "3",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 3",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "option2Value",
+                  "source": "Variable(Scene.targetCount) - 1",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "option3Value",
+                  "source": "Variable(Scene.targetCount) + 1",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ModifyText",
+              "object": "选项1文字",
+              "modification": "setString",
+              "value": "ToString(Variable(Scene.option1Value))"
+            },
+            {
+              "type": "ModifyText",
+              "object": "选项2文字",
+              "modification": "setString",
+              "value": "ToString(Variable(Scene.option2Value))"
+            },
+            {
+              "type": "ModifyText",
+              "object": "选项3文字",
+              "modification": "setString",
+              "value": "ToString(Variable(Scene.option3Value))"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "shuffleTemp",
+              "source": "Random(1, 3)",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.shuffleTemp) == 1",
+              "trueActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "选项1文字",
+                  "modification": "setString",
+                  "value": "ToString(Variable(Scene.option2Value))"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "选项2文字",
+                  "modification": "setString",
+                  "value": "ToString(Variable(Scene.option1Value))"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.shuffleTemp) == 2",
+              "trueActions": [
+                {
+                  "type": "ModifyText",
+                  "object": "选项2文字",
+                  "modification": "setString",
+                  "value": "ToString(Variable(Scene.option3Value))"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "选项3文字",
+                  "modification": "setString",
+                  "value": "ToString(Variable(Scene.option2Value))"
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "设置顺序模式",
+      "events": [
+        {
+          "type": "Function",
+          "name": "SetupSequenceMode",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "expectedSequence",
+              "source": "\"1,2,3,4,5\"",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "currentSequenceIndex",
+              "source": "1",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "ShuffleSequence"
+            },
+            {
+              "type": "Function",
+              "name": "PositionSequenceButtons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "打乱顺序",
+      "events": [
+        {
+          "type": "Function",
+          "name": "ShuffleSequence",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "seq1",
+              "source": "1",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq2",
+              "source": "2",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq3",
+              "source": "3",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq4",
+              "source": "4",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq5",
+              "source": "5",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "shuffleCount",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) <= 3",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "shuffleCount",
+                  "source": "3",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) == 4",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "shuffleCount",
+                  "source": "4",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.targetCount) >= 5",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "shuffleCount",
+                  "source": "5",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "tempVal",
+              "source": "Variable(Scene.seq1)",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq1",
+              "source": "Variable(Scene.seq3)",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq3",
+              "source": "Variable(Scene.tempVal)",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "tempVal",
+              "source": "Variable(Scene.seq2)",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq2",
+              "source": "Variable(Scene.seq4)",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "seq4",
+              "source": "Variable(Scene.tempVal)",
+              "operation": "set"
+            },
+            {
+              "type": "ModifyText",
+              "object": "顺序1文字",
+              "modification": "setString",
+              "value": "Variable(Scene.seq1)"
+            },
+            {
+              "type": "ModifyText",
+              "object": "顺序2文字",
+              "modification": "setString",
+              "value": "Variable(Scene.seq2)"
+            },
+            {
+              "type": "ModifyText",
+              "object": "顺序3文字",
+              "modification": "setString",
+              "value": "Variable(Scene.seq3)"
+            },
+            {
+              "type": "ModifyText",
+              "object": "顺序4文字",
+              "modification": "setString",
+              "value": "Variable(Scene.seq4)"
+            },
+            {
+              "type": "ModifyText",
+              "object": "顺序5文字",
+              "modification": "setString",
+              "value": "Variable(Scene.seq5)"
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "顺序按钮4",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "顺序4文字",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "顺序按钮5",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "顺序5文字",
+              "visibility": false
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.shuffleCount) >= 4",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮4",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序4文字",
+                  "visibility": true
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.shuffleCount) >= 5",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序按钮5",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "顺序5文字",
+                  "visibility": true
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "定位顺序按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "PositionSequenceButtons",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序按钮1",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq1) - 1) % 5) * 100 + 25"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序按钮1",
+              "modification": "set",
+              "value": "170 + floor((Variable(Scene.seq1) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序按钮2",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq2) - 1) % 5) * 100 + 25"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序按钮2",
+              "modification": "set",
+              "value": "170 + floor((Variable(Scene.seq2) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序按钮3",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq3) - 1) % 5) * 100 + 25"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序按钮3",
+              "modification": "set",
+              "value": "170 + floor((Variable(Scene.seq3) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序按钮4",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq4) - 1) % 5) * 100 + 25"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序按钮4",
+              "modification": "set",
+              "value": "170 + floor((Variable(Scene.seq4) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序按钮5",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq5) - 1) % 5) * 100 + 25"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序按钮5",
+              "modification": "set",
+              "value": "170 + floor((Variable(Scene.seq5) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序1文字",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq1) - 1) % 5) * 100 + 35"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序1文字",
+              "modification": "set",
+              "value": "175 + floor((Variable(Scene.seq1) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序2文字",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq2) - 1) % 5) * 100 + 35"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序2文字",
+              "modification": "set",
+              "value": "175 + floor((Variable(Scene.seq2) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序3文字",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq3) - 1) % 5) * 100 + 35"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序3文字",
+              "modification": "set",
+              "value": "175 + floor((Variable(Scene.seq3) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序4文字",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq4) - 1) % 5) * 100 + 35"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序4文字",
+              "modification": "set",
+              "value": "175 + floor((Variable(Scene.seq4) - 1) / 5) * 80"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "顺序5文字",
+              "modification": "set",
+              "value": "140 + ((Variable(Scene.seq5) - 1) % 5) * 100 + 35"
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "顺序5文字",
+              "modification": "set",
+              "value": "175 + floor((Variable(Scene.seq5) - 1) / 5) * 80"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "数数选项按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "选项1按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "count"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedOption",
+              "source": "Variable(Scene.option1Value)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleCountAnswer"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "选项2按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "count"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedOption",
+              "source": "Variable(Scene.option2Value)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleCountAnswer"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "选项3按钮",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "count"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedOption",
+              "source": "Variable(Scene.option3Value)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleCountAnswer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理数数答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleCountAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.clickedOption) == Variable(Scene.targetCount)",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "顺序按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "顺序按钮1",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "sequence"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedSequenceNum",
+              "source": "Variable(Scene.seq1)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleSequenceClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "顺序按钮2",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "sequence"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedSequenceNum",
+              "source": "Variable(Scene.seq2)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleSequenceClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "顺序按钮3",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "sequence"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedSequenceNum",
+              "source": "Variable(Scene.seq3)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleSequenceClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "顺序按钮4",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "sequence"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedSequenceNum",
+              "source": "Variable(Scene.seq4)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleSequenceClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "顺序按钮5",
+          "conditions": [
+            {
+              "type": "Comparator",
+              "object": "gameMode",
+              "value": "sequence"
+            }
+          ],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "clickedSequenceNum",
+              "source": "Variable(Scene.seq5)",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleSequenceClick"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理顺序点击",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleSequenceClick",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.clickedSequenceNum) == Variable(Scene.currentSequenceIndex)",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleSequenceCorrect"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理顺序正确",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleSequenceCorrect",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "correct",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "currentSequenceIndex",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentSequenceIndex) > Variable(Scene.targetCount)",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理正确答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleCorrectAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "correct",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "太棒了！"
+            },
+            {
+              "type": "ChangeGlobalVariable",
+              "variable": "totalStars",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "starsText",
+              "modification": "setString",
+              "value": "x " + ToString(GlobalVariable(totalStars))"
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "streakCount",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.streakCount) >= 2",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentDifficulty) < 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeNumberVariable",
+                      "variable": "currentDifficulty",
+                      "modification": "+",
+                      "value": 1
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "streakCount",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "SetupGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理错误答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleWrongAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "wrong",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "没关系，再试一次！"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "streakCount",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) > 1",
+              "trueActions": [
+                {
+                  "type": "ChangeNumberVariable",
+                  "variable": "currentDifficulty",
+                  "modification": "-",
+                  "value": 1
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "SetupGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "返回按钮",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "backButton",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "playground"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
