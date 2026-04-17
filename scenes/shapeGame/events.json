@@ -138,8 +138,9 @@
             },
             {
               "type": "Conditional",
-              "condition": "Variable(Scene.currentDifficulty) >= 3",
-              "trueActions": [
+              "condition": "Variable(Scene.currentDifficulty) < 3",
+              "trueActions": [],
+              "falseActions": [
                 {
                   "type": "SetNumberVariable",
                   "variable": "optionCount",
@@ -170,8 +171,7 @@
                   "modification": "setString",
                   "value": "旋转到正确方向！"
                 }
-              ],
-              "falseActions": []
+              ]
             },
             {
               "type": "Function",
@@ -659,7 +659,7 @@
             },
             {
               "type": "Conditional",
-              "condition": "Variable(Scene.currentRotation) >= 360",
+              "condition": "Variable(Scene.currentRotation) > 270",
               "trueActions": [
                 {
                   "type": "SetNumberVariable",
@@ -1017,6 +1017,21 @@
               "variable": "streakCount",
               "source": "0",
               "operation": "set"
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "rotationHint",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "rotationLabel",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "旋转指示器",
+              "visibility": false
             },
             {
               "type": "Wait",
