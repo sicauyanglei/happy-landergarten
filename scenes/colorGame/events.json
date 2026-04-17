@@ -1,0 +1,854 @@
+{
+  "events": [
+    {
+      "type": "OnSceneLoaded",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "ModifyText",
+          "object": "difficultyText",
+          "modification": "setString",
+          "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+        },
+        {
+          "type": "ModifyText",
+          "object": "starsText",
+          "modification": "setString",
+          "value": "x " + ToString(GlobalVariable(totalStars))
+        },
+        {
+          "type": "ChangeColor",
+          "object": "红色按钮",
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 255
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "黄色按钮",
+          "color": {
+            "b": 0,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "蓝色按钮",
+          "color": {
+            "b": 255,
+            "g": 0,
+            "r": 0
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "绿色按钮",
+          "color": {
+            "b": 0,
+            "g": 255,
+            "r": 0
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "橙色按钮",
+          "color": {
+            "b": 0,
+            "g": 165,
+            "r": 255
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "紫色按钮",
+          "color": {
+            "b": 128,
+            "g": 0,
+            "r": 128
+          }
+        },
+        {
+          "type": "Function",
+          "name": "GenerateQuestion"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "生成题目",
+      "events": [
+        {
+          "type": "Function",
+          "name": "GenerateQuestion",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "optionCount",
+              "source": "Scene.currentDifficulty",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Scene.currentDifficulty == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "3",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Scene.currentDifficulty == 2",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "4",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Scene.currentDifficulty >= 3",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "optionCount",
+                  "source": "6",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentItemName",
+              "source": "PickRandom(\"苹果;香蕉;蓝天;草地\")",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Scene.currentDifficulty >= 3",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentItemName",
+                  "source": "PickRandom(\"苹果;香蕉;蓝天;草地;橙子;葡萄\")",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeSprite",
+              "object": "questionSprite",
+              "animation": "=Variable(Scene.currentItemName)"
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "currentCorrectColor",
+              "source": "红色",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentItemName) == \"苹果\"",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentCorrectColor",
+                  "source": "红色",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentItemName) == \"香蕉\"",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentCorrectColor",
+                  "source": "黄色",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentItemName) == \"蓝天\"",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentCorrectColor",
+                  "source": "蓝色",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentItemName) == \"草地\"",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentCorrectColor",
+                  "source": "绿色",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentItemName) == \"橙子\"",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentCorrectColor",
+                  "source": "橙色",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentItemName) == \"葡萄\"",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentCorrectColor",
+                  "source": "紫色",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Function",
+              "name": "PositionColorButtons"
+            },
+            {
+              "type": "Function",
+              "name": "HideUnusedButtons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "定位颜色按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "PositionColorButtons",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "tempOptionCount",
+              "source": "Variable(Scene.optionCount)",
+              "operation": "set"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "红色按钮",
+              "modification": "set",
+              "value": 0
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "黄色按钮",
+              "modification": "set",
+              "value": 100
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "蓝色按钮",
+              "modification": "set",
+              "value": 200
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "绿色按钮",
+              "modification": "set",
+              "value": 300
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "橙色按钮",
+              "modification": "set",
+              "value": 400
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "紫色按钮",
+              "modification": "set",
+              "value": 500
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "红色按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "黄色按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "蓝色按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "绿色按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "橙色按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeYPosition",
+              "object": "紫色按钮",
+              "modification": "set",
+              "value": 450
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "红色按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "黄色按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 100"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "蓝色按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 200"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "绿色按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 300"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "橙色按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 400"
+            },
+            {
+              "type": "ChangeXPosition",
+              "object": "紫色按钮",
+              "modification": "set",
+              "value": "(1280 - (Variable(Scene.optionCount) * 100)) / 2 + 500"
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "红色按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "黄色按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "蓝色按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "绿色按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "橙色按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "紫色按钮",
+              "visibility": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "隐藏未使用的按钮",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HideUnusedButtons",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 6",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "紫色按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 5",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "橙色按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 4",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "绿色按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.optionCount) < 3",
+              "trueActions": [
+                {
+                  "type": "ChangeVisible",
+                  "object": "蓝色按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "红色按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "红色按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentCorrectColor) == \"红色\"",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "黄色按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "黄色按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentCorrectColor) == \"黄色\"",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "蓝色按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "蓝色按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentCorrectColor) == \"蓝色\"",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "绿色按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "绿色按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentCorrectColor) == \"绿色\"",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "橙色按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "橙色按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentCorrectColor) == \"橙色\"",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "紫色按钮点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "紫色按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentCorrectColor) == \"紫色\"",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleCorrectAnswer"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleWrongAnswer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理正确答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleCorrectAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "correct",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "太棒了！"
+            },
+            {
+              "type": "ChangeGlobalVariable",
+              "variable": "totalStars",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "starsText",
+              "modification": "setString",
+              "value": "x " + ToString(GlobalVariable(totalStars))
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "streakCount",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.streakCount) >= 2",
+              "trueActions": [
+                {
+                  "type": "ChangeNumberVariable",
+                  "variable": "currentDifficulty",
+                  "modification": "+",
+                  "value": 1
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "streakCount",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "GenerateQuestion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "处理错误答案",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleWrongAnswer",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "wrong",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "没关系，再试一次！"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "streakCount",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) > 1",
+              "trueActions": [
+                {
+                  "type": "ChangeNumberVariable",
+                  "variable": "currentDifficulty",
+                  "modification": "-",
+                  "value": 1
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "Function",
+              "name": "GenerateQuestion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "返回按钮",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "backButton",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "playground"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

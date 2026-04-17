@@ -1,0 +1,471 @@
+{
+  "objects": [
+    {
+      "assetStoreId": "",
+      "name": "backButton",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 180,
+          "g": 130,
+          "r": 70
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 60,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 20,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 32,
+      "group": "",
+      "height": 40,
+      "italic": false,
+      "name": "difficultyText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 200,
+      "x": 1040,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 28,
+      "italic": false,
+      "name": "starsText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 150,
+      "x": 870,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "name": "starIcon",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 215,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 32,
+        "SpriteWidth": 32,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 830,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "name": "questionSprite",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 128,
+        "SpriteWidth": 128,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 576,
+      "y": 180,
+      "zOrder": 5
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "questionLabel",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 400,
+      "x": 440,
+      "y": 100,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+          "b": 0,
+          "g": 0,
+          "r": 0
+        },
+      "fontSize": 32,
+      "group": "",
+      "height": 45,
+      "italic": false,
+      "name": "feedbackText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 600,
+      "x": 340,
+      "y": 330,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "name": "红色按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 0,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 80,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 450,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "黄色按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 255,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 80,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 450,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "蓝色按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 80,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 450,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "绿色按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 255,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 80,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 450,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "橙色按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 165,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 80,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 450,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "紫色按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 128,
+          "g": 0,
+          "r": 128
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 80,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 450,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "grass",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 144,
+          "g": 238,
+          "r": 144
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 100,
+        "SpriteWidth": 1280,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 620,
+      "zOrder": 0
+    },
+    {
+      "assetStoreId": "",
+      "name": "sky",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 135,
+          "g": 206,
+          "r": 235
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 720,
+        "SpriteWidth": 1280,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": -10
+    }
+  ],
+  "objectGroups": [],
+  "layerContainers": [
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    },
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "Background",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    },
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "UI",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    }
+  ],
+  "r": 135,
+  "g": 206,
+  "b": 235,
+  "v": 0,
+  "a": 1,
+  "zOrder": -10,
+  "k": 0,
+  "fullWidth": 1280,
+  "fullHeight": 720,
+  "objectsText": [
+    {
+      "object": "difficultyText",
+      "text": "难度: L1"
+    },
+    {
+      "object": "starsText",
+      "text": "x 0"
+    },
+    {
+      "object": "questionLabel",
+      "text": "这是什么颜色？"
+    },
+    {
+      "object": "feedbackText",
+      "text": ""
+    }
+  ],
+  "variables": {
+    "currentDifficulty": {
+      "type": "number",
+      "value": 1
+    },
+    "totalStars": {
+      "type": "number",
+      "value": 0
+    },
+    "streakCount": {
+      "type": "number",
+      "value": 0
+    },
+    "currentCorrectColor": {
+      "type": "string",
+      "value": ""
+    },
+    "currentItemName": {
+      "type": "string",
+      "value": ""
+    },
+    "optionCount": {
+      "type": "number",
+      "value": 3
+    }
+  }
+}
