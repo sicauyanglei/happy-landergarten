@@ -34,6 +34,16 @@
     },
     {
       "type": "Group",
+      "name": "入场动画",
+      "events": [
+        {
+          "type": "Comment",
+          "text": "简化入场动画：直接显示UI元素。如需淡入效果，可在对象上添加Tween行为并配置opacity属性渐变。"
+        }
+      ]
+    },
+    {
+      "type": "Group",
       "name": "生成题目",
       "events": [
         {

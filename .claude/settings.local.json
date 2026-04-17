@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"E:/babygame/\")",
+      "WebSearch",
+      "Bash(python:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL available'\\)\")",
+      "Bash(python3:*)",
+      "Bash(where python:*)",
+      "Bash(C:\\\\Python314\\\\python.exe:*)",
+      "Bash(cmd:*)",
+      "Bash(powershell:*)",
+      "Bash(grep -E \"\\\\.png$\")",
+      "Bash(git commit:*)"
+    ]
+  }
+}
