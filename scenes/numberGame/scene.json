@@ -986,6 +986,58 @@
     "itemType": {
       "type": "string",
       "value": "苹果"
+    },
+    "option1Value": {
+      "type": "number",
+      "value": 1
+    },
+    "option2Value": {
+      "type": "number",
+      "value": 2
+    },
+    "option3Value": {
+      "type": "number",
+      "value": 3
+    },
+    "shuffleTemp": {
+      "type": "number",
+      "value": 1
+    },
+    "seq1": {
+      "type": "string",
+      "value": "1"
+    },
+    "seq2": {
+      "type": "string",
+      "value": "2"
+    },
+    "seq3": {
+      "type": "string",
+      "value": "3"
+    },
+    "seq4": {
+      "type": "string",
+      "value": "4"
+    },
+    "seq5": {
+      "type": "string",
+      "value": "5"
+    },
+    "shuffleCount": {
+      "type": "number",
+      "value": 3
+    },
+    "tempVal": {
+      "type": "number",
+      "value": 0
+    },
+    "clickedSequenceNum": {
+      "type": "number",
+      "value": 0
+    },
+    "itemNumber": {
+      "type": "number",
+      "value": 1
     }
   }
 }
