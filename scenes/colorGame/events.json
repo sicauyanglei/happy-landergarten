@@ -72,6 +72,10 @@
         },
         {
           "type": "Function",
+          "name": "LoadProgress"
+        },
+        {
+          "type": "Function",
           "name": "GenerateQuestion"
         }
       ]
@@ -653,6 +657,10 @@
               "value": "x " + ToString(GlobalVariable(totalStars))
             },
             {
+              "type": "Function",
+              "name": "SaveProgress"
+            },
+            {
               "type": "ChangeNumberVariable",
               "variable": "streakCount",
               "modification": "+",
@@ -776,6 +784,10 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeScene",

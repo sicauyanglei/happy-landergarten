@@ -15,6 +15,10 @@
           "object": "starsText",
           "modification": "setString",
           "value": "x " + ToString(GlobalVariable(totalStars))
+        },
+        {
+          "type": "Function",
+          "name": "LoadProgress"
         }
       ]
     },
@@ -33,6 +37,10 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeScene",
@@ -59,6 +67,10 @@
               "pitch": 1
             },
             {
+              "type": "Function",
+              "name": "SaveProgress"
+            },
+            {
               "type": "ChangeScene",
               "scene": "shapeGame"
             }
@@ -81,6 +93,10 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeScene",
@@ -107,6 +123,10 @@
               "pitch": 1
             },
             {
+              "type": "Function",
+              "name": "SaveProgress"
+            },
+            {
               "type": "ChangeScene",
               "scene": "puzzleGame"
             }
@@ -129,6 +149,10 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeScene",
@@ -155,6 +179,10 @@
               "pitch": 1
             },
             {
+              "type": "Function",
+              "name": "SaveProgress"
+            },
+            {
               "type": "ChangeScene",
               "scene": "drawGame"
             }
@@ -177,6 +205,10 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeScene",

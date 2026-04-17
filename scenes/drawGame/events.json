@@ -143,6 +143,10 @@
         },
         {
           "type": "Function",
+          "name": "LoadProgress"
+        },
+        {
+          "type": "Function",
           "name": "InitializeGame"
         }
       ]
@@ -1319,6 +1323,10 @@
               "value": "x " + ToString(GlobalVariable(totalStars))
             },
             {
+              "type": "Function",
+              "name": "SaveProgress"
+            },
+            {
               "type": "ChangeNumberVariable",
               "variable": "streakCount",
               "modification": "+",
@@ -1410,6 +1418,10 @@
               "object": "starsText",
               "modification": "setString",
               "value": "x " + ToString(GlobalVariable(totalStars))
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeNumberVariable",
@@ -1776,6 +1788,10 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeScene",

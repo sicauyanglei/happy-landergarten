@@ -1,0 +1,162 @@
+{
+  "events": [
+    {
+      "type": "Group",
+      "name": "保存进度",
+      "events": [
+        {
+          "type": "Function",
+          "name": "SaveProgress",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "totalStars",
+              "value": "GlobalVariable(totalStars)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "colorGame_difficulty",
+              "value": "Variable(colorGame.currentDifficulty)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "numberGame_difficulty",
+              "value": "Variable(numberGame.currentDifficulty)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "shapeGame_difficulty",
+              "value": "Variable(shapeGame.currentDifficulty)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "puzzleGame_difficulty",
+              "value": "Variable(puzzleGame.currentDifficulty)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "musicGame_difficulty",
+              "value": "Variable(musicGame.currentDifficulty)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "drawGame_difficulty",
+              "value": "Variable(drawGame.currentDifficulty)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteNumber",
+              "storageFile": "save.dat",
+              "key": "animalGame_difficulty",
+              "value": "Variable(animalGame.currentDifficulty)"
+            },
+            {
+              "type": "StorageOfCurrentScene::WriteText",
+              "storageFile": "save.dat",
+              "key": "lastPlayed",
+              "value": "ToString(TimerElapsedTime(\"autoSaveTimer\"))"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "加载进度",
+      "events": [
+        {
+          "type": "Function",
+          "name": "LoadProgress",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "StorageOfCurrentScene::LoadNumber",
+              "storageFile": "save.dat",
+              "key": "totalStars",
+              "variables": [
+                {
+                  "name": "totalStars",
+                  "value": "GlobalVariable(totalStars)"
+                }
+              ],
+              "type": "ModifiableValue"
+            },
+            {
+              "type": "ChangeGlobalVariable",
+              "variable": "totalStars",
+              "modification": "set",
+              "value": "StorageValueAsNumber(\"save.dat\", \"totalStars\")"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "加载颜色游戏难度",
+      "events": [
+        {
+          "type": "Function",
+          "name": "LoadColorGameDifficulty",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeSceneVariable",
+              "object": "colorGame",
+              "property": "currentDifficulty",
+              "modification": "set",
+              "value": "StorageValueAsNumber(\"save.dat\", \"colorGame_difficulty\")"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "加载数字游戏难度",
+      "events": [
+        {
+          "type": "Function",
+          "name": "LoadNumberGameDifficulty",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeSceneVariable",
+              "object": "numberGame",
+              "property": "currentDifficulty",
+              "modification": "set",
+              "value": "StorageValueAsNumber(\"save.dat\", \"numberGame_difficulty\")"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "加载形状游戏难度",
+      "events": [
+        {
+          "type": "Function",
+          "name": "LoadShapeGameDifficulty",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ChangeSceneVariable",
+              "object": "shapeGame",
+              "property": "currentDifficulty",
+              "modification": "set",
+              "value": "StorageValueAsNumber(\"save.dat\", \"shapeGame_difficulty\")"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

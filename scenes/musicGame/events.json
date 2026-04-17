@@ -18,6 +18,10 @@
         },
         {
           "type": "Function",
+          "name": "LoadProgress"
+        },
+        {
+          "type": "Function",
           "name": "SetupMusicGame"
         }
       ]
@@ -1997,6 +2001,10 @@
                           "value": "x " + ToString(GlobalVariable(totalStars))
                         },
                         {
+                          "type": "Function",
+                          "name": "SaveProgress"
+                        },
+                        {
                           "type": "Conditional",
                           "condition": "Variable(Scene.streakCount) >= 3",
                           "trueActions": [
@@ -2619,6 +2627,10 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "SaveProgress"
             },
             {
               "type": "ChangeScene",
