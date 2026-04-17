@@ -1,0 +1,831 @@
+{
+  "objects": [
+    {
+      "assetStoreId": "",
+      "name": "backButton",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 180,
+          "g": 130,
+          "r": 70
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 60,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 20,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 32,
+      "group": "",
+      "height": 40,
+      "italic": false,
+      "name": "difficultyText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 200,
+      "x": 1040,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 28,
+      "italic": false,
+      "name": "starsText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 150,
+      "x": 870,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "name": "starIcon",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 215,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 32,
+        "SpriteWidth": 32,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 830,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 28,
+      "group": "",
+      "height": 45,
+      "italic": false,
+      "name": "feedbackText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 600,
+      "x": 340,
+      "y": 500,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 28,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "titleText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 400,
+      "x": 440,
+      "y": 80,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "puzzleBoard",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 200,
+          "g": 200,
+          "r": 200
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 300,
+        "SpriteWidth": 300,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 490,
+      "y": 160,
+      "zOrder": 5
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile1",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 100,
+          "r": 100
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile2",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 100,
+          "g": 255,
+          "r": 100
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile3",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 100,
+          "g": 100,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile4",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 255,
+          "r": 100
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile5",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 100,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile6",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 100,
+          "g": 255,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile7",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 150,
+          "r": 100
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile8",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 150,
+          "g": 100,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "name": "tile9",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 100,
+          "g": 200,
+          "r": 150
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 6
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile1Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile2Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile3Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile4Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile5Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile6Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile7Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile8Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "bold": true,
+      "color": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "fontSize": 36,
+      "group": "",
+      "height": 50,
+      "italic": false,
+      "name": "tile9Text",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 50,
+      "x": 0,
+      "y": 0,
+      "zOrder": 7
+    },
+    {
+      "assetStoreId": "",
+      "name": "grass",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 144,
+          "g": 238,
+          "r": 144
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 100,
+        "SpriteWidth": 1280,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 620,
+      "zOrder": 0
+    },
+    {
+      "assetStoreId": "",
+      "name": "sky",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 135,
+          "g": 206,
+          "r": 235
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 720,
+        "SpriteWidth": 1280,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": -10
+    }
+  ],
+  "objectGroups": [],
+  "layerContainers": [
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    },
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "Background",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    },
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "UI",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    }
+  ],
+  "r": 135,
+  "g": 206,
+  "b": 235,
+  "v": 0,
+  "a": 1,
+  "zOrder": -10,
+  "k": 0,
+  "fullWidth": 1280,
+  "fullHeight": 720,
+  "objectsText": [
+    {
+      "object": "difficultyText",
+      "text": "难度: L1"
+    },
+    {
+      "object": "starsText",
+      "text": "x 0"
+    },
+    {
+      "object": "titleText",
+      "text": "快乐拼图"
+    },
+    {
+      "object": "feedbackText",
+      "text": ""
+    },
+    {
+      "object": "tile1Text",
+      "text": "1"
+    },
+    {
+      "object": "tile2Text",
+      "text": "2"
+    },
+    {
+      "object": "tile3Text",
+      "text": "3"
+    },
+    {
+      "object": "tile4Text",
+      "text": "4"
+    },
+    {
+      "object": "tile5Text",
+      "text": "5"
+    },
+    {
+      "object": "tile6Text",
+      "text": "6"
+    },
+    {
+      "object": "tile7Text",
+      "text": "7"
+    },
+    {
+      "object": "tile8Text",
+      "text": "8"
+    },
+    {
+      "object": "tile9Text",
+      "text": "9"
+    }
+  ],
+  "variables": {
+    "currentDifficulty": {
+      "type": "number",
+      "value": 1
+    },
+    "totalStars": {
+      "type": "number",
+      "value": 0
+    },
+    "streakCount": {
+      "type": "number",
+      "value": 0
+    },
+    "gridCols": {
+      "type": "number",
+      "value": 2
+    },
+    "gridRows": {
+      "type": "number",
+      "value": 2
+    },
+    "tileSize": {
+      "type": "number",
+      "value": 90
+    },
+    "boardStartX": {
+      "type": "number",
+      "value": 490
+    },
+    "boardStartY": {
+      "type": "number",
+      "value": 160
+    },
+    "emptyPos": {
+      "type": "number",
+      "value": 4
+    },
+    "tile1Pos": {
+      "type": "number",
+      "value": 1
+    },
+    "tile2Pos": {
+      "type": "number",
+      "value": 2
+    },
+    "tile3Pos": {
+      "type": "number",
+      "value": 3
+    },
+    "tile4Pos": {
+      "type": "number",
+      "value": 4
+    },
+    "tile5Pos": {
+      "type": "number",
+      "value": 0
+    },
+    "tile6Pos": {
+      "type": "number",
+      "value": 0
+    },
+    "tile7Pos": {
+      "type": "number",
+      "value": 0
+    },
+    "tile8Pos": {
+      "type": "number",
+      "value": 0
+    },
+    "tile9Pos": {
+      "type": "number",
+      "value": 0
+    },
+    "clickedTile": {
+      "type": "number",
+      "value": 0
+    },
+    "tempPos": {
+      "type": "number",
+      "value": 0
+    },
+    "shuffleMoves": {
+      "type": "number",
+      "value": 20
+    }
+  }
+}
