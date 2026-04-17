@@ -356,6 +356,256 @@
       "x": 0,
       "y": 0,
       "zOrder": -10
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar1",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar2",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar3",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar4",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar5",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar6",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar7",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar8",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar9",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
+    },
+    {
+      "assetStoreId": "",
+      "name": "particleStar10",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 215,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 20,
+        "SpriteWidth": 20,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 640,
+      "y": 360,
+      "zOrder": 15
     }
   ],
   "objectGroups": [],

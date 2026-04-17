@@ -83,6 +83,56 @@
         {
           "type": "Function",
           "name": "GenerateQuestion"
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar1",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar2",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar3",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar4",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar5",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar6",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar7",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar8",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar9",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "particleStar10",
+          "visibility": false
         }
       ]
     },
@@ -653,6 +703,11 @@
               "loop": false,
               "volume": 100,
               "pitch": 1
+            },
+            {
+              "type": "JSFunction",
+              "name": "SpawnStarBurst",
+              "parameters": [640, 360, 10]
             },
             {
               "type": "ModifyText",
