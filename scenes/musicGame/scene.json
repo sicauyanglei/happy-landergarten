@@ -29,11 +29,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 32,
+      "fontSize": 20,
       "group": "",
       "height": 40,
       "italic": false,
@@ -50,9 +50,9 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
       "fontSize": 28,
       "italic": false,
@@ -94,9 +94,9 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
       "fontSize": 36,
       "group": "",
@@ -115,11 +115,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 32,
+      "fontSize": 28,
       "group": "",
       "height": 45,
       "italic": false,
@@ -211,9 +211,9 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
       "fontSize": 20,
       "group": "",
@@ -257,9 +257,9 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 255,
-        "g": 255,
-        "r": 255
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
       "fontSize": 20,
       "group": "",
@@ -303,9 +303,9 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 255,
-        "g": 255,
-        "r": 255
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
       "fontSize": 20,
       "group": "",
@@ -349,9 +349,9 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 255,
-        "g": 255,
-        "r": 255
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
       "fontSize": 20,
       "group": "",
@@ -395,9 +395,9 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 255,
-        "g": 255,
-        "r": 255
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
       "fontSize": 20,
       "group": "",
@@ -741,11 +741,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 18,
+      "fontSize": 20,
       "group": "",
       "height": 25,
       "italic": false,
@@ -762,11 +762,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 18,
+      "fontSize": 20,
       "group": "",
       "height": 25,
       "italic": false,
@@ -783,11 +783,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 18,
+      "fontSize": 20,
       "group": "",
       "height": 25,
       "italic": false,
@@ -804,11 +804,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 18,
+      "fontSize": 20,
       "group": "",
       "height": 25,
       "italic": false,
@@ -825,11 +825,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 18,
+      "fontSize": 20,
       "group": "",
       "height": 25,
       "italic": false,
@@ -846,11 +846,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 18,
+      "fontSize": 20,
       "group": "",
       "height": 25,
       "italic": false,
@@ -867,11 +867,11 @@
       "assetStoreId": "",
       "bold": false,
       "color": {
-        "b": 0,
-        "g": 0,
-        "r": 0
+        "b": 51,
+        "g": 51,
+        "r": 51
       },
-      "fontSize": 18,
+      "fontSize": 20,
       "group": "",
       "height": 25,
       "italic": false,
