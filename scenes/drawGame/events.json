@@ -137,6 +137,11 @@
           "visibility": false
         },
         {
+          "type": "ChangeVisible",
+          "object": "brushDot",
+          "visibility": false
+        },
+        {
           "type": "Function",
           "name": "InitializeGame"
         }
@@ -463,6 +468,11 @@
                   "type": "ChangeVisible",
                   "object": "清除按钮",
                   "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "brushDot",
+                  "visibility": false
                 },
                 {
                   "type": "SetNumberVariable",
@@ -1530,6 +1540,222 @@
             {
               "type": "Function",
               "name": "InitializeGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "画布点击绘制",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "canvas",
+          "conditions": [
+            {
+              "type": "VariableCondition",
+              "variable": "currentMode",
+              "comparison": "Equal",
+              "value": "draw"
+            }
+          ],
+          "actions": [
+            {
+              "type": "Function",
+              "name": "PlaceBrushDot"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "drawingLayer",
+          "conditions": [
+            {
+              "type": "VariableCondition",
+              "variable": "currentMode",
+              "comparison": "Equal",
+              "value": "draw"
+            }
+          ],
+          "actions": [
+            {
+              "type": "Function",
+              "name": "PlaceBrushDot"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "放置画笔点",
+      "events": [
+        {
+          "type": "Function",
+          "name": "PlaceBrushDot",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentTool) == \"brush\"",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"红色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 0,
+                        "g": 0,
+                        "r": 255
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"黄色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 0,
+                        "g": 255,
+                        "r": 255
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"蓝色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 255,
+                        "g": 0,
+                        "r": 0
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"绿色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 0,
+                        "g": 255,
+                        "r": 0
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"橙色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 0,
+                        "g": 165,
+                        "r": 255
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"紫色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 128,
+                        "g": 0,
+                        "r": 128
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"棕色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 42,
+                        "g": 42,
+                        "r": 165
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentColor) == \"黑色\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeColorObject",
+                      "object": "brushDot",
+                      "color": {
+                        "b": 0,
+                        "g": 0,
+                        "r": 0
+                      }
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "brushDot",
+                  "visibility": true
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentTool) == \"eraser\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "brushDot",
+                  "color": {
+                    "b": 255,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "brushDot",
+                  "visibility": true
+                }
+              ],
+              "falseActions": []
             }
           ]
         }

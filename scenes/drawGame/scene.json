@@ -659,6 +659,31 @@
     },
     {
       "assetStoreId": "",
+      "name": "brushDot",
+      "poolSize": 500,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 10,
+        "SpriteWidth": 10,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": 4
+    },
+    {
+      "assetStoreId": "",
       "name": "sky",
       "poolSize": 1,
       "properties": {
