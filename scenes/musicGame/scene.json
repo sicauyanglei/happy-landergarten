@@ -576,7 +576,7 @@
         "customSize": true,
         "opacity": 100,
         "SpriteHeight": 60,
-        "SpriteWidth": 50,
+        "SpriteWidth": 60,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -601,7 +601,7 @@
         "customSize": true,
         "opacity": 100,
         "SpriteHeight": 60,
-        "SpriteWidth": 50,
+        "SpriteWidth": 60,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -626,7 +626,7 @@
         "customSize": true,
         "opacity": 100,
         "SpriteHeight": 60,
-        "SpriteWidth": 50,
+        "SpriteWidth": 60,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -651,7 +651,7 @@
         "customSize": true,
         "opacity": 100,
         "SpriteHeight": 60,
-        "SpriteWidth": 50,
+        "SpriteWidth": 60,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -676,7 +676,7 @@
         "customSize": true,
         "opacity": 100,
         "SpriteHeight": 60,
-        "SpriteWidth": 50,
+        "SpriteWidth": 60,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -701,7 +701,7 @@
         "customSize": true,
         "opacity": 100,
         "SpriteHeight": 60,
-        "SpriteWidth": 50,
+        "SpriteWidth": 60,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -726,7 +726,7 @@
         "customSize": true,
         "opacity": 100,
         "SpriteHeight": 60,
-        "SpriteWidth": 50,
+        "SpriteWidth": 60,
         "texturePatternName": ""
       },
       "type": "Sprite",

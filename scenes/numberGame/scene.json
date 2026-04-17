@@ -420,8 +420,8 @@
         "currentLayer": "",
         "customSize": true,
         "opacity": 100,
-        "SpriteHeight": 60,
-        "SpriteWidth": 80,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -445,8 +445,8 @@
         "currentLayer": "",
         "customSize": true,
         "opacity": 100,
-        "SpriteHeight": 60,
-        "SpriteWidth": 80,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -470,8 +470,8 @@
         "currentLayer": "",
         "customSize": true,
         "opacity": 100,
-        "SpriteHeight": 60,
-        "SpriteWidth": 80,
+        "SpriteHeight": 90,
+        "SpriteWidth": 90,
         "texturePatternName": ""
       },
       "type": "Sprite",
@@ -625,7 +625,7 @@
       "variable": "",
       "width": 80,
       "x": 0,
-      "y": 460,
+      "y": 490,
       "zOrder": 9
     },
     {
@@ -646,7 +646,7 @@
       "variable": "",
       "width": 80,
       "x": 0,
-      "y": 460,
+      "y": 490,
       "zOrder": 9
     },
     {
@@ -667,7 +667,7 @@
       "variable": "",
       "width": 80,
       "x": 0,
-      "y": 460,
+      "y": 490,
       "zOrder": 9
     },
     {
