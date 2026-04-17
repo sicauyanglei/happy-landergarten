@@ -476,7 +476,7 @@
     },
     {
       "type": "Group",
-      "name": "红色按钮点击",
+      "name": "颜色按钮点击",
       "events": [
         {
           "type": "Onclic",
@@ -484,171 +484,99 @@
           "conditions": [],
           "actions": [
             {
-              "type": "PlaySound",
-              "sound": "click",
-              "loop": false,
-              "volume": 100,
-              "pitch": 1
+              "type": "SetStringVariable",
+              "variable": "clickedColor",
+              "source": "\"红色\"",
+              "operation": "set"
             },
             {
-              "type": "Conditional",
-              "condition": "Variable(Scene.currentCorrectColor) == \"红色\"",
-              "trueActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleCorrectAnswer"
-                }
-              ],
-              "falseActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleWrongAnswer"
-                }
-              ]
+              "type": "Function",
+              "name": "HandleColorButtonClick"
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "Group",
-      "name": "黄色按钮点击",
-      "events": [
+        },
         {
           "type": "Onclic",
           "object": "黄色按钮",
           "conditions": [],
           "actions": [
             {
-              "type": "PlaySound",
-              "sound": "click",
-              "loop": false,
-              "volume": 100,
-              "pitch": 1
+              "type": "SetStringVariable",
+              "variable": "clickedColor",
+              "source": "\"黄色\"",
+              "operation": "set"
             },
             {
-              "type": "Conditional",
-              "condition": "Variable(Scene.currentCorrectColor) == \"黄色\"",
-              "trueActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleCorrectAnswer"
-                }
-              ],
-              "falseActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleWrongAnswer"
-                }
-              ]
+              "type": "Function",
+              "name": "HandleColorButtonClick"
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "Group",
-      "name": "蓝色按钮点击",
-      "events": [
+        },
         {
           "type": "Onclic",
           "object": "蓝色按钮",
           "conditions": [],
           "actions": [
             {
-              "type": "PlaySound",
-              "sound": "click",
-              "loop": false,
-              "volume": 100,
-              "pitch": 1
+              "type": "SetStringVariable",
+              "variable": "clickedColor",
+              "source": "\"蓝色\"",
+              "operation": "set"
             },
             {
-              "type": "Conditional",
-              "condition": "Variable(Scene.currentCorrectColor) == \"蓝色\"",
-              "trueActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleCorrectAnswer"
-                }
-              ],
-              "falseActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleWrongAnswer"
-                }
-              ]
+              "type": "Function",
+              "name": "HandleColorButtonClick"
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "Group",
-      "name": "绿色按钮点击",
-      "events": [
+        },
         {
           "type": "Onclic",
           "object": "绿色按钮",
           "conditions": [],
           "actions": [
             {
-              "type": "PlaySound",
-              "sound": "click",
-              "loop": false,
-              "volume": 100,
-              "pitch": 1
+              "type": "SetStringVariable",
+              "variable": "clickedColor",
+              "source": "\"绿色\"",
+              "operation": "set"
             },
             {
-              "type": "Conditional",
-              "condition": "Variable(Scene.currentCorrectColor) == \"绿色\"",
-              "trueActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleCorrectAnswer"
-                }
-              ],
-              "falseActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleWrongAnswer"
-                }
-              ]
+              "type": "Function",
+              "name": "HandleColorButtonClick"
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "Group",
-      "name": "橙色按钮点击",
-      "events": [
+        },
         {
           "type": "Onclic",
           "object": "橙色按钮",
           "conditions": [],
           "actions": [
             {
-              "type": "PlaySound",
-              "sound": "click",
-              "loop": false,
-              "volume": 100,
-              "pitch": 1
+              "type": "SetStringVariable",
+              "variable": "clickedColor",
+              "source": "\"橙色\"",
+              "operation": "set"
             },
             {
-              "type": "Conditional",
-              "condition": "Variable(Scene.currentCorrectColor) == \"橙色\"",
-              "trueActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleCorrectAnswer"
-                }
-              ],
-              "falseActions": [
-                {
-                  "type": "Function",
-                  "name": "HandleWrongAnswer"
-                }
-              ]
+              "type": "Function",
+              "name": "HandleColorButtonClick"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "紫色按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetStringVariable",
+              "variable": "clickedColor",
+              "source": "\"紫色\"",
+              "operation": "set"
+            },
+            {
+              "type": "Function",
+              "name": "HandleColorButtonClick"
             }
           ]
         }
@@ -656,11 +584,11 @@
     },
     {
       "type": "Group",
-      "name": "紫色按钮点击",
+      "name": "处理颜色按钮点击",
       "events": [
         {
-          "type": "Onclic",
-          "object": "紫色按钮",
+          "type": "Function",
+          "name": "HandleColorButtonClick",
           "conditions": [],
           "actions": [
             {
@@ -672,7 +600,7 @@
             },
             {
               "type": "Conditional",
-              "condition": "Variable(Scene.currentCorrectColor) == \"紫色\"",
+              "condition": "Variable(Scene.clickedColor) == Variable(Scene.currentCorrectColor)",
               "trueActions": [
                 {
                   "type": "Function",
@@ -735,10 +663,17 @@
               "condition": "Variable(Scene.streakCount) >= 2",
               "trueActions": [
                 {
-                  "type": "ChangeNumberVariable",
-                  "variable": "currentDifficulty",
-                  "modification": "+",
-                  "value": 1
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentDifficulty) < 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeNumberVariable",
+                      "variable": "currentDifficulty",
+                      "modification": "+",
+                      "value": 1
+                    }
+                  ],
+                  "falseActions": []
                 },
                 {
                   "type": "SetNumberVariable",

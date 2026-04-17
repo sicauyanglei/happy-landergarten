@@ -466,6 +466,10 @@
     "optionCount": {
       "type": "number",
       "value": 3
+    },
+    "clickedColor": {
+      "type": "string",
+      "value": ""
     }
   }
 }
