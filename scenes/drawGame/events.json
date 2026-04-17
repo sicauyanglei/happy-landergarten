@@ -1,0 +1,1563 @@
+{
+  "events": [
+    {
+      "type": "OnSceneLoaded",
+      "conditions": [],
+      "actions": [
+        {
+          "type": "ModifyText",
+          "object": "difficultyText",
+          "modification": "setString",
+          "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+        },
+        {
+          "type": "ModifyText",
+          "object": "starsText",
+          "modification": "setString",
+          "value": "x " + ToString(GlobalVariable(totalStars))
+        },
+        {
+          "type": "ChangeColor",
+          "object": "画笔按钮",
+          "color": {
+            "b": 50,
+            "g": 50,
+            "r": 200
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "橡皮擦按钮",
+          "color": {
+            "b": 180,
+            "g": 180,
+            "r": 180
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "红色调",
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 255
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "黄色调",
+          "color": {
+            "b": 0,
+            "g": 255,
+            "r": 255
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "蓝色调",
+          "color": {
+            "b": 255,
+            "g": 0,
+            "r": 0
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "绿色调",
+          "color": {
+            "b": 0,
+            "g": 255,
+            "r": 0
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "橙色调",
+          "color": {
+            "b": 0,
+            "g": 165,
+            "r": 255
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "紫色调",
+          "color": {
+            "b": 128,
+            "g": 0,
+            "r": 128
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "棕色调",
+          "color": {
+            "b": 42,
+            "g": 42,
+            "r": 165
+          }
+        },
+        {
+          "type": "ChangeColor",
+          "object": "黑色调",
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 0
+          }
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "outlineApple",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "outlineFish",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "outlineSun",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "fillArea1",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "fillArea2",
+          "visibility": false
+        },
+        {
+          "type": "ChangeVisible",
+          "object": "下一题按钮",
+          "visibility": false
+        },
+        {
+          "type": "Function",
+          "name": "InitializeGame"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "初始化游戏",
+      "events": [
+        {
+          "type": "Function",
+          "name": "InitializeGame",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "isCompleted",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "filledAreas",
+              "source": "0",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "fill1Color",
+              "source": "\"\"",
+              "operation": "set"
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "fill2Color",
+              "source": "\"\"",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 1",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentMode",
+                  "source": "\"fill\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "modeLabel",
+                  "modification": "setString",
+                  "value": "填色模式"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentOutline",
+                  "source": "\"apple\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "outlineApple",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fillArea1",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 255,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "canvas",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "drawingLayer",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "画笔按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "橡皮擦按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "清除按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "totalAreas",
+                  "source": "1",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) == 2",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentMode",
+                  "source": "\"fill\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "modeLabel",
+                  "modification": "setString",
+                  "value": "填色模式"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentOutline",
+                  "source": "PickRandom(\"fish;sun\")",
+                  "operation": "set"
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentOutline) == \"fish\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeVisible",
+                      "object": "outlineFish",
+                      "visibility": true
+                    },
+                    {
+                      "type": "ChangeVisible",
+                      "object": "fillArea1",
+                      "visibility": true
+                    },
+                    {
+                      "type": "ChangeVisible",
+                      "object": "fillArea2",
+                      "visibility": true
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "totalAreas",
+                      "source": "2",
+                      "operation": "set"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentOutline) == \"sun\"",
+                  "trueActions": [
+                    {
+                      "type": "ChangeVisible",
+                      "object": "outlineSun",
+                      "visibility": true
+                    },
+                    {
+                      "type": "ChangeVisible",
+                      "object": "fillArea1",
+                      "visibility": true
+                    },
+                    {
+                      "type": "ChangeVisible",
+                      "object": "fillArea2",
+                      "visibility": true
+                    },
+                    {
+                      "type": "SetNumberVariable",
+                      "variable": "totalAreas",
+                      "source": "2",
+                      "operation": "set"
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 255,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 255,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "canvas",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "drawingLayer",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "画笔按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "橡皮擦按钮",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "清除按钮",
+                  "visibility": false
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentDifficulty) >= 3",
+              "trueActions": [
+                {
+                  "type": "SetStringVariable",
+                  "variable": "currentMode",
+                  "source": "\"draw\"",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "modeLabel",
+                  "modification": "setString",
+                  "value": "自由绘画"
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "outlineApple",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "outlineFish",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "outlineSun",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fillArea1",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "fillArea2",
+                  "visibility": false
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "canvas",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "drawingLayer",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeColorObject",
+                  "object": "canvas",
+                  "color": {
+                    "b": 255,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "ChangeColorObject",
+                  "object": "drawingLayer",
+                  "color": {
+                    "b": 255,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "画笔按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "橡皮擦按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "ChangeVisible",
+                  "object": "清除按钮",
+                  "visibility": true
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "totalAreas",
+                  "source": "0",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "完成按钮",
+              "visibility": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "画笔工具",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "画笔按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentTool",
+              "source": "\"brush\"",
+              "operation": "set"
+            },
+            {
+              "type": "ChangeColor",
+              "object": "画笔按钮",
+              "color": {
+                "b": 50,
+                "g": 50,
+                "r": 200
+              }
+            },
+            {
+              "type": "ChangeColor",
+              "object": "橡皮擦按钮",
+              "color": {
+                "b": 180,
+                "g": 180,
+                "r": 180
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "橡皮擦工具",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "橡皮擦按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentTool",
+              "source": "\"eraser\"",
+              "operation": "set"
+            },
+            {
+              "type": "ChangeColor",
+              "object": "橡皮擦按钮",
+              "color": {
+                "b": 50,
+                "g": 50,
+                "r": 200
+              }
+            },
+            {
+              "type": "ChangeColor",
+              "object": "画笔按钮",
+              "color": {
+                "b": 100,
+                "g": 100,
+                "r": 100
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "清除画布",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "清除按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeColorObject",
+              "object": "canvas",
+              "color": {
+                "b": 255,
+                "g": 255,
+                "r": 255
+              }
+            },
+            {
+              "type": "ChangeColorObject",
+              "object": "drawingLayer",
+              "color": {
+                "b": 255,
+                "g": 255,
+                "r": 255
+              }
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "画布已清除"
+            },
+            {
+              "type": "Wait",
+              "seconds": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "颜色选择",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "红色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"红色\"",
+              "operation": "set"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "黄色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"黄色\"",
+              "operation": "set"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "蓝色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"蓝色\"",
+              "operation": "set"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "绿色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"绿色\"",
+              "operation": "set"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "橙色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"橙色\"",
+              "operation": "set"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "紫色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"紫色\"",
+              "operation": "set"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "棕色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"棕色\"",
+              "operation": "set"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "黑色调",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "SetStringVariable",
+              "variable": "currentColor",
+              "source": "\"黑色\"",
+              "operation": "set"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "填色区域点击",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "fillArea1",
+          "conditions": [
+            {
+              "type": "VariableCondition",
+              "variable": "currentMode",
+              "comparison": "Equal",
+              "value": "fill"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "FillArea1"
+            }
+          ]
+        },
+        {
+          "type": "Onclic",
+          "object": "fillArea2",
+          "conditions": [
+            {
+              "type": "VariableCondition",
+              "variable": "currentMode",
+              "comparison": "Equal",
+              "value": "fill"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "Function",
+              "name": "FillArea2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "填色区域1",
+      "events": [
+        {
+          "type": "Function",
+          "name": "FillArea1",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"红色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 0,
+                    "g": 0,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"红色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"黄色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 0,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"黄色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"蓝色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 255,
+                    "g": 0,
+                    "r": 0
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"蓝色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"绿色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 0,
+                    "g": 255,
+                    "r": 0
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"绿色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"橙色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 0,
+                    "g": 165,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"橙色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"紫色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 128,
+                    "g": 0,
+                    "r": 128
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"紫色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"棕色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 42,
+                    "g": 42,
+                    "r": 165
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"棕色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"黑色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea1",
+                  "color": {
+                    "b": 0,
+                    "g": 0,
+                    "r": 0
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill1Color",
+                  "source": "\"黑色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "filledAreas",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Function",
+              "name": "CheckFillComplete"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "填色区域2",
+      "events": [
+        {
+          "type": "Function",
+          "name": "FillArea2",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"红色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 0,
+                    "g": 0,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"红色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"黄色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 0,
+                    "g": 255,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"黄色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"蓝色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 255,
+                    "g": 0,
+                    "r": 0
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"蓝色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"绿色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 0,
+                    "g": 255,
+                    "r": 0
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"绿色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"橙色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 0,
+                    "g": 165,
+                    "r": 255
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"橙色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"紫色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 128,
+                    "g": 0,
+                    "r": 128
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"紫色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"棕色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 42,
+                    "g": 42,
+                    "r": 165
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"棕色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.currentColor) == \"黑色\"",
+              "trueActions": [
+                {
+                  "type": "ChangeColorObject",
+                  "object": "fillArea2",
+                  "color": {
+                    "b": 0,
+                    "g": 0,
+                    "r": 0
+                  }
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "fill2Color",
+                  "source": "\"黑色\"",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "filledAreas",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Function",
+              "name": "CheckFillComplete"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "检查填色完成",
+      "events": [
+        {
+          "type": "Function",
+          "name": "CheckFillComplete",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.filledAreas) >= Variable(Scene.totalAreas)",
+              "trueActions": [
+                {
+                  "type": "Function",
+                  "name": "HandleFillComplete"
+                }
+              ],
+              "falseActions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "填色完成处理",
+      "events": [
+        {
+          "type": "Function",
+          "name": "HandleFillComplete",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "SetNumberVariable",
+              "variable": "isCompleted",
+              "source": "1",
+              "operation": "set"
+            },
+            {
+              "type": "PlaySound",
+              "sound": "correct",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "太棒了！完成填色！"
+            },
+            {
+              "type": "ChangeGlobalVariable",
+              "variable": "totalStars",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "starsText",
+              "modification": "setString",
+              "value": "x " + ToString(GlobalVariable(totalStars))
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "streakCount",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.streakCount) >= 2",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentDifficulty) < 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeNumberVariable",
+                      "variable": "currentDifficulty",
+                      "modification": "+",
+                      "value": 1
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "streakCount",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "完成按钮",
+              "visibility": true
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "下一题按钮",
+              "visibility": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "完成按钮",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "完成按钮",
+          "conditions": [
+            {
+              "type": "VariableCondition",
+              "variable": "currentMode",
+              "comparison": "Equal",
+              "value": "draw"
+            }
+          ],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "correct",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": "创作完成！太棒了！"
+            },
+            {
+              "type": "ChangeGlobalVariable",
+              "variable": "totalStars",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "ModifyText",
+              "object": "starsText",
+              "modification": "setString",
+              "value": "x " + ToString(GlobalVariable(totalStars))
+            },
+            {
+              "type": "ChangeNumberVariable",
+              "variable": "streakCount",
+              "modification": "+",
+              "value": 1
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.streakCount) >= 2",
+              "trueActions": [
+                {
+                  "type": "Conditional",
+                  "condition": "Variable(Scene.currentDifficulty) < 3",
+                  "trueActions": [
+                    {
+                      "type": "ChangeNumberVariable",
+                      "variable": "currentDifficulty",
+                      "modification": "+",
+                      "value": 1
+                    }
+                  ],
+                  "falseActions": []
+                },
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "streakCount",
+                  "source": "0",
+                  "operation": "set"
+                },
+                {
+                  "type": "ModifyText",
+                  "object": "difficultyText",
+                  "modification": "setString",
+                  "value": "难度: L" + ToString(Variable(Scene.currentDifficulty))
+                }
+              ],
+              "falseActions": []
+            },
+            {
+              "type": "ChangeColorObject",
+              "object": "canvas",
+              "color": {
+                "b": 255,
+                "g": 255,
+                "r": 255
+              }
+            },
+            {
+              "type": "ChangeColorObject",
+              "object": "drawingLayer",
+              "color": {
+                "b": 255,
+                "g": 255,
+                "r": 255
+              }
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "完成按钮",
+              "visibility": false
+            },
+            {
+              "type": "Wait",
+              "seconds": 1.5
+            },
+            {
+              "type": "ModifyText",
+              "object": "feedbackText",
+              "modification": "setString",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "下一题",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "下一题按钮",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "outlineApple",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "outlineFish",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "outlineSun",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "fillArea1",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "fillArea2",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "完成按钮",
+              "visibility": false
+            },
+            {
+              "type": "ChangeVisible",
+              "object": "下一题按钮",
+              "visibility": false
+            },
+            {
+              "type": "Function",
+              "name": "InitializeGame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "name": "返回按钮",
+      "events": [
+        {
+          "type": "Onclic",
+          "object": "backButton",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "PlaySound",
+              "sound": "click",
+              "loop": false,
+              "volume": 100,
+              "pitch": 1
+            },
+            {
+              "type": "ChangeScene",
+              "scene": "playground"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,836 @@
+{
+  "objects": [
+    {
+      "assetStoreId": "",
+      "name": "backButton",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 180,
+          "g": 130,
+          "r": 70
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 60,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 20,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 32,
+      "group": "",
+      "height": 40,
+      "italic": false,
+      "name": "difficultyText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 200,
+      "x": 1040,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 28,
+      "italic": false,
+      "name": "starsText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 150,
+      "x": 870,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "name": "starIcon",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 215,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 32,
+        "SpriteWidth": 32,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 830,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 32,
+      "group": "",
+      "height": 40,
+      "italic": false,
+      "name": "modeLabel",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 300,
+      "x": 500,
+      "y": 20,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "name": "canvas",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 255,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 400,
+        "SpriteWidth": 600,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 340,
+      "y": 150,
+      "zOrder": 2
+    },
+    {
+      "assetStoreId": "",
+      "name": "drawingLayer",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 255,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 400,
+        "SpriteWidth": 600,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 340,
+      "y": 150,
+      "zOrder": 3
+    },
+    {
+      "assetStoreId": "",
+      "name": "outlineApple",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 150,
+        "SpriteWidth": 150,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 567,
+      "y": 275,
+      "zOrder": 4
+    },
+    {
+      "assetStoreId": "",
+      "name": "outlineFish",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 150,
+        "SpriteWidth": 200,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 540,
+      "y": 275,
+      "zOrder": 4
+    },
+    {
+      "assetStoreId": "",
+      "name": "outlineSun",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 150,
+        "SpriteWidth": 150,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 567,
+      "y": 275,
+      "zOrder": 4
+    },
+    {
+      "assetStoreId": "",
+      "name": "画笔按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 100,
+          "g": 100,
+          "r": 100
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 50,
+        "SpriteWidth": 50,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 100,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "橡皮擦按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 180,
+          "g": 180,
+          "r": 180
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 50,
+        "SpriteWidth": 50,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 170,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "清除按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 100,
+          "r": 100
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 50,
+        "SpriteWidth": 50,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 240,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "红色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 0,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 320,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "黄色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 255,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 370,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "蓝色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 420,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "绿色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 255,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 470,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "橙色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 165,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 520,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "紫色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 128,
+          "g": 0,
+          "r": 128
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 570,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "棕色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 42,
+          "g": 42,
+          "r": 165
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 620,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "黑色调",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 0,
+          "g": 0,
+          "r": 0
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 40,
+        "SpriteWidth": 40,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 670,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "fillArea1",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 255,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 150,
+        "SpriteWidth": 150,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 567,
+      "y": 275,
+      "zOrder": 3
+    },
+    {
+      "assetStoreId": "",
+      "name": "fillArea2",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 255,
+          "g": 255,
+          "r": 255
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 150,
+        "SpriteWidth": 150,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 567,
+      "y": 275,
+      "zOrder": 3
+    },
+    {
+      "assetStoreId": "",
+      "name": "完成按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 100,
+          "g": 200,
+          "r": 100
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 50,
+        "SpriteWidth": 80,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 750,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "name": "下一题按钮",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 100,
+          "g": 200,
+          "r": 200
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 50,
+        "SpriteWidth": 100,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 850,
+      "y": 570,
+      "zOrder": 8
+    },
+    {
+      "assetStoreId": "",
+      "bold": false,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "fontSize": 28,
+      "group": "",
+      "height": 40,
+      "italic": false,
+      "name": "feedbackText",
+      "type": "TextEntry::Text",
+      "underlined": false,
+      "variable": "",
+      "width": 400,
+      "x": 440,
+      "y": 560,
+      "zOrder": 10
+    },
+    {
+      "assetStoreId": "",
+      "name": "grass",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 144,
+          "g": 238,
+          "r": 144
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 100,
+        "SpriteWidth": 1280,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 620,
+      "zOrder": 0
+    },
+    {
+      "assetStoreId": "",
+      "name": "sky",
+      "poolSize": 1,
+      "properties": {
+        "currentColor": {
+          "b": 135,
+          "g": 206,
+          "r": 235
+        },
+        "currentLayer": "",
+        "customSize": true,
+        "opacity": 100,
+        "SpriteHeight": 720,
+        "SpriteWidth": 1280,
+        "texturePatternName": ""
+      },
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "wide": false,
+      "x": 0,
+      "y": 0,
+      "zOrder": -10
+    }
+  ],
+  "objectGroups": [],
+  "layerContainers": [
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    },
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "Background",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    },
+    {
+      "ambientLightColor": {
+        "b": 127,
+        "g": 127,
+        "r": 127
+      },
+      "backgroundColor": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      },
+      "camera限制": false,
+      "isBackground": false,
+      "name": "UI",
+      "opacity": 255,
+      "renderingType": "nochange",
+      "followBaseLayerCamera": true
+    }
+  ],
+  "r": 135,
+  "g": 206,
+  "b": 235,
+  "v": 0,
+  "a": 1,
+  "zOrder": -10,
+  "k": 0,
+  "fullWidth": 1280,
+  "fullHeight": 720,
+  "objectsText": [
+    {
+      "object": "difficultyText",
+      "text": "难度: L1"
+    },
+    {
+      "object": "starsText",
+      "text": "x 0"
+    },
+    {
+      "object": "modeLabel",
+      "text": "填色模式"
+    },
+    {
+      "object": "feedbackText",
+      "text": ""
+    }
+  ],
+  "variables": {
+    "currentDifficulty": {
+      "type": "number",
+      "value": 1
+    },
+    "totalStars": {
+      "type": "number",
+      "value": 0
+    },
+    "streakCount": {
+      "type": "number",
+      "value": 0
+    },
+    "currentMode": {
+      "type": "string",
+      "value": "fill"
+    },
+    "currentTool": {
+      "type": "string",
+      "value": "brush"
+    },
+    "currentColor": {
+      "type": "string",
+      "value": "红色"
+    },
+    "currentOutline": {
+      "type": "string",
+      "value": "apple"
+    },
+    "filledAreas": {
+      "type": "number",
+      "value": 0
+    },
+    "totalAreas": {
+      "type": "number",
+      "value": 1
+    },
+    "isCompleted": {
+      "type": "number",
+      "value": 0
+    },
+    "brushSize": {
+      "type": "number",
+      "value": 5
+    },
+    "lastX": {
+      "type": "number",
+      "value": 0
+    },
+    "lastY": {
+      "type": "number",
+      "value": 0
+    },
+    "isDrawing": {
+      "type": "number",
+      "value": 0
+    },
+    "fill1Color": {
+      "type": "string",
+      "value": ""
+    },
+    "fill2Color": {
+      "type": "string",
+      "value": ""
+    }
+  }
+}
