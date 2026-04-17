@@ -106,7 +106,7 @@
                 {
                   "type": "SetNumberVariable",
                   "variable": "optionCount",
-                  "source": "4",
+                  "source": "3",
                   "operation": "set"
                 },
                 {
@@ -925,38 +925,252 @@
             {
               "type": "SetNumberVariable",
               "variable": "tempVal",
-              "source": "Variable(Scene.seq1)",
+              "source": "Random(1, 2)",
               "operation": "set"
             },
             {
-              "type": "SetStringVariable",
-              "variable": "seq1",
-              "source": "Variable(Scene.seq3)",
-              "operation": "set"
-            },
-            {
-              "type": "SetStringVariable",
-              "variable": "seq3",
-              "source": "Variable(Scene.tempVal)",
-              "operation": "set"
+              "type": "Conditional",
+              "condition": "Variable(Scene.tempVal) == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq1)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq1",
+                  "source": "Variable(Scene.seq2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq2",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq1)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq1",
+                  "source": "Variable(Scene.seq3)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq3",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ]
             },
             {
               "type": "SetNumberVariable",
               "variable": "tempVal",
-              "source": "Variable(Scene.seq2)",
+              "source": "Random(1, 2)",
               "operation": "set"
             },
             {
-              "type": "SetStringVariable",
-              "variable": "seq2",
-              "source": "Variable(Scene.seq4)",
+              "type": "Conditional",
+              "condition": "Variable(Scene.tempVal) == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq2",
+                  "source": "Variable(Scene.seq3)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq3",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq2",
+                  "source": "Variable(Scene.seq4)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq4",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ]
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "tempVal",
+              "source": "Random(1, 2)",
               "operation": "set"
             },
             {
-              "type": "SetStringVariable",
-              "variable": "seq4",
-              "source": "Variable(Scene.tempVal)",
+              "type": "Conditional",
+              "condition": "Variable(Scene.tempVal) == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq3)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq3",
+                  "source": "Variable(Scene.seq4)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq4",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq3)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq3",
+                  "source": "Variable(Scene.seq5)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq5",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ]
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "tempVal",
+              "source": "Random(1, 2)",
               "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.tempVal) == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq4)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq4",
+                  "source": "Variable(Scene.seq5)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq5",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq1)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq1",
+                  "source": "Variable(Scene.seq4)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq4",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ]
+            },
+            {
+              "type": "SetNumberVariable",
+              "variable": "tempVal",
+              "source": "Random(1, 2)",
+              "operation": "set"
+            },
+            {
+              "type": "Conditional",
+              "condition": "Variable(Scene.tempVal) == 1",
+              "trueActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq1)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq1",
+                  "source": "Variable(Scene.seq5)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq5",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ],
+              "falseActions": [
+                {
+                  "type": "SetNumberVariable",
+                  "variable": "tempVal",
+                  "source": "Variable(Scene.seq2)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq2",
+                  "source": "Variable(Scene.seq5)",
+                  "operation": "set"
+                },
+                {
+                  "type": "SetStringVariable",
+                  "variable": "seq5",
+                  "source": "Variable(Scene.tempVal)",
+                  "operation": "set"
+                }
+              ]
             },
             {
               "type": "ModifyText",
