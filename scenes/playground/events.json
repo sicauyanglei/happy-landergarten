@@ -315,6 +315,220 @@
           ]
         }
       ]
+    },
+    {
+      "type": "Group",
+      "name": "建筑悬停",
+      "events": [
+        {
+          "type": "OnMouseEnter",
+          "object": "colorHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "colorHouse",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "colorHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "colorHouse",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseEnter",
+          "object": "shapeHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "shapeHouse",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "shapeHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "shapeHouse",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseEnter",
+          "object": "numberTower",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "numberTower",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "numberTower",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "numberTower",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseEnter",
+          "object": "puzzleHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "puzzleHouse",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "puzzleHouse",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "puzzleHouse",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseEnter",
+          "object": "musicHall",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "musicHall",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "musicHall",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "musicHall",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseEnter",
+          "object": "artStudio",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "artStudio",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "artStudio",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "artStudio",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseEnter",
+          "object": "animalZoo",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "animalZoo",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "animalZoo",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "animalZoo",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseEnter",
+          "object": "castle",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "castle",
+              "modification": "setScale",
+              "value": "1.1"
+            }
+          ]
+        },
+        {
+          "type": "OnMouseOut",
+          "object": "castle",
+          "conditions": [],
+          "actions": [
+            {
+              "type": "ModifySpriteScale",
+              "object": "castle",
+              "modification": "setScale",
+              "value": "1"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

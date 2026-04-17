@@ -1435,6 +1435,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["选项1按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleCountAnswer"
             }
@@ -1458,6 +1463,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["选项2按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleCountAnswer"
             }
@@ -1479,6 +1489,11 @@
               "variable": "clickedOption",
               "source": "Variable(Scene.option3Value)",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["选项3按钮"]
             },
             {
               "type": "Function",
@@ -1546,6 +1561,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["顺序按钮1"]
+            },
+            {
               "type": "Function",
               "name": "HandleSequenceClick"
             }
@@ -1567,6 +1587,11 @@
               "variable": "clickedSequenceNum",
               "source": "Variable(Scene.seq2)",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["顺序按钮2"]
             },
             {
               "type": "Function",
@@ -1592,6 +1617,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["顺序按钮3"]
+            },
+            {
               "type": "Function",
               "name": "HandleSequenceClick"
             }
@@ -1615,6 +1645,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["顺序按钮4"]
+            },
+            {
               "type": "Function",
               "name": "HandleSequenceClick"
             }
@@ -1636,6 +1671,11 @@
               "variable": "clickedSequenceNum",
               "source": "Variable(Scene.seq5)",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["顺序按钮5"]
             },
             {
               "type": "Function",

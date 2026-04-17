@@ -505,6 +505,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["狗按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleAnimalButtonClick"
             }
@@ -520,6 +525,11 @@
               "variable": "clickedAnimal",
               "source": "\"猫\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["猫按钮"]
             },
             {
               "type": "Function",
@@ -539,6 +549,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["牛按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleAnimalButtonClick"
             }
@@ -554,6 +569,11 @@
               "variable": "clickedAnimal",
               "source": "\"鸡\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["鸡按钮"]
             },
             {
               "type": "Function",
@@ -573,6 +593,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["鸭按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleAnimalButtonClick"
             }
@@ -588,6 +613,11 @@
               "variable": "clickedAnimal",
               "source": "\"猪\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["猪按钮"]
             },
             {
               "type": "Function",
@@ -607,6 +637,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["马按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleAnimalButtonClick"
             }
@@ -622,6 +657,11 @@
               "variable": "clickedAnimal",
               "source": "\"羊\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["羊按钮"]
             },
             {
               "type": "Function",

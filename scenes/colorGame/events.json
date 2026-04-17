@@ -560,6 +560,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["红色按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleColorButtonClick"
             }
@@ -575,6 +580,11 @@
               "variable": "clickedColor",
               "source": "\"黄色\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["黄色按钮"]
             },
             {
               "type": "Function",
@@ -594,6 +604,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["蓝色按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleColorButtonClick"
             }
@@ -609,6 +624,11 @@
               "variable": "clickedColor",
               "source": "\"绿色\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["绿色按钮"]
             },
             {
               "type": "Function",
@@ -628,6 +648,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["橙色按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleColorButtonClick"
             }
@@ -643,6 +668,11 @@
               "variable": "clickedColor",
               "source": "\"紫色\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["紫色按钮"]
             },
             {
               "type": "Function",

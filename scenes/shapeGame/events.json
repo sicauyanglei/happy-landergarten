@@ -716,6 +716,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["圆形按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleShapeButtonClick"
             }
@@ -731,6 +736,11 @@
               "variable": "clickedShape",
               "source": "\"方形\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["方形按钮"]
             },
             {
               "type": "Function",
@@ -750,6 +760,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["三角形按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleShapeButtonClick"
             }
@@ -767,6 +782,11 @@
               "operation": "set"
             },
             {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["菱形按钮"]
+            },
+            {
               "type": "Function",
               "name": "HandleShapeButtonClick"
             }
@@ -782,6 +802,11 @@
               "variable": "clickedShape",
               "source": "\"椭圆形\"",
               "operation": "set"
+            },
+            {
+              "type": "JSFunction",
+              "name": "ShakeButton",
+              "parameters": ["椭圆形按钮"]
             },
             {
               "type": "Function",
