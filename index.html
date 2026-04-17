@@ -3,266 +3,1565 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="快乐乐园 - 儿童综合游戏，包含颜色、数字、形状、音乐、动物、拼图、画画等多种趣味游戏">
-    <meta name="keywords" content="儿童游戏, 教育游戏, 幼儿园, 学前教育, 快乐乐园">
-    <meta name="author" content="Happy Landergarten Team">
-    <meta name="theme-color" content="#87CEEB">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
     <title>快乐乐园 - 儿童综合游戏</title>
-
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
         }
-
         #game-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 1280px;
+            height: 720px;
+            max-width: 100vw;
+            max-height: 100vh;
             position: relative;
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 60%, #98FB98 60%, #90EE90 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
-
-        #game-canvas {
-            background-color: #000;
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
-        }
-
-        #loading-screen {
+        .cloud {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
-            z-index: 1000;
-            transition: opacity 0.5s ease-out;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.9;
         }
-
-        #loading-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-title {
-            font-size: 3rem;
-            color: #fff;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            margin-bottom: 2rem;
-        }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255,255,255,0.3);
-            border-top-color: #fff;
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
         }
-
-        .loading-text {
-            margin-top: 1.5rem;
-            font-size: 1.2rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .cloud-1 {
+            width: 100px; height: 40px; top: 60px; left: 100px;
+            animation: float 6s ease-in-out infinite;
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .cloud-1::before { width: 50px; height: 50px; top: -25px; left: 15px; }
+        .cloud-1::after { width: 35px; height: 35px; top: -15px; left: 50px; }
+        .cloud-2 {
+            width: 80px; height: 32px; top: 100px; right: 150px;
+            animation: float 8s ease-in-out infinite 1s;
         }
-
-        #error-screen {
+        .cloud-2::before { width: 40px; height: 40px; top: -20px; left: 10px; }
+        .cloud-2::after { width: 30px; height: 30px; top: -12px; left: 38px; }
+        .sun {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ffa07a 100%);
-            z-index: 1001;
-            padding: 20px;
-            text-align: center;
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            top: 30px; right: 80px;
+            box-shadow: 0 0 40px rgba(255,215,0,0.6);
+            animation: pulse 3s ease-in-out infinite;
         }
+        .rainbow {
+            position: absolute;
+            top: 120px; left: 50%;
+            transform: translateX(-50%);
+            width: 400px; height: 60px;
+            border: 8px solid transparent;
+            border-top-color: #FF6B6B;
+            border-radius: 100px 100px 0 0;
+            opacity: 0.5;
+        }
+        .rainbow::before {
+            content: '';
+            position: absolute;
+            top: 16px; left: 16px;
+            width: 352px; height: 44px;
+            border: 8px solid transparent;
+            border-top-color: #FFD93D;
+            border-radius: 100px 100px 0 0;
+        }
+        .rainbow::after {
+            content: '';
+            position: absolute;
+            top: 32px; left: 32px;
+            width: 304px; height: 28px;
+            border: 8px solid transparent;
+            border-top-color: #6BCB77;
+            border-radius: 100px 100px 0 0;
+        }
+        .flower {
+            position: absolute;
+            width: 20px; height: 20px;
+            bottom: 60px;
+            background: #FFB6C1;
+            border-radius: 50% 50% 50% 50%;
+        }
+        .flower-1 { left: 120px; }
+        .flower-2 { left: 350px; background: #FFD93D; }
+        .flower-3 { left: 600px; }
+        .flower-4 { left: 850px; background: #DDA0DD; }
+        .flower-5 { left: 1050px; }
 
-        #error-screen.visible {
+        /* Floating decorations */
+        .decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .sparkle {
+            width: 10px; height: 10px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        .sparkle-1 { top: 150px; left: 200px; animation-delay: 0s; }
+        .sparkle-2 { top: 250px; left: 900px; animation-delay: 0.3s; }
+        .sparkle-3 { top: 350px; left: 150px; animation-delay: 0.6s; }
+        .sparkle-4 { top: 180px; right: 300px; animation-delay: 0.9s; }
+        .sparkle-5 { top: 400px; right: 200px; animation-delay: 1.2s; }
+
+        .floating-star {
+            font-size: 24px;
+            animation: float 4s ease-in-out infinite;
+        }
+        .floating-star-1 { top: 140px; left: 300px; animation-delay: 0s; }
+        .floating-star-2 { top: 200px; left: 800px; animation-delay: 1s; }
+        .floating-star-3 { top: 300px; left: 1100px; animation-delay: 2s; }
+
+        .header {
+            position: absolute;
+            top: 20px; left: 20px; right: 20px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
         }
-
-        .error-title {
-            font-size: 2rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 1rem;
-        }
-
-        .error-message {
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            max-width: 80%;
-        }
-
-        .retry-button {
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            color: #ff6b6b;
-            background: #fff;
+        .back-btn {
+            padding: 12px 24px;
+            background: rgba(139, 69, 19, 0.8);
+            color: white;
             border: none;
             border-radius: 25px;
+            font-size: 18px;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
+            display: none;
+        }
+        .back-btn:hover { transform: scale(1.05); background: rgba(139, 69, 19, 1); }
+        .stats { display: flex; align-items: center; gap: 15px; }
+        .stars {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.9);
+            padding: 8px 16px; border-radius: 20px;
+            font-size: 22px; font-weight: bold; color: #333;
+        }
+        .star-icon { font-size: 28px; }
+        .difficulty {
+            background: rgba(255,255,255,0.9);
+            padding: 8px 16px; border-radius: 20px;
+            font-size: 18px; color: #333;
+        }
+        .bgm-toggle {
+            background: rgba(255,255,255,0.9);
+            padding: 8px 12px; border-radius: 20px;
+            border: none; cursor: pointer;
+            font-size: 20px; transition: transform 0.2s;
+        }
+        .bgm-toggle:hover { transform: scale(1.1); }
+        .scene {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: none;
+        }
+        .scene.active { display: block; }
+        .scene { display: none; }
+        #playground.active { display: block; }
+        .title {
+            position: absolute;
+            top: 180px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 56px; font-weight: bold;
+            color: #fff; text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .subtitle { font-size: 24px; color: rgba(255,255,255,0.9); margin-top: 10px; }
+        .games-grid {
+            position: absolute;
+            top: 300px; left: 50%;
+            transform: translateX(-50%);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px; width: 950px;
+        }
+        @media (max-width: 1100px) {
+            .games-grid { grid-template-columns: repeat(3, 1fr); width: 700px; }
+            .game-card { width: 160px; height: 140px; }
+            .game-icon { font-size: 40px; }
+        }
+        @media (max-width: 800px) {
+            .games-grid { grid-template-columns: repeat(2, 1fr); width: 400px; }
+        }
+        .game-card {
+            width: 180px; height: 160px;
+            background: white; border-radius: 20px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 4px solid transparent;
+        }
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+            border-color: #FFD700;
+        }
+        .game-card:active { transform: scale(0.95); }
+        .game-icon { font-size: 50px; margin-bottom: 10px; }
+        .game-name { font-size: 18px; font-weight: bold; color: #333; }
+        .question-area {
+            position: absolute;
+            top: 200px; left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        .question-text {
+            font-size: 36px; color: #333;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+        }
+        .color-item {
+            width: 120px; height: 120px;
+            border-radius: 20px;
+            margin: 0 auto 40px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 60px;
+        }
+        .color-options {
+            display: flex; gap: 20px;
+            justify-content: center; flex-wrap: wrap;
+        }
+        .color-btn {
+            width: 90px; height: 90px;
+            border-radius: 20px;
+            border: 4px solid white;
+            cursor: pointer; transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .color-btn:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .color-btn:active { transform: scale(0.95); }
+        .feedback {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 48px; font-weight: bold;
+            color: white; text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            padding: 20px 40px; border-radius: 20px;
+            opacity: 0; transition: all 0.3s; z-index: 200;
+        }
+        .feedback.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        .feedback.correct { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
+        .feedback.wrong { background: linear-gradient(135deg, #FF6B6B, #FF4757); }
+        .star-burst { position: absolute; pointer-events: none; z-index: 150; }
+        .burst-star {
+            position: absolute; font-size: 30px;
+            animation: burst 0.8s ease-out forwards;
+        }
+        @keyframes burst {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+        .shake { animation: shake 0.3s ease-in-out; }
+
+        /* Entrance Animations */
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-50px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(50px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+            60% { transform: scale(1.1) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        @keyframes floatCloud {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-10px) translateX(5px); }
+        }
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
-        .retry-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        .animate-slide-down { animation: slideInDown 0.5s ease-out forwards; }
+        .animate-slide-up { animation: slideInUp 0.5s ease-out forwards; }
+        .animate-fade-scale { animation: fadeInScale 0.4s ease-out forwards; }
+        .animate-bounce { animation: bounceIn 0.6s ease-out forwards; }
+        .animate-pop { animation: popIn 0.4s ease-out forwards; }
+
+        .game-card {
+            opacity: 0;
+            animation: fadeInScale 0.5s ease-out forwards;
+        }
+        .game-card:nth-child(1) { animation-delay: 0.1s; }
+        .game-card:nth-child(2) { animation-delay: 0.2s; }
+        .game-card:nth-child(3) { animation-delay: 0.3s; }
+        .game-card:nth-child(4) { animation-delay: 0.4s; }
+        .game-card:nth-child(5) { animation-delay: 0.5s; }
+        .game-card:nth-child(6) { animation-delay: 0.6s; }
+        .game-card:nth-child(7) { animation-delay: 0.7s; }
+
+        .cloud-1 { animation: floatCloud 6s ease-in-out infinite; }
+        .cloud-2 { animation: floatCloud 8s ease-in-out infinite 1s; }
+        .sun { animation: pulse 3s ease-in-out infinite; }
+        .flower { animation: sway 3s ease-in-out infinite; transform-origin: bottom center; }
+        .flower-1 { animation-delay: 0s; }
+        .flower-2 { animation-delay: 0.5s; }
+        .flower-3 { animation-delay: 1s; }
+        .flower-4 { animation-delay: 1.5s; }
+        .flower-5 { animation-delay: 2s; }
+
+        .star-icon { animation: sparkle 1.5s ease-in-out infinite; }
+
+        /* Question area entrance */
+        .question-area { opacity: 0; }
+        .question-area.active { animation: slideInDown 0.5s ease-out forwards; }
+
+        /* Button press effect */
+        .btn-correct {
+            animation: bounceIn 0.4s ease-out;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.8) !important;
+        }
+        .btn-wrong {
+            animation: shake 0.4s ease-in-out;
+            box-shadow: 0 0 20px rgba(255, 82, 82, 0.8) !important;
         }
 
-        .retry-button:active {
-            transform: translateY(0);
+        /* Confetti for level up */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 300;
+            animation: confettiFall 1.5s ease-out forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(300px) rotate(720deg); opacity: 0; }
         }
 
-        @media (max-width: 600px) {
-            .loading-title {
-                font-size: 2rem;
-            }
-            .loading-spinner {
-                width: 50px;
-                height: 50px;
-            }
+        /* Level up glow effect */
+        .level-up-glow {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 250;
+            animation: levelUpGlow 1s ease-out forwards;
+        }
+        @keyframes levelUpGlow {
+            0% { background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { background: radial-gradient(circle, rgba(255,215,0,0) 0%, transparent 70%); opacity: 0; }
         }
 
-        /* Prevent pull-to-refresh on mobile */
-        body {
-            overscroll-behavior: none;
+        /* Star counter animation */
+        .star-count-animate {
+            animation: starPop 0.5s ease-out;
         }
+        @keyframes starPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); color: #FFD700; }
+            100% { transform: scale(1); }
+        }
+
+        /* Game option buttons hover glow */
+        .color-btn:hover, .number-btn:hover, .shape-btn:hover, .animal-btn:hover {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Puzzle piece glow on select */
+        .puzzle-piece.selected {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);
+        }
+
+        /* Piano key press effect */
+        .piano-key:active, .piano-key.active {
+            box-shadow: 0 0 20px rgba(77, 171, 247, 0.8);
+        }
+        .items-display {
+            display: flex; gap: 15px;
+            justify-content: center; flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .count-item { font-size: 50px; }
+        .number-btn {
+            width: 80px; height: 80px;
+            background: white; border-radius: 15px;
+            font-size: 36px; font-weight: bold; color: #333;
+            border: 3px solid #ddd;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .number-btn:hover { background: #f0f0f0; transform: scale(1.05); }
+        .number-btn:active { transform: scale(0.95); }
+        .shape-display {
+            width: 150px; height: 150px;
+            background: white; border-radius: 20px;
+            margin: 0 auto 30px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .shape-icon { font-size: 80px; }
+        .shape-btn {
+            width: 90px; height: 90px;
+            background: white; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+        }
+        .shape-btn:hover { transform: scale(1.1); border-color: #FFD700; }
+        .shape-btn:active { transform: scale(0.95); }
+        .speaker {
+            font-size: 60px; margin-bottom: 20px;
+            cursor: pointer; transition: transform 0.2s;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            width: 100px; height: 100px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .speaker:hover { transform: scale(1.1); }
+        .animal-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px; max-width: 600px; margin: 0 auto;
+        }
+        .animal-btn {
+            width: 120px; height: 120px;
+            background: white; border-radius: 20px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+        }
+        .animal-btn:hover { transform: scale(1.05); border-color: #FFD700; }
+        .animal-btn:active { transform: scale(0.95); }
+        .animal-icon { font-size: 50px; }
+        .animal-name { font-size: 14px; color: #666; margin-top: 5px; }
+
+        /* Puzzle Game */
+        .puzzle-grid {
+            display: grid;
+            gap: 8px;
+            max-width: 300px;
+            margin: 0 auto 30px;
+        }
+        .puzzle-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .puzzle-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .puzzle-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .puzzle-piece {
+            width: 80px; height: 80px;
+            background: white; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 40px; cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+        }
+        .puzzle-piece:hover { transform: scale(1.05); border-color: #FFD700; }
+        .puzzle-piece.selected { border-color: #4CAF50; background: #E8F5E9; }
+        .puzzle-piece.correct { border-color: #4CAF50; background: #C8E6C9; }
+        .puzzle-piece.wrong { border-color: #FF5252; background: #FFEBEE; animation: shake 0.3s; }
+
+        /* Music Game */
+        .piano {
+            display: flex;
+            justify-content: center;
+            margin: 50px auto;
+        }
+        .piano-key {
+            width: 60px; height: 180px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 0 0 10px 10px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex; align-items: flex-end; justify-content: center;
+            padding-bottom: 15px;
+            font-size: 18px; font-weight: bold; color: #333;
+            position: relative;
+        }
+        .piano-key:hover { background: #f5f5f5; }
+        .piano-key:active, .piano-key.active { background: #E3F2FD; transform: scale(0.98); }
+        .piano-key.black {
+            width: 45px; height: 110px;
+            background: #333; color: white;
+            margin: 0 -22px;
+            z-index: 10;
+            border-radius: 0 0 8px 8px;
+        }
+        .piano-key.black:hover { background: #555; }
+        .piano-key.black:active, .piano-key.black.active { background: #666; }
+        .music-target {
+            text-align: center;
+            font-size: 28px; color: #333;
+            margin-bottom: 20px;
+        }
+        .music-target-notes {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        .demo-notes {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+        .demo-note {
+            width: 50px; height: 50px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        /* Drawing Game */
+        .draw-canvas-wrapper {
+            position: relative;
+            width: 500px; height: 350px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: white;
+        }
+        #drawCanvas {
+            width: 100%; height: 100%;
+            cursor: crosshair;
+        }
+        .draw-tools {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .color-picker-btn {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            border: 4px solid white;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .color-picker-btn:hover { transform: scale(1.15); }
+        .color-picker-btn.active { border-color: #333; transform: scale(1.2); }
+        .brush-size {
+            display: flex; align-items: center; gap: 10px;
+            background: white; padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .brush-size input { width: 80px; cursor: pointer; }
+        .clear-btn, .eraser-btn {
+            padding: 10px 20px;
+            border: none; border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        .clear-btn { background: #FF6B6B; color: white; }
+        .eraser-btn { background: #4CAF50; color: white; }
+        .clear-btn:hover, .eraser-btn:hover { transform: scale(1.05); }
+
+        #loading {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 1000;
+        }
+        .loading-title {
+            font-size: 48px; color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3); margin-bottom: 30px;
+        }
+        .loading-spinner {
+            width: 60px; height: 60px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top-color: white; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
+    <div id="loading">
+        <div class="loading-title">快乐乐园</div>
+        <div class="loading-spinner"></div>
+    </div>
+
     <div id="game-container">
-        <canvas id="game-canvas"></canvas>
-
-        <div id="loading-screen">
-            <h1 class="loading-title">快乐乐园</h1>
-            <div class="loading-spinner"></div>
-            <p class="loading-text">游戏加载中...</p>
+        <div class="header">
+            <button class="back-btn" id="backBtn">← 返回</button>
+            <div class="stats">
+                <div class="stars">
+                    <span class="star-icon">⭐</span>
+                    <span id="starCount">0</span>
+                </div>
+                <div class="difficulty" id="difficulty">难度: L1</div>
+                <button class="bgm-toggle" id="bgmToggle" title="背景音乐">🎵</button>
+            </div>
         </div>
 
-        <div id="error-screen">
-            <h2 class="error-title">游戏加载失败</h2>
-            <p class="error-message" id="error-message">请检查网络连接后重试</p>
-            <button class="retry-button" onclick="location.reload()">重新加载</button>
+        <!-- Playground -->
+        <div class="scene active" id="playground">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="sun"></div>
+            <div class="rainbow"></div>
+            <div class="flower flower-1"></div>
+            <div class="flower flower-2"></div>
+            <div class="flower flower-3"></div>
+            <div class="flower flower-4"></div>
+            <div class="flower flower-5"></div>
+            <div class="decoration sparkle sparkle-1"></div>
+            <div class="decoration sparkle sparkle-2"></div>
+            <div class="decoration sparkle sparkle-3"></div>
+            <div class="decoration sparkle sparkle-4"></div>
+            <div class="decoration sparkle sparkle-5"></div>
+            <div class="decoration floating-star floating-star-1">✨</div>
+            <div class="decoration floating-star floating-star-2">⭐</div>
+            <div class="decoration floating-star floating-star-3">🌟</div>
+            <div class="title">
+                🏰 快乐乐园
+                <div class="subtitle">点击选择游戏开始玩吧！</div>
+            </div>
+            <div class="games-grid">
+                <div class="game-card" data-game="colorGame">
+                    <div class="game-icon">🎨</div>
+                    <div class="game-name">颜色对对碰</div>
+                </div>
+                <div class="game-card" data-game="numberGame">
+                    <div class="game-icon">🔢</div>
+                    <div class="game-name">数字跳跳跳</div>
+                </div>
+                <div class="game-card" data-game="shapeGame">
+                    <div class="game-icon">🔷</div>
+                    <div class="game-name">形状小能手</div>
+                </div>
+                <div class="game-card" data-game="animalGame">
+                    <div class="game-icon">🐮</div>
+                    <div class="game-name">动物朋友</div>
+                </div>
+                <div class="game-card" data-game="puzzleGame">
+                    <div class="game-icon">🧩</div>
+                    <div class="game-name">益智拼图</div>
+                </div>
+                <div class="game-card" data-game="musicGame">
+                    <div class="game-icon">🎹</div>
+                    <div class="game-name">小小音乐家</div>
+                </div>
+                <div class="game-card" data-game="drawGame">
+                    <div class="game-icon">🎨</div>
+                    <div class="game-name">创意画画</div>
+                </div>
+            </div>
         </div>
+
+        <!-- Color Game -->
+        <div class="scene" id="colorGame">
+            <div class="question-area">
+                <div class="question-text">这是什么颜色？</div>
+                <div class="color-item" id="colorItem">🍎</div>
+                <div class="color-options" id="colorOptions"></div>
+            </div>
+        </div>
+
+        <!-- Number Game -->
+        <div class="scene" id="numberGame">
+            <div class="question-area">
+                <div class="question-text">数一数有多少个？</div>
+                <div class="items-display" id="itemsDisplay"></div>
+                <div class="color-options" id="numberOptions"></div>
+            </div>
+        </div>
+
+        <!-- Shape Game -->
+        <div class="scene" id="shapeGame">
+            <div class="question-area">
+                <div class="question-text">这是什么形状？</div>
+                <div class="shape-display">
+                    <span class="shape-icon" id="shapeIcon">⬛</span>
+                </div>
+                <div class="color-options" id="shapeOptions"></div>
+            </div>
+        </div>
+
+        <!-- Animal Game -->
+        <div class="scene" id="animalGame">
+            <div class="question-area">
+                <div class="question-text">听声音，选动物</div>
+                <div class="speaker" id="speaker">🔊<br>点击听</div>
+                <div class="animal-options" id="animalOptions"></div>
+            </div>
+        </div>
+
+        <!-- Puzzle Game -->
+        <div class="scene" id="puzzleGame">
+            <div class="question-area">
+                <div class="question-text">找出相同的图案</div>
+                <div class="puzzle-grid" id="puzzleGrid"></div>
+                <div class="color-options" id="puzzleOptions"></div>
+            </div>
+        </div>
+
+        <!-- Music Game -->
+        <div class="scene" id="musicGame">
+            <div class="question-area">
+                <div class="music-target">
+                    <div class="music-target-notes" id="musicTarget"></div>
+                    <div>模仿弹奏上面的音符</div>
+                </div>
+                <div class="demo-notes" id="demoNotes"></div>
+            </div>
+            <div class="piano" id="piano"></div>
+        </div>
+
+        <!-- Drawing Game -->
+        <div class="scene" id="drawGame">
+            <div class="question-area">
+                <div class="question-text">自由画画或选择模板</div>
+            </div>
+            <div class="draw-canvas-wrapper">
+                <canvas id="drawCanvas" width="500" height="350"></canvas>
+            </div>
+            <div class="draw-tools">
+                <input type="color" id="colorPicker" class="color-picker-btn" value="#FF6B6B" title="画笔颜色">
+                <div class="brush-size">
+                    <span>笔:</span>
+                    <input type="range" id="brushSize" min="2" max="20" value="5">
+                    <span id="brushSizeLabel">5px</span>
+                </div>
+                <button class="eraser-btn" id="eraserBtn">橡皮擦</button>
+                <button class="clear-btn" id="clearBtn">清空</button>
+            </div>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
     </div>
 
     <script>
-        // Game configuration
-        const GAME_CONFIG = {
-            width: 1280,
-            height: 720,
-            minWidth: 800,
-            minHeight: 600,
-            firstScene: 'playground',
-            loadingScreenDuration: 500
-        };
-
-        // Responsive canvas sizing
-        function resizeCanvas() {
-            const container = document.getElementById('game-container');
-            const canvas = document.getElementById('game-canvas');
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
-
-            const gameAspect = GAME_CONFIG.width / GAME_CONFIG.height;
-            const containerAspect = containerWidth / containerHeight;
-
-            let canvasWidth, canvasHeight;
-
-            if (containerAspect > gameAspect) {
-                canvasHeight = Math.min(containerHeight, GAME_CONFIG.height);
-                canvasWidth = canvasHeight * gameAspect;
-            } else {
-                canvasWidth = Math.min(containerWidth, GAME_CONFIG.width);
-                canvasHeight = canvasWidth / gameAspect;
-            }
-
-            canvas.style.width = canvasWidth + 'px';
-            canvas.style.height = canvasHeight + 'px';
-            canvas.width = GAME_CONFIG.width;
-            canvas.height = GAME_CONFIG.height;
+    // Sound Manager
+    class SoundManager {
+        constructor() {
+            this.audioContext = null;
+            this.initialized = false;
+            this.bgmPlaying = false;
         }
 
-        // Initialize game
-        async function initGame() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const errorScreen = document.getElementById('error-screen');
-            const errorMessage = document.getElementById('error-message');
-
+        init() {
+            if (this.initialized) return;
             try {
-                // Resize canvas to fit container
-                resizeCanvas();
-                window.addEventListener('resize', resizeCanvas);
-
-                // Simulate game initialization
-                await new Promise(resolve => setTimeout(resolve, GAME_CONFIG.loadingScreenDuration));
-
-                // Hide loading screen
-                loadingScreen.classList.add('hidden');
-
-                // Start game loop here
-                // This is where the game engine would be initialized
-                console.log('Game initialized successfully');
-                console.log('First scene:', GAME_CONFIG.firstScene);
-
-            } catch (error) {
-                console.error('Game initialization failed:', error);
-                loadingScreen.classList.add('hidden');
-                errorScreen.classList.add('visible');
-                errorMessage.textContent = error.message || '请检查网络连接后重试';
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                this.initialized = true;
+            } catch (e) {
+                console.log('Web Audio not supported');
             }
         }
 
-        // Handle visibility change (pause when tab is hidden)
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                console.log('Game paused');
-            } else {
-                console.log('Game resumed');
+        playClick() {
+            this.init();
+            if (!this.audioContext) return;
+            const osc = this.audioContext.createOscillator();
+            const gain = this.audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(this.audioContext.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, this.audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(600, this.audioContext.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.15);
+            osc.start();
+            osc.stop(this.audioContext.currentTime + 0.15);
+        }
+
+        playCorrect() {
+            this.init();
+            if (!this.audioContext) return;
+            const notes = [523, 659, 784, 1047];
+            notes.forEach((freq, i) => {
+                const osc = this.audioContext.createOscillator();
+                const gain = this.audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(this.audioContext.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, this.audioContext.currentTime);
+                const startTime = this.audioContext.currentTime + i * 0.08;
+                gain.gain.setValueAtTime(0, startTime);
+                gain.gain.linearRampToValueAtTime(0.25, startTime + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
+                osc.start(startTime);
+                osc.stop(startTime + 0.3);
+            });
+        }
+
+        playWrong() {
+            this.init();
+            if (!this.audioContext) return;
+            const osc = this.audioContext.createOscillator();
+            const gain = this.audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(this.audioContext.destination);
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(300, this.audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(200, this.audioContext.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.4);
+            osc.start();
+            osc.stop(this.audioContext.currentTime + 0.4);
+        }
+
+        playStar() {
+            this.init();
+            if (!this.audioContext) return;
+            const notes = [988, 1319];
+            notes.forEach((freq, i) => {
+                const osc = this.audioContext.createOscillator();
+                const gain = this.audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(this.audioContext.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, this.audioContext.currentTime);
+                const startTime = this.audioContext.currentTime + i * 0.1;
+                gain.gain.setValueAtTime(0.2, startTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.4);
+                osc.start(startTime);
+                osc.stop(startTime + 0.4);
+            });
+        }
+
+        playLevelUp() {
+            this.init();
+            if (!this.audioContext) return;
+            const notes = [523, 659, 784, 880, 1047];
+            notes.forEach((freq, i) => {
+                const osc = this.audioContext.createOscillator();
+                const gain = this.audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(this.audioContext.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, this.audioContext.currentTime);
+                const startTime = this.audioContext.currentTime + i * 0.1;
+                gain.gain.setValueAtTime(0.25, startTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.5);
+                osc.start(startTime);
+                osc.stop(startTime + 0.5);
+            });
+        }
+
+        playAnimalSound() {
+            if ('speechSynthesis' in window) {
+                const sounds = ['汪汪！', '喵喵！', '哞哞！', '咯咯！', '嘎嘎！', '哼哼！'];
+                const text = sounds[Math.floor(Math.random() * sounds.length)];
+                speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 0.9;
+                utterance.pitch = 1.2;
+                utterance.volume = 0.8;
+                speechSynthesis.speak(utterance);
             }
+        }
+
+        playBGM() {
+            this.init();
+            if (!this.audioContext || this.bgmPlaying) return;
+            this.bgmPlaying = true;
+            this._playBGMLoop();
+        }
+
+        _playBGMLoop() {
+            if (!this.bgmPlaying || !this.audioContext) return;
+            const melody = [
+                { note: 523, duration: 0.3 },
+                { note: 587, duration: 0.3 },
+                { note: 659, duration: 0.3 },
+                { note: 523, duration: 0.3 },
+                { note: 523, duration: 0.3 },
+                { note: 587, duration: 0.3 },
+                { note: 659, duration: 0.3 },
+                { note: 523, duration: 0.3 },
+                { note: 659, duration: 0.3 },
+                { note: 784, duration: 0.3 },
+                { note: 880, duration: 0.5 },
+                { note: 784, duration: 0.3 },
+                { note: 659, duration: 0.3 },
+                { note: 523, duration: 0.5 }
+            ];
+            let time = 0;
+            melody.forEach(({ note, duration }) => {
+                const osc = this.audioContext.createOscillator();
+                const gain = this.audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(this.audioContext.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(note, this.audioContext.currentTime + time);
+                gain.gain.setValueAtTime(0.08, this.audioContext.currentTime + time);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + time + duration);
+                osc.start(this.audioContext.currentTime + time);
+                osc.stop(this.audioContext.currentTime + time + duration);
+                time += duration;
+            });
+            const totalDuration = time * 1000;
+            setTimeout(() => {
+                if (this.bgmPlaying) this._playBGMLoop();
+            }, totalDuration);
+        }
+
+        stopBGM() {
+            this.bgmPlaying = false;
+        }
+    }
+
+    const soundManager = new SoundManager();
+
+    // Game State
+    const state = {
+        currentScene: 'playground',
+        totalStars: 0,
+        difficulty: 1,
+        streak: 0,
+        currentColor: null,
+        currentCount: 0,
+        currentShape: null,
+        currentAnimal: null,
+        currentPuzzlePattern: null,
+        selectedPuzzlePiece: null,
+        musicSequence: [],
+        playerSequence: [],
+        isPlayingDemo: false
+    };
+
+    // Game Data
+    const colors = [
+        { name: '红色', emoji: '🍎', color: '#FF6B6B' },
+        { name: '黄色', emoji: '🍌', color: '#FFD93D' },
+        { name: '蓝色', emoji: '🌀', color: '#4DABF7' },
+        { name: '绿色', emoji: '🌿', color: '#51CF66' },
+        { name: '橙色', emoji: '🍊', color: '#FFA94D' },
+        { name: '紫色', emoji: '🍇', color: '#9775FA' }
+    ];
+
+    const shapes = [
+        { name: '圆形', emoji: '⭕' },
+        { name: '方形', emoji: '⬛' },
+        { name: '三角形', emoji: '🔺' },
+        { name: '菱形', emoji: '🔷' },
+        { name: '椭圆形', emoji: '⭏' }
+    ];
+
+    const animals = [
+        { name: '小狗', emoji: '🐕' },
+        { name: '小猫', emoji: '🐱' },
+        { name: '小牛', emoji: '🐮' },
+        { name: '小鸡', emoji: '🐔' },
+        { name: '小鸭', emoji: '🦆' },
+        { name: '小猪', emoji: '🐷' }
+    ];
+
+    const puzzlePatterns = [
+        { name: '星星', emoji: '⭐', color: '#FFD700' },
+        { name: '爱心', emoji: '❤️', color: '#FF6B6B' },
+        { name: '花朵', emoji: '🌸', color: '#FFB6C1' },
+        { name: '月亮', emoji: '🌙', color: '#F0E68C' },
+        { name: '太阳', emoji: '☀️', color: '#FFA500' },
+        { name: '彩虹', emoji: '🌈', color: '#FF69B4' },
+        { name: '云朵', emoji: '☁️', color: '#B0E0E6' },
+        { name: '树叶', emoji: '🍃', color: '#90EE90' }
+    ];
+
+    const pianoNotes = [
+        { note: 'Do', freq: 262, color: '#FF6B6B' },
+        { note: 'Re', freq: 294, color: '#FFA94D' },
+        { note: 'Mi', freq: 330, color: '#FFD93D' },
+        { note: 'Fa', freq: 349, color: '#98FB98' },
+        { note: 'Sol', freq: 392, color: '#4DABF7' },
+        { note: 'La', freq: 440, color: '#9775FA' },
+        { note: 'Si', freq: 494, color: '#DA77F2' },
+        { note: 'Do2', freq: 523, color: '#FF6B6B' }
+    ];
+
+    // DOM Elements
+    const loading = document.getElementById('loading');
+    const backBtn = document.getElementById('backBtn');
+    const starCountEl = document.getElementById('starCount');
+    const difficultyEl = document.getElementById('difficulty');
+    const feedbackEl = document.getElementById('feedback');
+    const scenes = document.querySelectorAll('.scene');
+    const gameCards = document.querySelectorAll('.game-card');
+    const bgmToggle = document.getElementById('bgmToggle');
+    let bgmEnabled = true;
+
+    // Initialize
+    function init() {
+        setTimeout(() => { loading.style.display = 'none'; }, 1000);
+
+        gameCards.forEach(card => {
+            card.addEventListener('click', () => {
+                soundManager.playClick();
+                switchScene(card.dataset.game);
+                soundManager.playBGM();
+            });
         });
 
-        // Prevent context menu on long press (mobile)
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        backBtn.addEventListener('click', () => {
+            soundManager.playClick();
+            soundManager.stopBGM();
+            switchScene('playground');
+        });
 
-        // Initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initGame);
-        } else {
-            initGame();
+        bgmToggle.addEventListener('click', () => {
+            soundManager.playClick();
+            bgmEnabled = !bgmEnabled;
+            bgmToggle.textContent = bgmEnabled ? '🎵' : '🔇';
+            if (bgmEnabled) soundManager.playBGM();
+            else soundManager.stopBGM();
+        });
+    }
+
+    function switchScene(sceneName) {
+        scenes.forEach(s => {
+            s.classList.remove('active');
+            const qa = s.querySelector('.question-area');
+            if (qa) qa.classList.remove('active');
+        });
+        const targetScene = document.getElementById(sceneName);
+        targetScene.classList.add('active');
+        state.currentScene = sceneName;
+        backBtn.style.display = sceneName === 'playground' ? 'none' : 'block';
+        if (sceneName !== 'playground') {
+            // Trigger entrance animation
+            setTimeout(() => {
+                const qa = targetScene.querySelector('.question-area');
+                if (qa) qa.classList.add('active');
+            }, 50);
+            startGame(sceneName);
         }
+    }
+
+    function updateUI() {
+        starCountEl.textContent = state.totalStars;
+        difficultyEl.textContent = '难度: L' + state.difficulty;
+    }
+
+    function showFeedback(isCorrect, message) {
+        feedbackEl.textContent = message;
+        feedbackEl.className = 'feedback ' + (isCorrect ? 'correct' : 'wrong') + ' show';
+        if (isCorrect) {
+            createStarBurst();
+            // Animate star counter
+            const starEl = document.querySelector('.star-icon');
+            if (starEl) {
+                starEl.classList.remove('star-count-animate');
+                void starEl.offsetWidth; // Trigger reflow
+                starEl.classList.add('star-count-animate');
+            }
+        }
+        // Confetti for level up
+        if (message.includes('难度提升')) {
+            createConfetti();
+            createLevelUpGlow();
+        }
+        setTimeout(() => { feedbackEl.classList.remove('show'); }, 1000);
+    }
+
+    function createConfetti() {
+        const container = document.getElementById('game-container');
+        const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4DABF7', '#9775FA', '#FF69B4'];
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = (Math.random() * 100) + '%';
+            confetti.style.top = '-10px';
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+            container.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 2000);
+        }
+    }
+
+    function createLevelUpGlow() {
+        const glow = document.createElement('div');
+        glow.className = 'level-up-glow';
+        document.body.appendChild(glow);
+        setTimeout(() => glow.remove(), 1000);
+    }
+
+    function createStarBurst() {
+        const container = document.getElementById('game-container');
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        // Main star burst
+        for (let i = 0; i < 12; i++) {
+            const star = document.createElement('div');
+            star.className = 'burst-star';
+            star.textContent = ['⭐', '🌟', '✨', '💫'][Math.floor(Math.random() * 4)];
+            const angle = (Math.PI * 2 / 12) * i + Math.random() * 0.3;
+            const distance = 80 + Math.random() * 80;
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance - 30;
+            star.style.left = centerX + 'px';
+            star.style.top = centerY + 'px';
+            star.style.setProperty('--tx', tx + 'px');
+            star.style.setProperty('--ty', ty + 'px');
+            star.style.fontSize = (20 + Math.random() * 20) + 'px';
+            container.appendChild(star);
+            setTimeout(() => star.remove(), 800);
+        }
+
+        // Sparkle trail effect
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'burst-star';
+                sparkle.textContent = '✨';
+                const angle = Math.random() * Math.PI * 2;
+                const dist = 30 + Math.random() * 50;
+                sparkle.style.left = (centerX + Math.cos(angle) * dist) + 'px';
+                sparkle.style.top = (centerY + Math.sin(angle) * dist) + 'px';
+                sparkle.style.setProperty('--tx', (Math.random() * 40 - 20) + 'px');
+                sparkle.style.setProperty('--ty', (Math.random() * 40 - 20) + 'px');
+                sparkle.style.fontSize = '15px';
+                container.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 600);
+            }, i * 50);
+        }
+    }
+
+    function handleAnswer(isCorrect, game) {
+        if (isCorrect) {
+            state.streak++;
+            state.totalStars++;
+            soundManager.playCorrect();
+            if (state.streak >= 2 && state.difficulty < 3) {
+                state.difficulty++;
+                state.streak = 0;
+                showFeedback(true, '🎊 难度提升！');
+                soundManager.playLevelUp();
+            } else {
+                showFeedback(true, state.streak >= 2 ? '太棒了！⭐' : '正确！🎉');
+                soundManager.playStar();
+            }
+        } else {
+            state.streak = 0;
+            if (state.difficulty > 1) state.difficulty--;
+            soundManager.playWrong();
+            showFeedback(false, '没关系，再试试！💪');
+        }
+        updateUI();
+        setTimeout(() => startGame(game), 1200);
+    }
+
+    // Color Game
+    function startColorGame() {
+        const optionCount = state.difficulty === 1 ? 3 : state.difficulty === 2 ? 4 : 6;
+        const shuffled = shuffleArray([...colors]).slice(0, optionCount);
+        const correct = shuffled[Math.floor(Math.random() * shuffled.length)];
+        state.currentColor = correct;
+        const colorItem = document.getElementById('colorItem');
+        colorItem.textContent = correct.emoji;
+        colorItem.style.background = correct.color;
+        const optionsEl = document.getElementById('colorOptions');
+        optionsEl.innerHTML = '';
+        shuffled.forEach(c => {
+            const btn = document.createElement('button');
+            btn.className = 'color-btn';
+            btn.style.background = c.color;
+            btn.addEventListener('click', () => {
+                handleAnswer(c.name === state.currentColor.name, 'colorGame');
+            });
+            optionsEl.appendChild(btn);
+        });
+    }
+
+    // Number Game
+    function startNumberGame() {
+        const maxCount = state.difficulty === 1 ? 3 : state.difficulty === 2 ? 5 : 10;
+        const count = Math.floor(Math.random() * maxCount) + 1;
+        state.currentCount = count;
+        const itemsDisplay = document.getElementById('itemsDisplay');
+        itemsDisplay.innerHTML = '';
+        const emojis = ['🍎', '⭐', '🌟', '💎', '🔔'];
+        for (let i = 0; i < count; i++) {
+            const item = document.createElement('span');
+            item.className = 'count-item';
+            item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            itemsDisplay.appendChild(item);
+        }
+        const optionsEl = document.getElementById('numberOptions');
+        optionsEl.innerHTML = '';
+        const options = [count];
+        while (options.length < 3) {
+            const n = Math.floor(Math.random() * maxCount) + 1;
+            if (!options.includes(n)) options.push(n);
+        }
+        shuffleArray(options).forEach(n => {
+            const btn = document.createElement('button');
+            btn.className = 'number-btn';
+            btn.textContent = n;
+            btn.addEventListener('click', () => { handleAnswer(n === count, 'numberGame'); });
+            optionsEl.appendChild(btn);
+        });
+    }
+
+    // Shape Game
+    function startShapeGame() {
+        const optionCount = state.difficulty === 1 ? 3 : state.difficulty === 2 ? 4 : 5;
+        const shapeList = shapes.slice(0, optionCount);
+        const correct = shapeList[Math.floor(Math.random() * shapeList.length)];
+        state.currentShape = correct;
+        document.getElementById('shapeIcon').textContent = correct.emoji;
+        const optionsEl = document.getElementById('shapeOptions');
+        optionsEl.innerHTML = '';
+        shuffleArray([...shapeList]).forEach(s => {
+            const btn = document.createElement('button');
+            btn.className = 'shape-btn';
+            btn.innerHTML = '<span style="font-size:50px">' + s.emoji + '</span>';
+            btn.addEventListener('click', () => { handleAnswer(s.name === state.currentShape.name, 'shapeGame'); });
+            optionsEl.appendChild(btn);
+        });
+    }
+
+    // Animal Game
+    function startAnimalGame() {
+        const optionCount = state.difficulty === 1 ? 4 : state.difficulty === 2 ? 5 : 6;
+        const animalList = shuffleArray([...animals]).slice(0, optionCount);
+        const correct = animalList[Math.floor(Math.random() * animalList.length)];
+        state.currentAnimal = correct;
+        const speaker = document.getElementById('speaker');
+        speaker.innerHTML = '🔊<br>点击听';
+        speaker.onclick = () => { soundManager.playAnimalSound(); };
+        const optionsEl = document.getElementById('animalOptions');
+        optionsEl.innerHTML = '';
+        animalList.forEach(a => {
+            const btn = document.createElement('button');
+            btn.className = 'animal-btn';
+            btn.innerHTML = '<span class="animal-icon">' + a.emoji + '</span><span class="animal-name">' + a.name + '</span>';
+            btn.addEventListener('click', () => { handleAnswer(a.name === state.currentAnimal.name, 'animalGame'); });
+            optionsEl.appendChild(btn);
+        });
+    }
+
+    function startGame(game) {
+        switch(game) {
+            case 'colorGame': startColorGame(); break;
+            case 'numberGame': startNumberGame(); break;
+            case 'shapeGame': startShapeGame(); break;
+            case 'animalGame': startAnimalGame(); break;
+            case 'puzzleGame': startPuzzleGame(); break;
+            case 'musicGame': startMusicGame(); break;
+            case 'drawGame': startDrawGame(); break;
+        }
+    }
+
+    // Puzzle Game
+    function startPuzzleGame() {
+        const patternCount = state.difficulty === 1 ? 2 : state.difficulty === 2 ? 3 : 4;
+        const gridSize = patternCount + 1;
+        const cols = gridSize <= 3 ? 2 : gridSize <= 5 ? 3 : 4;
+        const shuffledPatterns = shuffleArray([...puzzlePatterns]).slice(0, gridSize);
+        const correct = shuffledPatterns[0];
+        state.currentPuzzlePattern = correct;
+        state.selectedPuzzlePiece = null;
+
+        const grid = document.getElementById('puzzleGrid');
+        grid.className = 'puzzle-grid cols-' + cols;
+        grid.innerHTML = '';
+
+        const displayItems = shuffleArray([...shuffledPatterns]);
+        displayItems.forEach(p => {
+            const piece = document.createElement('div');
+            piece.className = 'puzzle-piece';
+            piece.dataset.name = p.name;
+            piece.innerHTML = '<span style="font-size:40px">' + p.emoji + '</span>';
+            piece.addEventListener('click', () => selectPuzzlePiece(piece, p.name));
+            grid.appendChild(piece);
+        });
+
+        const optionsEl = document.getElementById('puzzleOptions');
+        optionsEl.innerHTML = '';
+        shuffledPatterns.forEach(p => {
+            const btn = document.createElement('button');
+            btn.className = 'color-btn';
+            btn.style.background = p.color;
+            btn.style.width = '70px';
+            btn.style.height = '70px';
+            btn.style.borderRadius = '15px';
+            btn.innerHTML = '<span style="font-size:35px">' + p.emoji + '</span>';
+            btn.addEventListener('click', () => {
+                handleAnswer(p.name === state.currentPuzzlePattern.name, 'puzzleGame');
+            });
+            optionsEl.appendChild(btn);
+        });
+
+        document.querySelector('#puzzleGame .question-text').textContent =
+            '找出"' + correct.name + '"的图案';
+    }
+
+    function selectPuzzlePiece(piece, name) {
+        document.querySelectorAll('.puzzle-piece').forEach(p => p.classList.remove('selected'));
+        piece.classList.add('selected');
+        state.selectedPuzzlePiece = name;
+        const isCorrect = name === state.currentPuzzlePattern.name;
+        if (isCorrect) {
+            piece.classList.add('correct');
+            soundManager.playCorrect();
+        } else {
+            piece.classList.add('wrong');
+            soundManager.playWrong();
+        }
+        setTimeout(() => {
+            handleAnswer(isCorrect, 'puzzleGame');
+        }, 500);
+    }
+
+    // Music Game
+    function startMusicGame() {
+        const seqLength = state.difficulty === 1 ? 2 : state.difficulty === 2 ? 3 : 4;
+        state.musicSequence = [];
+        state.playerSequence = [];
+
+        for (let i = 0; i < seqLength; i++) {
+            state.musicSequence.push(pianoNotes[Math.floor(Math.random() * pianoNotes.length)]);
+        }
+
+        renderPiano();
+        showDemoNotes();
+        playMusicSequence();
+    }
+
+    function renderPiano() {
+        const pianoEl = document.getElementById('piano');
+        pianoEl.innerHTML = '';
+        pianoNotes.forEach((n, i) => {
+            const key = document.createElement('div');
+            key.className = 'piano-key' + (i >= 4 ? ' black' : '');
+            key.textContent = n.note;
+            key.dataset.index = i;
+            key.addEventListener('click', () => playPianoKey(i));
+            key.addEventListener('mousedown', () => key.classList.add('active'));
+            key.addEventListener('mouseup', () => key.classList.remove('active'));
+            key.addEventListener('mouseleave', () => key.classList.remove('active'));
+            pianoEl.appendChild(key);
+        });
+    }
+
+    function playPianoKey(index, duration = 0.4) {
+        const note = pianoNotes[index];
+        soundManager.init();
+        if (!soundManager.audioContext) return;
+        const osc = soundManager.audioContext.createOscillator();
+        const gain = soundManager.audioContext.createGain();
+        osc.connect(gain);
+        gain.connect(soundManager.audioContext.destination);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(note.freq, soundManager.audioContext.currentTime);
+        gain.gain.setValueAtTime(0.3, soundManager.audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, soundManager.audioContext.currentTime + duration);
+        osc.start();
+        osc.stop(soundManager.audioContext.currentTime + duration);
+
+        state.playerSequence.push(index);
+        checkMusicAnswer();
+    }
+
+    function playMusicSequence() {
+        state.isPlayingDemo = true;
+        let i = 0;
+        const playNext = () => {
+            if (i >= state.musicSequence.length) {
+                state.isPlayingDemo = false;
+                return;
+            }
+            const idx = pianoNotes.indexOf(state.musicSequence[i]);
+            playPianoKey(idx, 0.5);
+            i++;
+            setTimeout(playNext, 700);
+        };
+        setTimeout(playNext, 500);
+    }
+
+    function showDemoNotes() {
+        const target = document.getElementById('musicTarget');
+        target.textContent = state.musicSequence.map(n => n.note).join(' - ');
+        const demoEl = document.getElementById('demoNotes');
+        demoEl.innerHTML = '';
+        state.musicSequence.forEach((n, i) => {
+            const note = document.createElement('div');
+            note.className = 'demo-note';
+            note.style.background = n.color;
+            note.textContent = n.note;
+            note.style.animationDelay = (i * 0.1) + 's';
+            demoEl.appendChild(note);
+        });
+    }
+
+    function checkMusicAnswer() {
+        if (state.isPlayingDemo) return;
+        const seqLen = state.playerSequence.length;
+        const correct = state.playerSequence[seqLen - 1] === pianoNotes.indexOf(state.musicSequence[seqLen - 1]);
+
+        if (!correct) {
+            state.playerSequence = [];
+            soundManager.playWrong();
+            showFeedback(false, '不对哦，再听一次！🔄');
+            setTimeout(() => {
+                state.playerSequence = [];
+                playMusicSequence();
+            }, 1500);
+            return;
+        }
+
+        if (seqLen === state.musicSequence.length) {
+            soundManager.playCorrect();
+            showFeedback(true, '太棒了！你是小音乐家！🎵');
+            setTimeout(() => startGame('musicGame'), 1500);
+        }
+    }
+
+    // Drawing Game
+    let isDrawing = false;
+    let isErasing = false;
+    let currentDrawColor = '#FF6B6B';
+    let currentBrushSize = 5;
+    let drawCanvas, drawCtx;
+
+    function startDrawGame() {
+        drawCanvas = document.getElementById('drawCanvas');
+        drawCtx = drawCanvas.getContext('2d');
+        drawCtx.fillStyle = 'white';
+        drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
+        isErasing = false;
+
+        const colorPicker = document.getElementById('colorPicker');
+        const brushSize = document.getElementById('brushSize');
+        const brushLabel = document.getElementById('brushSizeLabel');
+        const eraserBtn = document.getElementById('eraserBtn');
+        const clearBtn = document.getElementById('clearBtn');
+
+        colorPicker.value = currentDrawColor;
+        colorPicker.className = 'color-picker-btn active';
+        colorPicker.onclick = () => { isErasing = false; eraserBtn.classList.remove('active'); };
+
+        brushSize.value = currentBrushSize;
+        brushLabel.textContent = currentBrushSize + 'px';
+
+        colorPicker.addEventListener('input', (e) => {
+            currentDrawColor = e.target.value;
+            isErasing = false;
+            eraserBtn.classList.remove('active');
+        });
+
+        brushSize.addEventListener('input', (e) => {
+            currentBrushSize = parseInt(e.target.value);
+            brushLabel.textContent = currentBrushSize + 'px';
+        });
+
+        eraserBtn.addEventListener('click', () => {
+            isErasing = !isErasing;
+            eraserBtn.classList.toggle('active', isErasing);
+        });
+
+        clearBtn.addEventListener('click', () => {
+            drawCtx.fillStyle = 'white';
+            drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
+            soundManager.playClick();
+        });
+
+        drawCanvas.addEventListener('mousedown', startDrawing);
+        drawCanvas.addEventListener('mousemove', draw);
+        drawCanvas.addEventListener('mouseup', stopDrawing);
+        drawCanvas.addEventListener('mouseleave', stopDrawing);
+        drawCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e.touches[0]); });
+        drawCanvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e.touches[0]); });
+        drawCanvas.addEventListener('touchend', stopDrawing);
+    }
+
+    function startDrawing(e) {
+        isDrawing = true;
+        draw(e);
+    }
+
+    function stopDrawing() {
+        isDrawing = false;
+        drawCtx.beginPath();
+    }
+
+    function draw(e) {
+        if (!isDrawing) return;
+        const rect = drawCanvas.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * (drawCanvas.width / rect.width);
+        const y = (e.clientY - rect.top) * (drawCanvas.height / rect.height);
+
+        drawCtx.lineWidth = currentBrushSize;
+        drawCtx.lineCap = 'round';
+        drawCtx.lineJoin = 'round';
+
+        if (isErasing) {
+            drawCtx.globalCompositeOperation = 'destination-out';
+            drawCtx.strokeStyle = 'rgba(0,0,0,1)';
+        } else {
+            drawCtx.globalCompositeOperation = 'source-over';
+            drawCtx.strokeStyle = currentDrawColor;
+        }
+
+        drawCtx.lineTo(x, y);
+        drawCtx.stroke();
+        drawCtx.beginPath();
+        drawCtx.moveTo(x, y);
+    }
+
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    init();
     </script>
 </body>
 </html>
