@@ -276,7 +276,7 @@
                 margin-top: 0;
                 z-index: 20;
             }
-            .subtitle { font-size: 12px; }
+            .subtitle { display: none; }
             .header { top: calc(10px + env(safe-area-inset-top)); left: 10px; right: 10px; z-index: 100; }
             /* 移动端隐藏装饰元素避免遮挡 */
             .cloud, .sun, .rainbow, .flower, .decoration, .floating-star {
@@ -345,6 +345,11 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
         }
+        /* 隐藏问题文字，改为语音朗读 */
+        @media (max-width: 768px) {
+            .question-text { display: none; }
+            .speaker { width: 80px; height: 80px; font-size: 40px; }
+        }
         .color-item {
             width: 100px; height: 100px;
             border-radius: 20px;
@@ -388,6 +393,8 @@
             .piano-key.black { width: 30px; height: 70px; margin: 0 -15px; }
             .draw-canvas-wrapper { width: 90vw; height: 50vw; max-width: 400px; }
             .feedback { font-size: 32px; padding: 15px 30px; }
+            .music-hint { display: none; }
+            .music-target-notes { font-size: 40px; }
         }
         .feedback {
             position: absolute;
@@ -776,13 +783,13 @@
 
     <div id="game-container">
         <div class="header">
-            <button class="back-btn" id="backBtn">← 返回</button>
+            <button class="back-btn" id="backBtn">←</button>
             <div class="stats">
                 <div class="stars">
                     <span class="star-icon">⭐</span>
                     <span id="starCount">0</span>
                 </div>
-                <div class="difficulty" id="difficulty">难度: L1</div>
+                <div class="difficulty" id="difficulty">L1</div>
                 <button class="bgm-toggle" id="bgmToggle" title="背景音乐">🎵</button>
             </div>
         </div>
@@ -807,37 +814,29 @@
             <div class="decoration floating-star floating-star-2">⭐</div>
             <div class="decoration floating-star floating-star-3">🌟</div>
             <div class="title">
-                🏰 快乐乐园
-                <div class="subtitle">点击选择游戏开始玩吧！</div>
+                🏰
             </div>
             <div class="games-grid">
-                <div class="game-card" data-game="colorGame">
+                <div class="game-card" data-game="colorGame" data-name="颜色游戏">
                     <div class="game-icon">🎨</div>
-                    <div class="game-name">颜色对对碰</div>
                 </div>
-                <div class="game-card" data-game="numberGame">
+                <div class="game-card" data-game="numberGame" data-name="数字游戏">
                     <div class="game-icon">🔢</div>
-                    <div class="game-name">数字跳跳跳</div>
                 </div>
-                <div class="game-card" data-game="shapeGame">
+                <div class="game-card" data-game="shapeGame" data-name="形状游戏">
                     <div class="game-icon">🔷</div>
-                    <div class="game-name">形状小能手</div>
                 </div>
-                <div class="game-card" data-game="animalGame">
+                <div class="game-card" data-game="animalGame" data-name="动物游戏">
                     <div class="game-icon">🐮</div>
-                    <div class="game-name">动物朋友</div>
                 </div>
-                <div class="game-card" data-game="puzzleGame">
+                <div class="game-card" data-game="puzzleGame" data-name="拼图游戏">
                     <div class="game-icon">🧩</div>
-                    <div class="game-name">益智拼图</div>
                 </div>
-                <div class="game-card" data-game="musicGame">
+                <div class="game-card" data-game="musicGame" data-name="音乐游戏">
                     <div class="game-icon">🎹</div>
-                    <div class="game-name">小小音乐家</div>
                 </div>
-                <div class="game-card" data-game="drawGame">
+                <div class="game-card" data-game="drawGame" data-name="画画游戏">
                     <div class="game-icon">🎨</div>
-                    <div class="game-name">创意画画</div>
                 </div>
             </div>
         </div>
@@ -894,7 +893,7 @@
             <div class="question-area">
                 <div class="music-target">
                     <div class="music-target-notes" id="musicTarget"></div>
-                    <div>模仿弹奏上面的音符</div>
+                    <div class="music-hint">模仿弹奏</div>
                 </div>
                 <div class="demo-notes" id="demoNotes"></div>
             </div>
@@ -1047,6 +1046,18 @@
             }
         }
 
+        speakText(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 0.85;
+                utterance.pitch = 1.1;
+                utterance.volume = 1;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
         playBGM() {
             this.init();
             if (!this.audioContext || this.bgmPlaying) return;
@@ -1183,6 +1194,8 @@
         gameCards.forEach(card => {
             card.addEventListener('click', () => {
                 soundManager.playClick();
+                const gameName = card.dataset.name || card.dataset.game;
+                soundManager.speakText(gameName);
                 switchScene(card.dataset.game);
                 soundManager.playBGM();
             });
@@ -1225,7 +1238,7 @@
 
     function updateUI() {
         starCountEl.textContent = state.totalStars;
-        difficultyEl.textContent = '难度: L' + state.difficulty;
+        difficultyEl.textContent = 'L' + state.difficulty;
     }
 
     function showFeedback(isCorrect, message) {
@@ -1347,6 +1360,8 @@
         const colorItem = document.getElementById('colorItem');
         colorItem.textContent = correct.emoji;
         colorItem.style.background = correct.color;
+        // 语音朗读问题
+        soundManager.speakText('这是什么颜色？');
         const optionsEl = document.getElementById('colorOptions');
         optionsEl.innerHTML = '';
         shuffled.forEach(c => {
@@ -1374,6 +1389,8 @@
             item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             itemsDisplay.appendChild(item);
         }
+        // 语音朗读问题
+        soundManager.speakText('数一数有多少个？');
         const optionsEl = document.getElementById('numberOptions');
         optionsEl.innerHTML = '';
         const options = [count];
@@ -1381,10 +1398,13 @@
             const n = Math.floor(Math.random() * maxCount) + 1;
             if (!options.includes(n)) options.push(n);
         }
+        // 数字对应的emoji图标
+        const numberEmojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
         shuffleArray(options).forEach(n => {
             const btn = document.createElement('button');
             btn.className = 'number-btn';
-            btn.textContent = n;
+            btn.textContent = numberEmojis[n - 1] || n;
+            btn.style.fontSize = '28px';
             btn.addEventListener('click', () => { handleAnswer(n === count, 'numberGame'); });
             optionsEl.appendChild(btn);
         });
@@ -1397,6 +1417,8 @@
         const correct = shapeList[Math.floor(Math.random() * shapeList.length)];
         state.currentShape = correct;
         document.getElementById('shapeIcon').textContent = correct.emoji;
+        // 语音朗读问题
+        soundManager.speakText('这是什么形状？');
         const optionsEl = document.getElementById('shapeOptions');
         optionsEl.innerHTML = '';
         shuffleArray([...shapeList]).forEach(s => {
@@ -1415,14 +1437,17 @@
         const correct = animalList[Math.floor(Math.random() * animalList.length)];
         state.currentAnimal = correct;
         const speaker = document.getElementById('speaker');
-        speaker.innerHTML = '🔊<br>点击听';
+        speaker.innerHTML = '🔊';
         speaker.onclick = () => { soundManager.playAnimalSound(); };
+        // 语音朗读问题
+        soundManager.speakText('听声音，选动物');
+        setTimeout(() => { soundManager.playAnimalSound(); }, 500);
         const optionsEl = document.getElementById('animalOptions');
         optionsEl.innerHTML = '';
         animalList.forEach(a => {
             const btn = document.createElement('button');
             btn.className = 'animal-btn';
-            btn.innerHTML = '<span class="animal-icon">' + a.emoji + '</span><span class="animal-name">' + a.name + '</span>';
+            btn.innerHTML = '<span class="animal-icon" style="font-size:40px">' + a.emoji + '</span>';
             btn.addEventListener('click', () => { handleAnswer(a.name === state.currentAnimal.name, 'animalGame'); });
             optionsEl.appendChild(btn);
         });
@@ -1449,6 +1474,9 @@
         const correct = shuffledPatterns[0];
         state.currentPuzzlePattern = correct;
         state.selectedPuzzlePiece = null;
+
+        // 语音朗读问题
+        soundManager.speakText('找出相同的图案');
 
         const grid = document.getElementById('puzzleGrid');
         grid.className = 'puzzle-grid cols-' + cols;
@@ -1479,9 +1507,6 @@
             });
             optionsEl.appendChild(btn);
         });
-
-        document.querySelector('#puzzleGame .question-text').textContent =
-            '找出"' + correct.name + '"的图案';
     }
 
     function selectPuzzlePiece(piece, name) {
@@ -1511,6 +1536,8 @@
             state.musicSequence.push(pianoNotes[Math.floor(Math.random() * pianoNotes.length)]);
         }
 
+        // 语音说明
+        soundManager.speakText('小小音乐家，跟我弹钢琴！');
         renderPiano();
         showDemoNotes();
         playMusicSequence();
@@ -1618,6 +1645,8 @@
         drawCtx.fillStyle = 'white';
         drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
         isErasing = false;
+        // 语音说明
+        soundManager.speakText('创意画画，自由创作！');
 
         const colorPicker = document.getElementById('colorPicker');
         const brushSize = document.getElementById('brushSize');
