@@ -318,21 +318,48 @@
         }
         .game-card {
             width: 180px; height: 160px;
-            background: white; border-radius: 20px;
+            background: white; border-radius: 24px;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.3s;
+            cursor: pointer;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             border: 4px solid transparent;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+            animation: cardFloat 3s ease-in-out infinite;
         }
         .game-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-            border-color: #FFD700;
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
         }
-        .game-card:active { transform: scale(0.95); }
-        .game-icon { font-size: 50px; margin-bottom: 10px; }
+        .game-card:active {
+            transform: scale(0.92);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .game-icon { font-size: 56px; transition: transform 0.2s; }
+        .game-card:active .game-icon { transform: scale(1.1); }
         .game-name { font-size: 18px; font-weight: bold; color: #333; }
+
+        /* 卡片浮动动画 */
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .game-card:nth-child(1) { animation-delay: 0s; }
+        .game-card:nth-child(2) { animation-delay: 0.3s; }
+        .game-card:nth-child(3) { animation-delay: 0.6s; }
+        .game-card:nth-child(4) { animation-delay: 0.9s; }
+        .game-card:nth-child(5) { animation-delay: 1.2s; }
+        .game-card:nth-child(6) { animation-delay: 1.5s; }
+        .game-card:nth-child(7) { animation-delay: 1.8s; }
+
+        /* 卡片颜色区分 */
+        .game-card[data-game="colorGame"] { background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); }
+        .game-card[data-game="numberGame"] { background: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%); }
+        .game-card[data-game="shapeGame"] { background: linear-gradient(135deg, #D299C2 0%, #FEF9D7 100%); }
+        .game-card[data-game="animalGame"] { background: linear-gradient(135deg, #89F7FE 0%, #66A6FF 100%); }
+        .game-card[data-game="puzzleGame"] { background: linear-gradient(135deg, #FAD0C4 0%, #FFD1FF 100%); }
+        .game-card[data-game="musicGame"] { background: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%); }
+        .game-card[data-game="drawGame"] { background: linear-gradient(135deg, #A1FFCE 0%, #FAFFD1 100%); }
         .question-area {
             position: absolute;
             top: 15%; left: 50%;
@@ -352,11 +379,12 @@
         }
         .color-item {
             width: 100px; height: 100px;
-            border-radius: 20px;
+            border-radius: 24px;
             margin: 0 auto 30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
             display: flex; align-items: center; justify-content: center;
             font-size: 50px;
+            animation: itemPulse 1.5s ease-in-out infinite;
         }
         .color-options {
             display: flex; gap: 15px;
@@ -364,10 +392,25 @@
         }
         .color-btn {
             width: 70px; height: 70px;
-            border-radius: 15px;
-            border: 3px solid white;
-            cursor: pointer; transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border-radius: 18px;
+            border: 4px solid white;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
+        }
+        .color-btn:active {
+            transform: scale(0.88);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .color-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes itemPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
         }
         .color-btn:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         .color-btn:active { transform: scale(0.95); }
@@ -400,14 +443,24 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            font-size: 48px; font-weight: bold;
+            font-size: 56px; font-weight: bold;
             color: white; text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
-            padding: 20px 40px; border-radius: 20px;
-            opacity: 0; transition: all 0.3s; z-index: 200;
+            padding: 25px 50px; border-radius: 30px;
+            opacity: 0; z-index: 200;
         }
-        .feedback.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        .feedback.show {
+            animation: feedbackPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
         .feedback.correct { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
         .feedback.wrong { background: linear-gradient(135deg, #FF6B6B, #FF4757); }
+
+        @keyframes feedbackPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            60% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            80% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
         .star-burst { position: absolute; pointer-events: none; z-index: 150; }
         .burst-star {
             position: absolute; font-size: 30px;
@@ -572,23 +625,37 @@
         }
         .count-item { font-size: 40px; }
         .number-btn {
-            width: 70px; height: 70px;
-            background: white; border-radius: 12px;
-            font-size: 28px; font-weight: bold; color: #333;
-            border: 3px solid #ddd;
-            cursor: pointer; transition: all 0.2s;
+            width: 75px; height: 75px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            font-size: 28px; font-weight: bold; color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
         }
-        .number-btn:hover { background: #f0f0f0; transform: scale(1.05); }
-        .number-btn:active { transform: scale(0.95); }
+        .number-btn:hover { transform: scale(1.08); }
+        .number-btn:active { transform: scale(0.88); box-shadow: 0 3px 8px rgba(102, 126, 234, 0.4); }
         .shape-display {
             width: 120px; height: 120px;
-            background: white; border-radius: 20px;
+            background: white; border-radius: 24px;
             margin: 0 auto 25px;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            animation: itemPulse 1.5s ease-in-out infinite;
         }
         .shape-icon { font-size: 60px; }
         .shape-btn {
+            width: 75px; height: 75px;
+            background: white; border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: 4px solid transparent;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.15s, box-shadow 0.15s;
+        }
+        .shape-btn:hover { transform: scale(1.08); border-color: #FFD700; }
+        .shape-btn:active { transform: scale(0.88); }
             width: 75px; height: 75px;
             background: white; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
@@ -614,17 +681,18 @@
         }
         .animal-btn {
             width: 90px; height: 90px;
-            background: white; border-radius: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 22px;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 3px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(245, 87, 108, 0.35);
+            border: none;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
         }
-        .animal-btn:hover { transform: scale(1.05); border-color: #FFD700; }
-        .animal-btn:active { transform: scale(0.95); }
-        .animal-icon { font-size: 50px; }
-        .animal-name { font-size: 14px; color: #666; margin-top: 5px; }
+        .animal-btn:hover { transform: scale(1.08); }
+        .animal-btn:active { transform: scale(0.88); box-shadow: 0 3px 10px rgba(245, 87, 108, 0.35); }
+        .animal-icon { font-size: 45px; }
 
         /* Puzzle Game */
         .puzzle-grid {
@@ -638,17 +706,25 @@
         .puzzle-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
         .puzzle-piece {
             width: 80px; height: 80px;
-            background: white; border-radius: 12px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
             font-size: 40px; cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 3px solid transparent;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: 4px solid transparent;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.15s, box-shadow 0.15s;
         }
-        .puzzle-piece:hover { transform: scale(1.05); border-color: #FFD700; }
-        .puzzle-piece.selected { border-color: #4CAF50; background: #E8F5E9; }
-        .puzzle-piece.correct { border-color: #4CAF50; background: #C8E6C9; }
-        .puzzle-piece.wrong { border-color: #FF5252; background: #FFEBEE; animation: shake 0.3s; }
+        .puzzle-piece:hover { transform: scale(1.08); border-color: #FFD700; }
+        .puzzle-piece:active { transform: scale(0.92); }
+        .puzzle-piece.selected { border-color: #4CAF50; background: linear-gradient(135deg, #a8edea 0%, #98FB98 100%); }
+        .puzzle-piece.correct { border-color: #4CAF50; background: linear-gradient(135deg, #98FB98 0%, #90EE90 100%); animation: correctPop 0.4s ease; }
+        .puzzle-piece.wrong { border-color: #FF5252; background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%); animation: shake 0.3s; }
+
+        @keyframes correctPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
         /* Music Game */
         .piano {
@@ -658,28 +734,38 @@
             flex-wrap: wrap;
         }
         .piano-key {
-            width: 50px; height: 150px;
-            background: white;
-            border: 2px solid #333;
-            border-radius: 0 0 8px 8px;
+            width: 55px; height: 160px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+            border: 3px solid #444;
+            border-radius: 0 0 12px 12px;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.1s;
             display: flex; align-items: flex-end; justify-content: center;
-            padding-bottom: 12px;
-            font-size: 16px; font-weight: bold; color: #333;
+            padding-bottom: 15px;
+            font-size: 18px; font-weight: bold; color: #333;
             position: relative;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
-        .piano-key:hover { background: #f5f5f5; }
-        .piano-key:active, .piano-key.active { background: #E3F2FD; transform: scale(0.98); }
+        .piano-key:hover { background: linear-gradient(180deg, #fff 0%, #e8e8e8 100%); }
+        .piano-key:active, .piano-key.active {
+            background: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 100%);
+            transform: scale(0.95) translateY(2px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
         .piano-key.black {
-            width: 35px; height: 90px;
-            background: #333; color: white;
-            margin: 0 -17px;
+            width: 38px; height: 100px;
+            background: linear-gradient(180deg, #555 0%, #333 100%);
+            color: white;
+            margin: 0 -19px;
             z-index: 10;
-            border-radius: 0 0 6px 6px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-        .piano-key.black:hover { background: #555; }
-        .piano-key.black:active, .piano-key.black.active { background: #666; }
+        .piano-key.black:hover { background: linear-gradient(180deg, #666 0%, #444 100%); }
+        .piano-key.black:active, .piano-key.black.active {
+            background: linear-gradient(180deg, #777 0%, #555 100%);
+            transform: scale(0.95) translateY(2px);
+        }
         .music-target {
             text-align: center;
             font-size: 24px; color: #333;
