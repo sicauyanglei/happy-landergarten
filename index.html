@@ -41,7 +41,9 @@
         @media (max-width: 768px) {
             #game-container {
                 width: 100vw;
+                height: 100vh;
                 height: 100dvh;
+                max-height: 100vh;
                 max-height: 100dvh;
                 border-radius: 0;
                 overflow: hidden;
@@ -51,7 +53,7 @@
                 padding-right: env(safe-area-inset-right);
             }
             .header {
-                top: calc(20px + env(safe-area-inset-top));
+                top: calc(10px + env(safe-area-inset-top));
             }
         }
         .cloud {
@@ -245,21 +247,27 @@
         }
         @media (max-width: 768px) {
             .scene.active, #playground.active {
-                padding-top: calc(60px + env(safe-area-inset-top));
+                padding-top: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
             }
             .games-grid {
-                position: absolute;
-                top: 140px;
-                left: 8px;
-                right: 8px;
-                bottom: 15px;
+                position: relative;
+                flex: 1;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: repeat(3, 1fr);
                 gap: 6px;
                 width: auto;
+                height: auto;
                 transform: none;
                 z-index: 10;
+                padding: 8px;
             }
             .game-card {
                 width: 100%;
@@ -267,17 +275,10 @@
                 min-height: 0;
             }
             .game-icon { font-size: 26px; }
-            .game-name { font-size: 11px; }
-            .title {
-                position: relative;
-                top: auto;
-                left: auto;
-                transform: none;
-                margin-top: 0;
-                z-index: 20;
-            }
+            .game-name { display: none; }
+            .title { display: none; }
             .subtitle { display: none; }
-            .header { top: calc(10px + env(safe-area-inset-top)); left: 10px; right: 10px; z-index: 100; }
+            .header { top: calc(6px + env(safe-area-inset-top)); left: 6px; right: 6px; z-index: 100; }
             /* 移动端隐藏装饰元素避免遮挡 */
             .cloud, .sun, .rainbow, .flower, .decoration, .floating-star {
                 display: none;
@@ -285,36 +286,19 @@
         }
         @media (max-width: 600px) {
             .games-grid {
-                top: 130px;
-                left: 6px;
-                right: 6px;
-                bottom: 10px;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(3, 1fr);
                 gap: 5px;
-                width: auto;
+                padding: 6px;
             }
             .game-icon { font-size: 24px; }
-            .game-name { font-size: 10px; }
         }
         @media (max-width: 480px) {
-            .scene.active, #playground.active {
-                padding-top: calc(50px + env(safe-area-inset-top));
-            }
             .games-grid {
-                top: 120px;
-                left: 6px;
-                right: 6px;
-                bottom: 10px;
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: repeat(4, 1fr);
                 gap: 5px;
+                padding: 6px;
             }
             .game-icon { font-size: 22px; }
-            .game-name { font-size: 10px; }
-            .title { font-size: 22px; margin-top: 0; }
-            .subtitle { font-size: 10px; }
-            .header { top: calc(6px + env(safe-area-inset-top)); left: 6px; right: 6px; }
         }
         .game-card {
             width: 180px; height: 160px;
