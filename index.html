@@ -43,6 +43,9 @@
                 height: 100dvh;
                 max-height: 100dvh;
                 border-radius: 0;
+                overflow-y: auto;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
             }
         }
         .cloud {
@@ -229,7 +232,14 @@
             .bgm-toggle { padding: 4px 8px; font-size: 16px; }
         }
         @media (max-width: 480px) {
-            .games-grid { grid-template-columns: repeat(2, 1fr); width: 94vw; gap: 6px; top: 160px; left: 3vw; transform: none; }
+            .games-grid {
+                position: absolute;
+                top: 140px;
+                left: 3vw;
+                width: 94vw;
+                gap: 6px;
+                grid-template-columns: repeat(2, 1fr);
+            }
             .game-card { width: 45vw; height: 70px; }
             .game-icon { font-size: 22px; margin-bottom: 2px; }
             .game-name { font-size: 10px; }
