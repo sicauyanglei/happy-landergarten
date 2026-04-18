@@ -43,9 +43,7 @@
                 height: 100dvh;
                 max-height: 100dvh;
                 border-radius: 0;
-                overflow-y: auto;
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
+                overflow: hidden;
             }
         }
         .cloud {
@@ -231,25 +229,35 @@
             .difficulty { padding: 4px 8px; font-size: 12px; }
             .bgm-toggle { padding: 4px 8px; font-size: 16px; }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             .games-grid {
                 position: absolute;
-                top: 140px;
-                left: 3vw;
-                width: 94vw;
-                gap: 6px;
+                top: auto;
+                bottom: 20px;
+                left: 10px;
+                right: 10px;
+                width: auto;
+                transform: none;
                 grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                gap: 8px;
+                height: auto;
             }
-            .game-card { width: 45vw; height: 70px; }
-            .game-icon { font-size: 22px; margin-bottom: 2px; }
+            .game-card {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1.4;
+                min-height: 60px;
+                max-height: 80px;
+            }
+            .game-icon { font-size: 24px; }
+            .game-name { font-size: 11px; }
+        }
+        @media (max-width: 480px) {
+            .games-grid { gap: 6px; }
+            .game-card { min-height: 55px; max-height: 70px; }
+            .game-icon { font-size: 20px; }
             .game-name { font-size: 10px; }
-            .cloud-1, .cloud-2 { transform: scale(0.5); }
-            .sun { transform: scale(0.5); top: 5px; right: 10px; }
-            .rainbow { transform: translateX(-50%) scale(0.5); top: 50px; }
-            .floating-star { display: none; }
-            .sparkle { display: none; }
-            .title { font-size: 24px; top: 60px; }
-            .subtitle { font-size: 12px; }
         }
         .game-card {
             width: 180px; height: 160px;
