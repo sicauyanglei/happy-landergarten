@@ -325,8 +325,35 @@
 
         /* 卡片浮动动画 */
         @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(2deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-8px) rotate(-2deg); }
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        @keyframes rainbowGlow {
+            0% { box-shadow: 0 0 20px #FF6B6B; }
+            16% { box-shadow: 0 0 20px #FFA94D; }
+            33% { box-shadow: 0 0 20px #FFD93D; }
+            50% { box-shadow: 0 0 20px #98FB98; }
+            66% { box-shadow: 0 0 20px #4DABF7; }
+            83% { box-shadow: 0 0 20px #9775FA; }
+            100% { box-shadow: 0 0 20px #FF6B6B; }
+        }
+        @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes celebrate {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
         }
         .game-card:nth-child(1) { animation-delay: 0s; }
         .game-card:nth-child(2) { animation-delay: 0.3s; }
@@ -368,7 +395,7 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.25);
             display: flex; align-items: center; justify-content: center;
             font-size: 50px;
-            animation: itemPulse 1.5s ease-in-out infinite;
+            animation: happyBounce 1s ease-in-out infinite;
         }
         .color-options {
             display: flex; gap: 15px;
@@ -433,16 +460,16 @@
             opacity: 0; z-index: 200;
         }
         .feedback.show {
-            animation: feedbackPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation: celebrate 0.6s ease-out forwards;
         }
         .feedback.correct { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
         .feedback.wrong { background: linear-gradient(135deg, #FF6B6B, #FF4757); }
 
-        @keyframes feedbackPop {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            60% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-            80% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.3) rotate(10deg); opacity: 1; }
+            70% { transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
         }
 
         .star-burst { position: absolute; pointer-events: none; z-index: 150; }
@@ -506,6 +533,34 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
+        /* Happy button hover */
+        .color-btn:hover, .number-btn:hover, .shape-btn:hover, .animal-btn:hover, .puzzle-piece:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            animation: wiggle 0.3s ease-in-out;
+        }
+        .color-btn:active, .number-btn:active, .shape-btn:active, .animal-btn:active, .puzzle-piece:active {
+            transform: scale(0.9);
+            animation: happyBounce 0.3s ease-out;
+        }
+
+        /* Game option correct animation */
+        .option-correct {
+            animation: celebrate 0.5s ease-out forwards !important;
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.9) !important;
+        }
+
+        /* Game option wrong animation */
+        .option-wrong {
+            animation: shake 0.4s ease-in-out !important;
+            box-shadow: 0 0 30px rgba(255, 82, 82, 0.9) !important;
+        }
+
+        /* Rainbow background animation for correct answers */
+        .rainbow-bg {
+            animation: rainbowGlow 2s ease-in-out infinite;
+        }
+
         .animate-slide-down { animation: slideInDown 0.5s ease-out forwards; }
         .animate-slide-up { animation: slideInUp 0.5s ease-out forwards; }
         .animate-fade-scale { animation: fadeInScale 0.4s ease-out forwards; }
@@ -534,7 +589,11 @@
         .flower-4 { animation-delay: 1.5s; }
         .flower-5 { animation-delay: 2s; }
 
-        .star-icon { animation: sparkle 1.5s ease-in-out infinite; }
+        .star-icon { animation: starSparkle 1s ease-in-out infinite; }
+        @keyframes starSparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+            50% { transform: scale(1.2) rotate(15deg); filter: brightness(1.3); }
+        }
 
         /* Question area entrance */
         .question-area { opacity: 0; }
@@ -563,6 +622,30 @@
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(300px) rotate(720deg); opacity: 0; }
         }
+        @keyframes happyBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-15px) scale(1.1); }
+            50% { transform: translateY(0) scale(1); }
+            75% { transform: translateY(-7px) scale(1.05); }
+        }
+        @keyframes celebrate {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.3) rotate(-15deg); }
+            50% { transform: scale(1.3) rotate(15deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        @keyframes slideAround {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(5px) translateY(-5px); }
+            50% { transform: translateX(0) translateY(-10px); }
+            75% { transform: translateX(-5px) translateY(-5px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+        @keyframes starSparkle {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.3); filter: brightness(1.5); }
+        }
 
         /* Level up glow effect */
         .level-up-glow {
@@ -571,19 +654,23 @@
             pointer-events: none;
             z-index: 250;
             animation: levelUpGlow 1s ease-out forwards;
+            background: radial-gradient(circle, rgba(255,215,0,0.5) 0%, transparent 70%);
         }
         @keyframes levelUpGlow {
-            0% { background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { background: radial-gradient(circle, rgba(255,215,0,0) 0%, transparent 70%); opacity: 0; }
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(1.5); }
         }
 
         /* Star counter animation */
         .star-count-animate {
-            animation: starPop 0.5s ease-out;
+            animation: starSparkle 0.6s ease-out;
         }
-        @keyframes starPop {
-            0% { transform: scale(1); }
+        @keyframes starSparkle {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.8) rotate(180deg); filter: brightness(1.5); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
             50% { transform: scale(1.5); color: #FFD700; }
             100% { transform: scale(1); }
         }
@@ -1104,14 +1191,14 @@
 
         playAnimalSound() {
             if ('speechSynthesis' in window) {
-                const sounds = ['汪汪！', '喵喵！', '哞哞！', '咯咯！', '嘎嘎！', '哼哼！'];
+                const sounds = ['汪汪汪~汪汪！', '喵~喵~喵！', '哞~我要吃草！', '咯咯哒~咯咯哒！', '嘎嘎嘎~游啊游！', '哼哼哼~我饱饱的！'];
                 const text = sounds[Math.floor(Math.random() * sounds.length)];
                 speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'zh-CN';
-                utterance.rate = 0.9;
-                utterance.pitch = 1.2;
-                utterance.volume = 0.8;
+                utterance.rate = 1.0;
+                utterance.pitch = 1.3;
+                utterance.volume = 0.9;
                 speechSynthesis.speak(utterance);
             }
         }
@@ -1121,8 +1208,8 @@
                 speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'zh-CN';
-                utterance.rate = 0.85;
-                utterance.pitch = 1.1;
+                utterance.rate = 1.0;
+                utterance.pitch = 1.2;
                 utterance.volume = 1;
                 speechSynthesis.speak(utterance);
             }
@@ -1325,7 +1412,7 @@
             }
         }
         // Confetti for level up
-        if (message.includes('难度提升')) {
+        if (message.includes('变厉害啦')) {
             createConfetti();
             createLevelUpGlow();
         }
@@ -1405,17 +1492,23 @@
             if (state.streak >= 2 && state.difficulty < 3) {
                 state.difficulty++;
                 state.streak = 0;
-                showFeedback(true, '🎊 难度提升！');
+                showFeedback(true, '🌟哇！变厉害啦！');
                 soundManager.playLevelUp();
+                soundManager.speakText('哇！你好厉害呀！变聪明啦！');
             } else {
-                showFeedback(true, state.streak >= 2 ? '太棒了！⭐' : '正确！🎉');
+                const correctTexts = ['🎉太棒啦！你是最棒的！', '✨好厉害呀！继续加油！', '🌟答对啦！你真聪明！', '🎊太棒了！再来一次！'];
+                showFeedback(true, correctTexts[Math.floor(Math.random() * correctTexts.length)]);
                 soundManager.playStar();
+                const cheers = ['太棒啦！', '好厉害呀！', '真聪明！', '你真棒！'];
+                soundManager.speakText(cheers[Math.floor(Math.random() * cheers.length)]);
             }
         } else {
             state.streak = 0;
             if (state.difficulty > 1) state.difficulty--;
             soundManager.playWrong();
-            showFeedback(false, '没关系，再试试！💪');
+            showFeedback(false, '哈哈，再来一次吧～🌟');
+            const encouragements = ['哈哈，没关系呀，再试试！', '没关系，勇敢再来一次！', '别灰心，你一定可以的！', '哈哈，再来一次吧～'];
+            soundManager.speakText(encouragements[Math.floor(Math.random() * encouragements.length)]);
         }
         updateUI();
         setTimeout(() => startGame(game), 1200);
@@ -1431,7 +1524,7 @@
         colorItem.textContent = correct.emoji;
         colorItem.style.background = correct.color;
         // 语音朗读问题
-        soundManager.speakText('这是什么颜色？');
+        soundManager.speakText('红红的苹果是什么颜色呀？');
         const optionsEl = document.getElementById('colorOptions');
         optionsEl.innerHTML = '';
         shuffled.forEach(c => {
@@ -1460,7 +1553,7 @@
             itemsDisplay.appendChild(item);
         }
         // 语音朗读问题
-        soundManager.speakText('数一数有多少个？');
+        soundManager.speakText('数一数，有多少个小星星呀？');
         const optionsEl = document.getElementById('numberOptions');
         optionsEl.innerHTML = '';
         const options = [count];
@@ -1488,7 +1581,7 @@
         state.currentShape = correct;
         document.getElementById('shapeIcon').textContent = correct.emoji;
         // 语音朗读问题
-        soundManager.speakText('这是什么形状？');
+        soundManager.speakText('看一看，这是什么形状呢？');
         const optionsEl = document.getElementById('shapeOptions');
         optionsEl.innerHTML = '';
         shuffleArray([...shapeList]).forEach(s => {
@@ -1510,7 +1603,7 @@
         speaker.innerHTML = '🔊';
         speaker.onclick = () => { soundManager.playAnimalSound(); };
         // 语音朗读问题
-        soundManager.speakText('听声音，选动物');
+        soundManager.speakText('听一听，是哪个小动物在叫呀？');
         setTimeout(() => { soundManager.playAnimalSound(); }, 500);
         const optionsEl = document.getElementById('animalOptions');
         optionsEl.innerHTML = '';
@@ -1546,7 +1639,7 @@
         state.selectedPuzzlePiece = null;
 
         // 语音朗读问题
-        soundManager.speakText('找出相同的图案');
+        soundManager.speakText('找一找，哪个图案是一样的呀？');
 
         const grid = document.getElementById('puzzleGrid');
         grid.className = 'puzzle-grid cols-' + cols;
@@ -1607,7 +1700,7 @@
         }
 
         // 语音说明
-        soundManager.speakText('小小音乐家，跟我弹钢琴！');
+        soundManager.speakText('小音乐家，快来跟我弹钢琴吧！');
         renderPiano();
         showDemoNotes();
         playMusicSequence();
@@ -1687,7 +1780,8 @@
         if (!correct) {
             state.playerSequence = [];
             soundManager.playWrong();
-            showFeedback(false, '不对哦，再听一次！🔄');
+            showFeedback(false, '哎呀，再听一次好不好～🔄');
+            soundManager.speakText('哎呀，没听清楚呢，再来一次吧！');
             setTimeout(() => {
                 state.playerSequence = [];
                 playMusicSequence();
@@ -1697,7 +1791,7 @@
 
         if (seqLen === state.musicSequence.length) {
             soundManager.playCorrect();
-            showFeedback(true, '太棒了！你是小音乐家！🎵');
+            showFeedback(true, '🎵太厉害了！小音乐家就是你！');
             setTimeout(() => startGame('musicGame'), 1500);
         }
     }
@@ -1716,7 +1810,7 @@
         drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
         isErasing = false;
         // 语音说明
-        soundManager.speakText('创意画画，自由创作！');
+        soundManager.speakText('小画家，画个漂亮的图画吧！');
 
         const colorPicker = document.getElementById('colorPicker');
         const brushSize = document.getElementById('brushSize');

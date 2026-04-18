@@ -325,8 +325,35 @@
 
         /* 卡片浮动动画 */
         @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(2deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-8px) rotate(-2deg); }
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        @keyframes rainbowGlow {
+            0% { box-shadow: 0 0 20px #FF6B6B; }
+            16% { box-shadow: 0 0 20px #FFA94D; }
+            33% { box-shadow: 0 0 20px #FFD93D; }
+            50% { box-shadow: 0 0 20px #98FB98; }
+            66% { box-shadow: 0 0 20px #4DABF7; }
+            83% { box-shadow: 0 0 20px #9775FA; }
+            100% { box-shadow: 0 0 20px #FF6B6B; }
+        }
+        @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes celebrate {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
         }
         .game-card:nth-child(1) { animation-delay: 0s; }
         .game-card:nth-child(2) { animation-delay: 0.3s; }
@@ -368,7 +395,7 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.25);
             display: flex; align-items: center; justify-content: center;
             font-size: 50px;
-            animation: itemPulse 1.5s ease-in-out infinite;
+            animation: happyBounce 1s ease-in-out infinite;
         }
         .color-options {
             display: flex; gap: 15px;
@@ -433,16 +460,16 @@
             opacity: 0; z-index: 200;
         }
         .feedback.show {
-            animation: feedbackPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation: celebrate 0.6s ease-out forwards;
         }
         .feedback.correct { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
         .feedback.wrong { background: linear-gradient(135deg, #FF6B6B, #FF4757); }
 
-        @keyframes feedbackPop {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            60% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-            80% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.3) rotate(10deg); opacity: 1; }
+            70% { transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
         }
 
         .star-burst { position: absolute; pointer-events: none; z-index: 150; }
@@ -506,6 +533,34 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
+        /* Happy button hover */
+        .color-btn:hover, .number-btn:hover, .shape-btn:hover, .animal-btn:hover, .puzzle-piece:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            animation: wiggle 0.3s ease-in-out;
+        }
+        .color-btn:active, .number-btn:active, .shape-btn:active, .animal-btn:active, .puzzle-piece:active {
+            transform: scale(0.9);
+            animation: happyBounce 0.3s ease-out;
+        }
+
+        /* Game option correct animation */
+        .option-correct {
+            animation: celebrate 0.5s ease-out forwards !important;
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.9) !important;
+        }
+
+        /* Game option wrong animation */
+        .option-wrong {
+            animation: shake 0.4s ease-in-out !important;
+            box-shadow: 0 0 30px rgba(255, 82, 82, 0.9) !important;
+        }
+
+        /* Rainbow background animation for correct answers */
+        .rainbow-bg {
+            animation: rainbowGlow 2s ease-in-out infinite;
+        }
+
         .animate-slide-down { animation: slideInDown 0.5s ease-out forwards; }
         .animate-slide-up { animation: slideInUp 0.5s ease-out forwards; }
         .animate-fade-scale { animation: fadeInScale 0.4s ease-out forwards; }
@@ -534,7 +589,11 @@
         .flower-4 { animation-delay: 1.5s; }
         .flower-5 { animation-delay: 2s; }
 
-        .star-icon { animation: sparkle 1.5s ease-in-out infinite; }
+        .star-icon { animation: starSparkle 1s ease-in-out infinite; }
+        @keyframes starSparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+            50% { transform: scale(1.2) rotate(15deg); filter: brightness(1.3); }
+        }
 
         /* Question area entrance */
         .question-area { opacity: 0; }
@@ -563,6 +622,30 @@
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(300px) rotate(720deg); opacity: 0; }
         }
+        @keyframes happyBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-15px) scale(1.1); }
+            50% { transform: translateY(0) scale(1); }
+            75% { transform: translateY(-7px) scale(1.05); }
+        }
+        @keyframes celebrate {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.3) rotate(-15deg); }
+            50% { transform: scale(1.3) rotate(15deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        @keyframes slideAround {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(5px) translateY(-5px); }
+            50% { transform: translateX(0) translateY(-10px); }
+            75% { transform: translateX(-5px) translateY(-5px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+        @keyframes starSparkle {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.3); filter: brightness(1.5); }
+        }
 
         /* Level up glow effect */
         .level-up-glow {
@@ -571,19 +654,23 @@
             pointer-events: none;
             z-index: 250;
             animation: levelUpGlow 1s ease-out forwards;
+            background: radial-gradient(circle, rgba(255,215,0,0.5) 0%, transparent 70%);
         }
         @keyframes levelUpGlow {
-            0% { background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { background: radial-gradient(circle, rgba(255,215,0,0) 0%, transparent 70%); opacity: 0; }
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(1.5); }
         }
 
         /* Star counter animation */
         .star-count-animate {
-            animation: starPop 0.5s ease-out;
+            animation: starSparkle 0.6s ease-out;
         }
-        @keyframes starPop {
-            0% { transform: scale(1); }
+        @keyframes starSparkle {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.8) rotate(180deg); filter: brightness(1.5); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
             50% { transform: scale(1.5); color: #FFD700; }
             100% { transform: scale(1); }
         }
