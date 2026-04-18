@@ -40,8 +40,8 @@
         @media (max-width: 768px) {
             #game-container {
                 width: 100vw;
-                height: 56.25vw;
-                max-height: 100vh;
+                height: 100dvh;
+                max-height: 100dvh;
                 border-radius: 0;
             }
         }
@@ -229,15 +229,17 @@
             .bgm-toggle { padding: 4px 8px; font-size: 16px; }
         }
         @media (max-width: 480px) {
-            .games-grid { grid-template-columns: repeat(2, 1fr); width: 95vw; gap: 8px; top: 200px; }
-            .game-card { width: 46vw; height: 75px; }
-            .game-icon { font-size: 24px; margin-bottom: 4px; }
-            .game-name { font-size: 11px; }
-            .cloud-1, .cloud-2 { transform: scale(0.6); }
-            .sun { transform: scale(0.6); top: 10px; right: 20px; }
-            .rainbow { transform: translateX(-50%) scale(0.6); top: 60px; }
+            .games-grid { grid-template-columns: repeat(2, 1fr); width: 94vw; gap: 6px; top: 160px; left: 3vw; transform: none; }
+            .game-card { width: 45vw; height: 70px; }
+            .game-icon { font-size: 22px; margin-bottom: 2px; }
+            .game-name { font-size: 10px; }
+            .cloud-1, .cloud-2 { transform: scale(0.5); }
+            .sun { transform: scale(0.5); top: 5px; right: 10px; }
+            .rainbow { transform: translateX(-50%) scale(0.5); top: 50px; }
             .floating-star { display: none; }
             .sparkle { display: none; }
+            .title { font-size: 24px; top: 60px; }
+            .subtitle { font-size: 12px; }
         }
         .game-card {
             width: 180px; height: 160px;
