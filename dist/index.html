@@ -6,6 +6,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="./manifest.json">
     <title>快乐乐园 - 儿童综合游戏</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,9 +41,19 @@
         @media (max-width: 768px) {
             #game-container {
                 width: 100vw;
-                height: 56.25vw;
+                height: 100vh;
+                height: 100dvh;
                 max-height: 100vh;
+                max-height: 100dvh;
                 border-radius: 0;
+                overflow: hidden;
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+            .header {
+                top: calc(10px + env(safe-area-inset-top));
             }
         }
         .cloud {
@@ -146,7 +157,7 @@
         .floating-star-3 { top: 300px; left: 1100px; animation-delay: 2s; }
 
         .header {
-            position: absolute;
+            position: fixed;
             top: 20px; left: 20px; right: 20px;
             display: flex;
             justify-content: space-between;
@@ -190,9 +201,15 @@
             top: 0; left: 0; width: 100%; height: 100%;
             display: none;
         }
-        .scene.active { display: block; }
+        .scene.active {
+            display: flex;
+            flex-direction: column;
+        }
         .scene { display: none; }
-        #playground.active { display: block; }
+        #playground.active {
+            display: flex;
+            flex-direction: column;
+        }
         .title {
             position: absolute;
             top: 180px; left: 50%;
@@ -228,34 +245,105 @@
             .difficulty { padding: 4px 8px; font-size: 12px; }
             .bgm-toggle { padding: 4px 8px; font-size: 16px; }
         }
+        @media (max-width: 768px) {
+            .scene.active, #playground.active {
+                padding-top: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .games-grid {
+                position: relative;
+                flex: 1;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap: 6px;
+                width: auto;
+                height: auto;
+                transform: none;
+                z-index: 10;
+                padding: 8px;
+            }
+            .game-card {
+                width: 100%;
+                height: 100%;
+                min-height: 0;
+            }
+            .game-icon { font-size: 26px; }
+            .game-name { display: none; }
+            .title { display: none; }
+            .subtitle { display: none; }
+            .header { top: calc(6px + env(safe-area-inset-top)); left: 6px; right: 6px; z-index: 100; }
+            /* 移动端隐藏装饰元素避免遮挡 */
+            .cloud, .sun, .rainbow, .flower, .decoration, .floating-star {
+                display: none;
+            }
+        }
+        @media (max-width: 600px) {
+            .games-grid {
+                gap: 5px;
+                padding: 6px;
+            }
+            .game-icon { font-size: 24px; }
+        }
         @media (max-width: 480px) {
-            .games-grid { grid-template-columns: repeat(2, 1fr); width: 95vw; gap: 8px; top: 200px; }
-            .game-card { width: 46vw; height: 75px; }
-            .game-icon { font-size: 24px; margin-bottom: 4px; }
-            .game-name { font-size: 11px; }
-            .cloud-1, .cloud-2 { transform: scale(0.6); }
-            .sun { transform: scale(0.6); top: 10px; right: 20px; }
-            .rainbow { transform: translateX(-50%) scale(0.6); top: 60px; }
-            .floating-star { display: none; }
-            .sparkle { display: none; }
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                gap: 5px;
+                padding: 6px;
+            }
+            .game-icon { font-size: 22px; }
         }
         .game-card {
             width: 180px; height: 160px;
-            background: white; border-radius: 20px;
+            background: white; border-radius: 24px;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.3s;
+            cursor: pointer;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             border: 4px solid transparent;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+            animation: cardFloat 3s ease-in-out infinite;
         }
         .game-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-            border-color: #FFD700;
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
         }
-        .game-card:active { transform: scale(0.95); }
-        .game-icon { font-size: 50px; margin-bottom: 10px; }
+        .game-card:active {
+            transform: scale(0.92);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .game-icon { font-size: 56px; transition: transform 0.2s; }
+        .game-card:active .game-icon { transform: scale(1.1); }
         .game-name { font-size: 18px; font-weight: bold; color: #333; }
+
+        /* 卡片浮动动画 */
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .game-card:nth-child(1) { animation-delay: 0s; }
+        .game-card:nth-child(2) { animation-delay: 0.3s; }
+        .game-card:nth-child(3) { animation-delay: 0.6s; }
+        .game-card:nth-child(4) { animation-delay: 0.9s; }
+        .game-card:nth-child(5) { animation-delay: 1.2s; }
+        .game-card:nth-child(6) { animation-delay: 1.5s; }
+        .game-card:nth-child(7) { animation-delay: 1.8s; }
+
+        /* 卡片颜色区分 */
+        .game-card[data-game="colorGame"] { background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); }
+        .game-card[data-game="numberGame"] { background: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%); }
+        .game-card[data-game="shapeGame"] { background: linear-gradient(135deg, #D299C2 0%, #FEF9D7 100%); }
+        .game-card[data-game="animalGame"] { background: linear-gradient(135deg, #89F7FE 0%, #66A6FF 100%); }
+        .game-card[data-game="puzzleGame"] { background: linear-gradient(135deg, #FAD0C4 0%, #FFD1FF 100%); }
+        .game-card[data-game="musicGame"] { background: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%); }
+        .game-card[data-game="drawGame"] { background: linear-gradient(135deg, #A1FFCE 0%, #FAFFD1 100%); }
         .question-area {
             position: absolute;
             top: 15%; left: 50%;
@@ -268,13 +356,19 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
         }
+        /* 隐藏问题文字，改为语音朗读 */
+        @media (max-width: 768px) {
+            .question-text { display: none; }
+            .speaker { width: 80px; height: 80px; font-size: 40px; }
+        }
         .color-item {
             width: 100px; height: 100px;
-            border-radius: 20px;
+            border-radius: 24px;
             margin: 0 auto 30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
             display: flex; align-items: center; justify-content: center;
             font-size: 50px;
+            animation: itemPulse 1.5s ease-in-out infinite;
         }
         .color-options {
             display: flex; gap: 15px;
@@ -282,10 +376,25 @@
         }
         .color-btn {
             width: 70px; height: 70px;
-            border-radius: 15px;
-            border: 3px solid white;
-            cursor: pointer; transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border-radius: 18px;
+            border: 4px solid white;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
+        }
+        .color-btn:active {
+            transform: scale(0.88);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .color-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes itemPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
         }
         .color-btn:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         .color-btn:active { transform: scale(0.95); }
@@ -311,19 +420,31 @@
             .piano-key.black { width: 30px; height: 70px; margin: 0 -15px; }
             .draw-canvas-wrapper { width: 90vw; height: 50vw; max-width: 400px; }
             .feedback { font-size: 32px; padding: 15px 30px; }
+            .music-hint { display: none; }
+            .music-target-notes { font-size: 40px; }
         }
         .feedback {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            font-size: 48px; font-weight: bold;
+            font-size: 56px; font-weight: bold;
             color: white; text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
-            padding: 20px 40px; border-radius: 20px;
-            opacity: 0; transition: all 0.3s; z-index: 200;
+            padding: 25px 50px; border-radius: 30px;
+            opacity: 0; z-index: 200;
         }
-        .feedback.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        .feedback.show {
+            animation: feedbackPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
         .feedback.correct { background: linear-gradient(135deg, #6BCB77, #4CAF50); }
         .feedback.wrong { background: linear-gradient(135deg, #FF6B6B, #FF4757); }
+
+        @keyframes feedbackPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            60% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            80% { transform: translate(-50%, -50%) scale(0.95); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
         .star-burst { position: absolute; pointer-events: none; z-index: 150; }
         .burst-star {
             position: absolute; font-size: 30px;
@@ -488,23 +609,37 @@
         }
         .count-item { font-size: 40px; }
         .number-btn {
-            width: 70px; height: 70px;
-            background: white; border-radius: 12px;
-            font-size: 28px; font-weight: bold; color: #333;
-            border: 3px solid #ddd;
-            cursor: pointer; transition: all 0.2s;
+            width: 75px; height: 75px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            font-size: 28px; font-weight: bold; color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
         }
-        .number-btn:hover { background: #f0f0f0; transform: scale(1.05); }
-        .number-btn:active { transform: scale(0.95); }
+        .number-btn:hover { transform: scale(1.08); }
+        .number-btn:active { transform: scale(0.88); box-shadow: 0 3px 8px rgba(102, 126, 234, 0.4); }
         .shape-display {
             width: 120px; height: 120px;
-            background: white; border-radius: 20px;
+            background: white; border-radius: 24px;
             margin: 0 auto 25px;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            animation: itemPulse 1.5s ease-in-out infinite;
         }
         .shape-icon { font-size: 60px; }
         .shape-btn {
+            width: 75px; height: 75px;
+            background: white; border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: 4px solid transparent;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.15s, box-shadow 0.15s;
+        }
+        .shape-btn:hover { transform: scale(1.08); border-color: #FFD700; }
+        .shape-btn:active { transform: scale(0.88); }
             width: 75px; height: 75px;
             background: white; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
@@ -530,17 +665,18 @@
         }
         .animal-btn {
             width: 90px; height: 90px;
-            background: white; border-radius: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 22px;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 3px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(245, 87, 108, 0.35);
+            border: none;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
         }
-        .animal-btn:hover { transform: scale(1.05); border-color: #FFD700; }
-        .animal-btn:active { transform: scale(0.95); }
-        .animal-icon { font-size: 50px; }
-        .animal-name { font-size: 14px; color: #666; margin-top: 5px; }
+        .animal-btn:hover { transform: scale(1.08); }
+        .animal-btn:active { transform: scale(0.88); box-shadow: 0 3px 10px rgba(245, 87, 108, 0.35); }
+        .animal-icon { font-size: 45px; }
 
         /* Puzzle Game */
         .puzzle-grid {
@@ -554,17 +690,25 @@
         .puzzle-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
         .puzzle-piece {
             width: 80px; height: 80px;
-            background: white; border-radius: 12px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
             font-size: 40px; cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 3px solid transparent;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: 4px solid transparent;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.15s, box-shadow 0.15s;
         }
-        .puzzle-piece:hover { transform: scale(1.05); border-color: #FFD700; }
-        .puzzle-piece.selected { border-color: #4CAF50; background: #E8F5E9; }
-        .puzzle-piece.correct { border-color: #4CAF50; background: #C8E6C9; }
-        .puzzle-piece.wrong { border-color: #FF5252; background: #FFEBEE; animation: shake 0.3s; }
+        .puzzle-piece:hover { transform: scale(1.08); border-color: #FFD700; }
+        .puzzle-piece:active { transform: scale(0.92); }
+        .puzzle-piece.selected { border-color: #4CAF50; background: linear-gradient(135deg, #a8edea 0%, #98FB98 100%); }
+        .puzzle-piece.correct { border-color: #4CAF50; background: linear-gradient(135deg, #98FB98 0%, #90EE90 100%); animation: correctPop 0.4s ease; }
+        .puzzle-piece.wrong { border-color: #FF5252; background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%); animation: shake 0.3s; }
+
+        @keyframes correctPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
         /* Music Game */
         .piano {
@@ -574,28 +718,38 @@
             flex-wrap: wrap;
         }
         .piano-key {
-            width: 50px; height: 150px;
-            background: white;
-            border: 2px solid #333;
-            border-radius: 0 0 8px 8px;
+            width: 55px; height: 160px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+            border: 3px solid #444;
+            border-radius: 0 0 12px 12px;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.1s;
             display: flex; align-items: flex-end; justify-content: center;
-            padding-bottom: 12px;
-            font-size: 16px; font-weight: bold; color: #333;
+            padding-bottom: 15px;
+            font-size: 18px; font-weight: bold; color: #333;
             position: relative;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
-        .piano-key:hover { background: #f5f5f5; }
-        .piano-key:active, .piano-key.active { background: #E3F2FD; transform: scale(0.98); }
+        .piano-key:hover { background: linear-gradient(180deg, #fff 0%, #e8e8e8 100%); }
+        .piano-key:active, .piano-key.active {
+            background: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 100%);
+            transform: scale(0.95) translateY(2px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
         .piano-key.black {
-            width: 35px; height: 90px;
-            background: #333; color: white;
-            margin: 0 -17px;
+            width: 38px; height: 100px;
+            background: linear-gradient(180deg, #555 0%, #333 100%);
+            color: white;
+            margin: 0 -19px;
             z-index: 10;
-            border-radius: 0 0 6px 6px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-        .piano-key.black:hover { background: #555; }
-        .piano-key.black:active, .piano-key.black.active { background: #666; }
+        .piano-key.black:hover { background: linear-gradient(180deg, #666 0%, #444 100%); }
+        .piano-key.black:active, .piano-key.black.active {
+            background: linear-gradient(180deg, #777 0%, #555 100%);
+            transform: scale(0.95) translateY(2px);
+        }
         .music-target {
             text-align: center;
             font-size: 24px; color: #333;
@@ -699,13 +853,13 @@
 
     <div id="game-container">
         <div class="header">
-            <button class="back-btn" id="backBtn">← 返回</button>
+            <button class="back-btn" id="backBtn">←</button>
             <div class="stats">
                 <div class="stars">
                     <span class="star-icon">⭐</span>
                     <span id="starCount">0</span>
                 </div>
-                <div class="difficulty" id="difficulty">难度: L1</div>
+                <div class="difficulty" id="difficulty">L1</div>
                 <button class="bgm-toggle" id="bgmToggle" title="背景音乐">🎵</button>
             </div>
         </div>
@@ -730,37 +884,29 @@
             <div class="decoration floating-star floating-star-2">⭐</div>
             <div class="decoration floating-star floating-star-3">🌟</div>
             <div class="title">
-                🏰 快乐乐园
-                <div class="subtitle">点击选择游戏开始玩吧！</div>
+                🏰
             </div>
             <div class="games-grid">
-                <div class="game-card" data-game="colorGame">
+                <div class="game-card" data-game="colorGame" data-name="颜色游戏">
                     <div class="game-icon">🎨</div>
-                    <div class="game-name">颜色对对碰</div>
                 </div>
-                <div class="game-card" data-game="numberGame">
+                <div class="game-card" data-game="numberGame" data-name="数字游戏">
                     <div class="game-icon">🔢</div>
-                    <div class="game-name">数字跳跳跳</div>
                 </div>
-                <div class="game-card" data-game="shapeGame">
+                <div class="game-card" data-game="shapeGame" data-name="形状游戏">
                     <div class="game-icon">🔷</div>
-                    <div class="game-name">形状小能手</div>
                 </div>
-                <div class="game-card" data-game="animalGame">
+                <div class="game-card" data-game="animalGame" data-name="动物游戏">
                     <div class="game-icon">🐮</div>
-                    <div class="game-name">动物朋友</div>
                 </div>
-                <div class="game-card" data-game="puzzleGame">
+                <div class="game-card" data-game="puzzleGame" data-name="拼图游戏">
                     <div class="game-icon">🧩</div>
-                    <div class="game-name">益智拼图</div>
                 </div>
-                <div class="game-card" data-game="musicGame">
+                <div class="game-card" data-game="musicGame" data-name="音乐游戏">
                     <div class="game-icon">🎹</div>
-                    <div class="game-name">小小音乐家</div>
                 </div>
-                <div class="game-card" data-game="drawGame">
+                <div class="game-card" data-game="drawGame" data-name="画画游戏">
                     <div class="game-icon">🎨</div>
-                    <div class="game-name">创意画画</div>
                 </div>
             </div>
         </div>
@@ -817,7 +963,7 @@
             <div class="question-area">
                 <div class="music-target">
                     <div class="music-target-notes" id="musicTarget"></div>
-                    <div>模仿弹奏上面的音符</div>
+                    <div class="music-hint">模仿弹奏</div>
                 </div>
                 <div class="demo-notes" id="demoNotes"></div>
             </div>
@@ -958,14 +1104,26 @@
 
         playAnimalSound() {
             if ('speechSynthesis' in window) {
-                const sounds = ['汪汪！', '喵喵！', '哞哞！', '咯咯！', '嘎嘎！', '哼哼！'];
+                const sounds = ['汪汪汪~汪汪！', '喵~喵~喵！', '哞~我要吃草！', '咯咯哒~咯咯哒！', '嘎嘎嘎~游啊游！', '哼哼哼~我饱饱的！'];
                 const text = sounds[Math.floor(Math.random() * sounds.length)];
                 speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'zh-CN';
-                utterance.rate = 0.9;
+                utterance.rate = 1.0;
+                utterance.pitch = 1.3;
+                utterance.volume = 0.9;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        speakText(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 1.0;
                 utterance.pitch = 1.2;
-                utterance.volume = 0.8;
+                utterance.volume = 1;
                 speechSynthesis.speak(utterance);
             }
         }
@@ -1106,6 +1264,8 @@
         gameCards.forEach(card => {
             card.addEventListener('click', () => {
                 soundManager.playClick();
+                const gameName = card.dataset.name || card.dataset.game;
+                soundManager.speakText(gameName);
                 switchScene(card.dataset.game);
                 soundManager.playBGM();
             });
@@ -1148,7 +1308,7 @@
 
     function updateUI() {
         starCountEl.textContent = state.totalStars;
-        difficultyEl.textContent = '难度: L' + state.difficulty;
+        difficultyEl.textContent = 'L' + state.difficulty;
     }
 
     function showFeedback(isCorrect, message) {
@@ -1165,7 +1325,7 @@
             }
         }
         // Confetti for level up
-        if (message.includes('难度提升')) {
+        if (message.includes('变厉害啦')) {
             createConfetti();
             createLevelUpGlow();
         }
@@ -1245,17 +1405,23 @@
             if (state.streak >= 2 && state.difficulty < 3) {
                 state.difficulty++;
                 state.streak = 0;
-                showFeedback(true, '🎊 难度提升！');
+                showFeedback(true, '🌟哇！变厉害啦！');
                 soundManager.playLevelUp();
+                soundManager.speakText('哇！你好厉害呀！变聪明啦！');
             } else {
-                showFeedback(true, state.streak >= 2 ? '太棒了！⭐' : '正确！🎉');
+                const correctTexts = ['🎉太棒啦！你是最棒的！', '✨好厉害呀！继续加油！', '🌟答对啦！你真聪明！', '🎊太棒了！再来一次！'];
+                showFeedback(true, correctTexts[Math.floor(Math.random() * correctTexts.length)]);
                 soundManager.playStar();
+                const cheers = ['太棒啦！', '好厉害呀！', '真聪明！', '你真棒！'];
+                soundManager.speakText(cheers[Math.floor(Math.random() * cheers.length)]);
             }
         } else {
             state.streak = 0;
             if (state.difficulty > 1) state.difficulty--;
             soundManager.playWrong();
-            showFeedback(false, '没关系，再试试！💪');
+            showFeedback(false, '哈哈，再来一次吧～🌟');
+            const encouragements = ['哈哈，没关系呀，再试试！', '没关系，勇敢再来一次！', '别灰心，你一定可以的！', '哈哈，再来一次吧～'];
+            soundManager.speakText(encouragements[Math.floor(Math.random() * encouragements.length)]);
         }
         updateUI();
         setTimeout(() => startGame(game), 1200);
@@ -1270,6 +1436,8 @@
         const colorItem = document.getElementById('colorItem');
         colorItem.textContent = correct.emoji;
         colorItem.style.background = correct.color;
+        // 语音朗读问题
+        soundManager.speakText('红红的苹果是什么颜色呀？');
         const optionsEl = document.getElementById('colorOptions');
         optionsEl.innerHTML = '';
         shuffled.forEach(c => {
@@ -1297,6 +1465,8 @@
             item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             itemsDisplay.appendChild(item);
         }
+        // 语音朗读问题
+        soundManager.speakText('数一数，有多少个小星星呀？');
         const optionsEl = document.getElementById('numberOptions');
         optionsEl.innerHTML = '';
         const options = [count];
@@ -1304,10 +1474,13 @@
             const n = Math.floor(Math.random() * maxCount) + 1;
             if (!options.includes(n)) options.push(n);
         }
+        // 数字对应的emoji图标
+        const numberEmojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
         shuffleArray(options).forEach(n => {
             const btn = document.createElement('button');
             btn.className = 'number-btn';
-            btn.textContent = n;
+            btn.textContent = numberEmojis[n - 1] || n;
+            btn.style.fontSize = '28px';
             btn.addEventListener('click', () => { handleAnswer(n === count, 'numberGame'); });
             optionsEl.appendChild(btn);
         });
@@ -1320,6 +1493,8 @@
         const correct = shapeList[Math.floor(Math.random() * shapeList.length)];
         state.currentShape = correct;
         document.getElementById('shapeIcon').textContent = correct.emoji;
+        // 语音朗读问题
+        soundManager.speakText('看一看，这是什么形状呢？');
         const optionsEl = document.getElementById('shapeOptions');
         optionsEl.innerHTML = '';
         shuffleArray([...shapeList]).forEach(s => {
@@ -1338,14 +1513,17 @@
         const correct = animalList[Math.floor(Math.random() * animalList.length)];
         state.currentAnimal = correct;
         const speaker = document.getElementById('speaker');
-        speaker.innerHTML = '🔊<br>点击听';
+        speaker.innerHTML = '🔊';
         speaker.onclick = () => { soundManager.playAnimalSound(); };
+        // 语音朗读问题
+        soundManager.speakText('听一听，是哪个小动物在叫呀？');
+        setTimeout(() => { soundManager.playAnimalSound(); }, 500);
         const optionsEl = document.getElementById('animalOptions');
         optionsEl.innerHTML = '';
         animalList.forEach(a => {
             const btn = document.createElement('button');
             btn.className = 'animal-btn';
-            btn.innerHTML = '<span class="animal-icon">' + a.emoji + '</span><span class="animal-name">' + a.name + '</span>';
+            btn.innerHTML = '<span class="animal-icon" style="font-size:40px">' + a.emoji + '</span>';
             btn.addEventListener('click', () => { handleAnswer(a.name === state.currentAnimal.name, 'animalGame'); });
             optionsEl.appendChild(btn);
         });
@@ -1372,6 +1550,9 @@
         const correct = shuffledPatterns[0];
         state.currentPuzzlePattern = correct;
         state.selectedPuzzlePiece = null;
+
+        // 语音朗读问题
+        soundManager.speakText('找一找，哪个图案是一样的呀？');
 
         const grid = document.getElementById('puzzleGrid');
         grid.className = 'puzzle-grid cols-' + cols;
@@ -1402,9 +1583,6 @@
             });
             optionsEl.appendChild(btn);
         });
-
-        document.querySelector('#puzzleGame .question-text').textContent =
-            '找出"' + correct.name + '"的图案';
     }
 
     function selectPuzzlePiece(piece, name) {
@@ -1434,6 +1612,8 @@
             state.musicSequence.push(pianoNotes[Math.floor(Math.random() * pianoNotes.length)]);
         }
 
+        // 语音说明
+        soundManager.speakText('小音乐家，快来跟我弹钢琴吧！');
         renderPiano();
         showDemoNotes();
         playMusicSequence();
@@ -1513,7 +1693,8 @@
         if (!correct) {
             state.playerSequence = [];
             soundManager.playWrong();
-            showFeedback(false, '不对哦，再听一次！🔄');
+            showFeedback(false, '哎呀，再听一次好不好～🔄');
+            soundManager.speakText('哎呀，没听清楚呢，再来一次吧！');
             setTimeout(() => {
                 state.playerSequence = [];
                 playMusicSequence();
@@ -1523,7 +1704,7 @@
 
         if (seqLen === state.musicSequence.length) {
             soundManager.playCorrect();
-            showFeedback(true, '太棒了！你是小音乐家！🎵');
+            showFeedback(true, '🎵太厉害了！小音乐家就是你！');
             setTimeout(() => startGame('musicGame'), 1500);
         }
     }
@@ -1541,6 +1722,8 @@
         drawCtx.fillStyle = 'white';
         drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
         isErasing = false;
+        // 语音说明
+        soundManager.speakText('小画家，画个漂亮的图画吧！');
 
         const colorPicker = document.getElementById('colorPicker');
         const brushSize = document.getElementById('brushSize');
