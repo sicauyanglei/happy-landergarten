@@ -247,21 +247,18 @@
                 padding-top: calc(60px + env(safe-area-inset-top));
             }
             .games-grid {
-                position: relative;
-                flex: 1;
+                position: absolute;
+                top: 140px;
+                left: 8px;
+                right: 8px;
+                bottom: 15px;
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: repeat(3, 1fr);
                 gap: 6px;
-                padding: 8px;
-                min-height: 0;
-                width: 100%;
-                left: 0;
-                right: 0;
-                top: auto;
-                bottom: auto;
+                width: auto;
                 transform: none;
-                margin-top: 10px;
+                z-index: 10;
             }
             .game-card {
                 width: 100%;
@@ -276,16 +273,25 @@
                 left: auto;
                 transform: none;
                 margin-top: 0;
+                z-index: 20;
             }
             .subtitle { font-size: 12px; }
-            .header { top: calc(10px + env(safe-area-inset-top)); left: 10px; right: 10px; }
+            .header { top: calc(10px + env(safe-area-inset-top)); left: 10px; right: 10px; z-index: 100; }
+            /* 移动端隐藏装饰元素避免遮挡 */
+            .cloud, .sun, .rainbow, .flower, .decoration, .floating-star {
+                display: none;
+            }
         }
         @media (max-width: 600px) {
             .games-grid {
+                top: 130px;
+                left: 6px;
+                right: 6px;
+                bottom: 10px;
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: repeat(3, 1fr);
                 gap: 5px;
-                padding: 6px;
+                width: auto;
             }
             .game-icon { font-size: 24px; }
             .game-name { font-size: 10px; }
@@ -295,10 +301,13 @@
                 padding-top: calc(50px + env(safe-area-inset-top));
             }
             .games-grid {
+                top: 120px;
+                left: 6px;
+                right: 6px;
+                bottom: 10px;
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: repeat(4, 1fr);
                 gap: 5px;
-                padding: 4px;
             }
             .game-icon { font-size: 22px; }
             .game-name { font-size: 10px; }
