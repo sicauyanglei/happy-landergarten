@@ -1,0 +1,19 @@
+{
+  "name": "happy-landergarten",
+  "version": "1.0.0",
+  "description": "快乐乐园 - 儿童综合游戏",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "android": "vite build && cap sync android"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.7.0",
+    "@capacitor/cli": "^5.7.0",
+    "@capacitor/core": "^5.7.0"
+  }
+}

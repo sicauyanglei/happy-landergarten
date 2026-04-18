@@ -1,0 +1,17 @@
+{
+  "appId": "com.happylandergarten.app",
+  "appName": "快乐乐园",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#87CEEB"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "backgroundColor": "#87CEEB",
+      "androidSplashResourceName": "splash",
+      "splashFullScreen": true,
+      "splashImmersive": true
+    }
+  }
+}

@@ -2,30 +2,40 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>快乐乐园 - 儿童综合游戏</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
         body {
             font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
-            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
-            min-height: 100vh;
+            background: #87CEEB;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
         }
         #game-container {
-            width: 1280px;
-            height: 720px;
-            max-width: 100vw;
-            max-height: 100vh;
+            width: 100%;
+            height: 100%;
+            max-width: 1280px;
+            max-height: 720px;
             position: relative;
             background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 60%, #98FB98 60%, #90EE90 100%);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
-            transform-origin: center center;
+        }
+        @media (min-width: 768px) {
+            #game-container {
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            }
         }
         @media (max-width: 768px) {
             #game-container {
